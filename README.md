@@ -1,7 +1,7 @@
 # Ecommerce Website
 
 ## Folder Structure, How to run a code
-**Lưu ý** : Trước khi push code phải tạo branch ghi rõ tên và push code lên branch đó
+**Lưu ý** : Trước khi push code phải tạo branch ghi rõ tên và push code lên branch đó, thêm virtual environment của mình vào .gitignore
 
 1. ecommerce_app/templates : code html.
 2. ecommerce_app/static : code js, css.
