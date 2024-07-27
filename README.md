@@ -1,87 +1,116 @@
 # Ecommerce Website
 
-## Hướng dẫn kết nối đến PostgreDB
 
-https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz&index=3
 
-Trường hợp bị lỗi đăng nhập :
-    ```sh
-    
-      sudo -i -u postgres
-      
-      psql
-      
-      ALTER USER postgres WITH PASSWORD 'your_new_password';
-      
-      \q
-    ```
-    
-Trong trường hợp bị lỗi không có database:
-    ```sh
-    
-    psql
+## How to Push Code to a Branch
 
-    CREATE DATABASE ecommerce_database;
-
-    \q
-
-    python3 manage.py migrate
-
-    python3 manage.py runserver
-    ```
-
-## Hướng dẫn đẩy (push) code lên branch
-
-1. **Khởi tạo repository Git**:
+1. Initialize Git repository (if not already initialized):
     ```sh
     git init
     ```
 
-2. **Thêm tất cả các thay đổi vào staging area**:
+2. Add all changes to the staging area:
     ```sh
     git add .
     ```
 
-3. **Commit các thay đổi với một thông điệp commit**:
+3. Commit the changes:
     ```sh
     git commit -m "your update"
     ```
 
-4. **Đẩy (push) code lên branch**:
+4. Push the changes to your branch:
     ```sh
     git push origin "your branch"
     ```
 
-5. **Tạo personal access token trên GitHub**:
-    - Vào `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)`
-    - Nhấn `Generate new token` để tạo mật khẩu.
+5. To generate a personal access token for authentication:
+    - Go to `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)`.
 
-### Ví dụ cụ thể
+## Troubleshooting
 
-Giả sử bạn muốn đẩy code lên branch `feature-branch`, bạn sẽ thực hiện các lệnh sau:
+### Login Issues
 
-1. Khởi tạo repository Git:
+If you encounter login issues, follow these steps:
+
+1. Switch to the PostgreSQL user:
     ```sh
-    git init
+    sudo -i -u postgres
     ```
 
-2. Thêm tất cả các thay đổi vào staging area:
+2. Access PostgreSQL:
     ```sh
-    git add .
+    psql
     ```
 
-3. Commit các thay đổi với một thông điệp commit:
-    ```sh
-    git commit -m "Added new feature"
+3. Update the PostgreSQL user password:
+    ```sql
+    ALTER USER postgres WITH PASSWORD 'your_new_password';
     ```
 
-4. Đẩy code lên branch `feature-branch`:
+4. Exit PostgreSQL:
     ```sh
-    git push origin feature-branch
+    \q
     ```
 
-5. Tạo personal access token trên GitHub:
-    - Vào `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)`
-    - Nhấn `Generate new token` để tạo mật khẩu.
+### Missing Database
 
-Lưu ý: Khi bạn đẩy code lên GitHub lần đầu tiên hoặc khi bạn cần xác thực, bạn sẽ cần sử dụng personal access token thay vì mật khẩu tài khoản GitHub.
+If the specified database does not exist:
+
+1. Access PostgreSQL:
+    ```sh
+    psql
+    ```
+
+2. Create the database:
+    ```sql
+    CREATE DATABASE ecommerce_database;
+    ```
+
+3. Exit PostgreSQL:
+    ```sh
+    \q
+    ```
+
+4. Apply migrations:
+    ```sh
+    python3 manage.py migrate
+    ```
+
+5. Run the development server:
+    ```sh
+    python3 manage.py runserver
+    ```
+
+## Running the Development Server
+
+1. Apply database migrations:
+    ```sh
+    python3 manage.py migrate
+    ```
+
+2. Create a superuser (if needed):
+    ```sh
+    python3 manage.py createsuperuser
+    ```
+
+3. Run the development server:
+    ```sh
+    python3 manage.py runserver
+    ```
+
+## Configuration
+
+Ensure your `settings.py` is configured correctly for the database:
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce_database',
+        'USER': 'postgres',
+        'PASSWORD': '261223',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
