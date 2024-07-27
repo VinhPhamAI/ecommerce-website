@@ -1,5 +1,29 @@
 # Ecommerce Website
 
+## Folder Structure, How to run a code
+**Lưu ý** : Trước khi push code phải tạo branch ghi rõ tên và push code lên branch đó
+
+1. ecommerce_app/templates : code html.
+2. ecommerce_app/static : code js, css.
+3. ecommerce_app/ecommerce_app : Nơi quản lý database và các file nói chung.
+4. ecommerce_app/website : Đ biết là cái gì nma nó là nơi nhận đường link của html và js, css code.
+
+### Cách chạy repo
+1. Clone về
+2. Mở WSL lên và tạo virtualenv
+    ```sh
+    pip install virtualenv
+    # khong thich venv thi dat ten khac
+    virtualenv venv
+    source venv/bin/activate
+    ```
+3. Chỉnh database ở ecommerce_app/ecommerce_app/settings.py theo tutorial ở phần dưới
+4. Chạy lệnh:
+    ```sh
+    pip install -r requirements.txt
+    cd ecommerce_app
+    python3 manage.py runserver
+    ```
 
 
 ## How to Push Code to a Branch
