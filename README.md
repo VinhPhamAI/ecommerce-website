@@ -1,7 +1,9 @@
 # Ecommerce Website
 
 ## Hướng dẫn kết nối đến PostgreDB
+
 https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz&index=3
+
 Trường hợp bị lỗi đăng nhập :
     ```sh
       sudo -i -u postgres
@@ -9,6 +11,7 @@ Trường hợp bị lỗi đăng nhập :
       ALTER USER postgres WITH PASSWORD 'your_new_password';
       \q
     ```
+    
 Trong trường hợp bị lỗi không có database:
     ```sh
     psql
