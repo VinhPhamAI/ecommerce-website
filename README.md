@@ -1,5 +1,17 @@
 # Ecommerce Website
 
+## Hướng dẫn kết nối đến PostgreDB
+1. Vào folder ecommerce_app/settings.py
+2. Tìm phần database như ở dưới
+   ```sh
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+    ```
+
 ## Hướng dẫn đẩy (push) code lên branch
 
 1. **Khởi tạo repository Git**:
