@@ -28,7 +28,8 @@
     - Go to `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)`.
   
 ## Set up a database
-[https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz&index=3](Tutorial)
+[Tutorial](https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz&index=3)
+
 
 
 ## Troubleshooting
