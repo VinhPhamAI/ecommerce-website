@@ -6,14 +6,19 @@ https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1s
 
 Trường hợp bị lỗi đăng nhập :
     ```sh
+    
       sudo -i -u postgres
+      
       psql
+      
       ALTER USER postgres WITH PASSWORD 'your_new_password';
+      
       \q
     ```
     
 Trong trường hợp bị lỗi không có database:
     ```sh
+    
     psql
 
     CREATE DATABASE ecommerce_database;
