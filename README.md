@@ -12,10 +12,10 @@
 1. Clone về
 2. Mở WSL lên và tạo virtualenv
     ```sh
-    pip install virtualenv
-    # khong thich venv thi dat ten khac
-    virtualenv venv
-    source venv/bin/activate
+    sudo apt install python3-venv
+    # khong thich myenv thi dat ten khac
+    python3 -m venv myenv
+    source myenv/bin/activate
     ```
 3. Chỉnh database ở ecommerce_app/ecommerce_app/settings.py theo tutorial ở phần dưới
 4. Chạy lệnh:
