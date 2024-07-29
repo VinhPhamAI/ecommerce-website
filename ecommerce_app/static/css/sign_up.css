@@ -1,0 +1,224 @@
+body {
+    margin: 0px;
+}
+.div {
+    background-color: rgba(254, 250, 245, 1);
+    /* padding-right: 70px; */
+}
+@media (max-width: 991px) {
+    .div {
+    padding-right: 20px;
+    }
+}
+.div-2 {
+    gap: 20px;
+    display: flex;
+}
+@media (max-width: 991px) {
+    .div-2 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+    }
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 57%;
+    margin-left: 0px;
+    flex: 5;
+}
+@media (max-width: 991px) {
+    .column {
+    width: 100%;
+    }
+}
+.div-3 {
+    background-color: rgba(187, 165, 157, 1);
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 100%; */
+    padding: 80px 60px;
+}
+@media (max-width: 991px) {
+    .div-3 {
+    max-width: 100%;
+    margin-top: 40px;
+    padding: 0 20px;
+    }
+}
+.img {
+    aspect-ratio: 1;
+    object-fit: auto;
+    object-position: center;
+    width: 100%;
+    border-radius: 3000px;
+    /* margin-top: 85px; */
+}
+@media (max-width: 991px) {
+    .img {
+    max-width: 100%;
+    margin: 40px 5px 0 0;
+    }
+}
+.column-2 {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 43%;
+    /* margin-left: 20px; */
+    flex: 5;
+}
+@media (max-width: 991px) {
+    .column-2 {
+    width: 100%;
+    }
+}
+.div-4 {
+    display: flex;
+    margin-top: 26px;
+    flex-direction: column;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 1);
+}
+@media (max-width: 991px) {
+    .div-4 {
+    max-width: 100%;
+    margin-top: 40px;
+    }
+}
+.div-5 {
+    margin: 0 36px;
+    font: 400 80px Dawning of a New Day, -apple-system, Roboto, Helvetica,
+    sans-serif;
+    text-align: center;
+}
+@media (max-width: 991px) {
+    .div-5 {
+    font-size: 40px;
+    margin: 0 10px;
+    }
+}
+.div-6 {
+    align-self: center;
+    margin-top: 17px;
+    font: 500 35px Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    sans-serif;
+}
+.div-7 {
+    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    sans-serif;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-left: 100px;
+}
+@media (max-width: 991px) {
+    .div-7 {
+    max-width: 100%;
+    }
+}
+.div-8 {
+    border-radius: 10px;
+    background-color: rgba(254, 250, 245, 1);
+    margin-top: 16px;
+    height: 58px;
+    border: 3px solid rgba(187, 165, 157, 1);
+    font-size: 20px;
+    padding-left: 15px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+@media (max-width: 991px) {
+    .div-8 {
+    max-width: 100%;
+    }
+}
+.div-9 {
+    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    sans-serif;
+    font-weight: 700;
+    margin-top: 45px;
+}
+@media (max-width: 991px) {
+    .div-9 {
+    max-width: 100%;
+    margin-top: 40px;
+    }
+}
+.div-10 {
+    border-radius: 10px;
+    background-color: rgba(254, 250, 245, 1);
+    margin-top: 17px;
+    height: 58px;
+    border: 3px solid rgba(187, 165, 157, 1);
+}
+@media (max-width: 991px) {
+    .div-10 {
+    max-width: 100%;
+    }
+}
+.div-11 {
+    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    sans-serif;
+    font-weight: 700;
+    margin-top: 45px;
+}
+@media (max-width: 991px) {
+    .div-11 {
+    max-width: 100%;
+    margin-top: 40px;
+    }
+}
+.div-12 {
+    border-radius: 10px;
+    background-color: rgba(254, 250, 245, 1);
+    margin-top: 17px;
+    height: 58px;
+    border: 3px solid rgba(187, 165, 157, 1);
+}
+@media (max-width: 991px) {
+    .div-12 {
+    max-width: 100%;
+    }
+}
+.div-13 {
+    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    sans-serif;
+    border-radius: 30px;
+    background-color: rgba(187, 165, 157, 1);
+    align-self: center;
+    margin-top: 33px;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 700;
+    padding: 16px 31px 8px;
+}
+@media (max-width: 991px) {
+    .div-13 {
+    padding: 0 20px;
+    }
+}
+.div-14 {
+    align-self: center;
+    display: flex;
+    /* margin-top: 49px; */
+    gap: 17px;
+    font-size: 25px;
+}
+@media (max-width: 991px) {
+    .div-14 {
+    margin-top: 40px;
+    }
+}
+.div-15 {
+    font-family: Raleway, sans-serif;
+    font-weight: 400;
+    flex-grow: 1;
+    flex-basis: auto;
+}
+.div-16 {
+    font-family: Raleway, sans-serif;
+    font-weight: 600;
+}
