@@ -1,18 +1,40 @@
+@font-face {
+    font-family: 'DawnOfANewDay';
+    src: url('../font/DawningofaNewDay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0px;
+    background-color: #dfcfbf;
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #dfcfbf;
 }
 .div {
+    width: 60vw; 
+    /* height: 60vh; */
     background-color: rgba(254, 250, 245, 1);
+    border-radius: 40px; 
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4);
     /* padding-right: 70px; */
 }
 @media (max-width: 991px) {
     .div {
-    padding-right: 20px;
+        position:relative;
+        width: 80vw; 
+        /* top: 10%; */
     }
 }
 .div-2 {
     gap: 20px;
     display: flex;
+
 }
 @media (max-width: 991px) {
     .div-2 {
@@ -23,11 +45,11 @@ body {
 }
 .column {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     line-height: normal;
     width: 57%;
     margin-left: 0px;
-    flex: 5;
+    flex: 4;
 }
 @media (max-width: 991px) {
     .column {
@@ -41,7 +63,9 @@ body {
     flex-direction: column;
     justify-content: center;
     /* width: 100%; */
-    padding: 80px 60px;
+    padding: 10px 50px;
+    border-top-left-radius: 40px; /* Top left corner */
+    border-bottom-left-radius: 40px;
 }
 @media (max-width: 991px) {
     .div-3 {
@@ -55,13 +79,19 @@ body {
     object-fit: auto;
     object-position: center;
     width: 100%;
-    border-radius: 3000px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    /* border-radius: 3000px; */
     /* margin-top: 85px; */
 }
 @media (max-width: 991px) {
     .img {
     max-width: 100%;
-    margin: 40px 5px 0 0;
+    margin: 40px 0px 0 0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     }
 }
 .column-2 {
@@ -70,7 +100,7 @@ body {
     line-height: normal;
     width: 43%;
     /* margin-left: 20px; */
-    flex: 5;
+    flex: 6;
 }
 @media (max-width: 991px) {
     .column-2 {
@@ -92,8 +122,7 @@ body {
 }
 .div-5 {
     margin: 0 36px;
-    font: 400 80px Dawning of a New Day, -apple-system, Roboto, Helvetica,
-    sans-serif;
+    font: 400 100px 'DawnOfANewDay', -apple-system, Roboto, Helvetica, sans-serif;
     text-align: center;
 }
 @media (max-width: 991px) {
@@ -105,12 +134,12 @@ body {
 .div-6 {
     align-self: center;
     margin-top: 17px;
-    font: 500 35px Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    font: 500 35px Times New Roman, -apple-system, Roboto, Helvetica,
     sans-serif;
+    /* font-weight: bold; */
 }
 .div-7 {
-    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
-    sans-serif;
+    font-weight: bold;
     font-weight: 700;
     margin-top: 32px;
     margin-left: 100px;
@@ -185,15 +214,14 @@ body {
     }
 }
 .div-13 {
-    font-family: Cormorant Garamond, -apple-system, Roboto, Helvetica,
-    sans-serif;
+    /* font-family: 'DawnOfANewDay'; */
     border-radius: 30px;
     background-color: rgba(187, 165, 157, 1);
     align-self: center;
     margin-top: 33px;
     color: rgba(255, 255, 255, 1);
     font-weight: 700;
-    padding: 16px 31px 8px;
+    padding: 16px 31px 16px;
 }
 @media (max-width: 991px) {
     .div-13 {
@@ -203,7 +231,8 @@ body {
 .div-14 {
     align-self: center;
     display: flex;
-    margin-top: 49px;
+    margin-top: 20px;
+    margin-bottom: 25px;
     gap: 17px;
     font-size: 25px;
 }
