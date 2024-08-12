@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="../static/css/profile.css">
+</head>
+
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+          <div class="brand-container">
+            <img src="../static/img/2311531.png" class="brand-logo" alt="Lala Books logo" />
+            <h1 class="brand-name">Lala Books</h1>
+          </div>
+          <form class="search-container" role="search">
+            <label for="book-search" class="visually-hidden">Search for book</label>
+            <img src="../static/img/search-icon-png-2.png" class="search-icon" alt="" />
+            <input type="search" id="book-search" class="search-input" placeholder="Search for book" aria-label="Search for book" />
+          </form>
+          <div class="user-actions">
+              <img src="../static/img/shopping-cart.png" class="action-icon" alt="" />
+              <img src="../static/img/Daco_2478382.png" class="action-icon" alt="" />
+          </div>
+        </div>
+    </nav>
+
+    <section class="profile-section">
+        <h1 class="profile-title">My Profile</h1>
+    </section>
+
+    <section class="personal-info-container">
+        <div class="info-layout">
+            <div class="user-profile">
+                <img src="../static/img/Daco_2478382.png" alt="User profile" class="profile-image" />
+                <div class="user-details">
+                    Bộ ba thất nghiệp <br /> thatnghiep@gmail
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="divider" role="separator"></div>
+                <form class="form-container">
+                    <h1 class="section-title">Personal Information</h1>
+                    <h2 class="subsection-title">Change Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" id="firstName" class="form-input" aria-label="First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" id="lastName" class="form-input" aria-label="Last Name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-input" aria-label="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" aria-label="Phone Number">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" class="form-input" aria-label="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob" class="form-label">Date Of Birth</label>
+                            <input type="text" id="dob" class="form-input" aria-label="Date Of Birth">
+                        </div>
+                    </div>
+                    <label for="address" class="address-label">Your Address</label>
+                    <input type="text" id="address" class="address-input" aria-label="Your Address">
+                    <div class="button-group">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="save-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+</body>

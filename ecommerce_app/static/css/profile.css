@@ -1,0 +1,291 @@
+@font-face {
+    font-family: 'DawnOfANewDay';
+    src: url('../font/DawningofaNewDay.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../font/CormorantGaramond-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../font/Raleway-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    margin: 0px;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+.nav-container {
+    position: relative;
+  background-color: #fff;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  /*padding: 20px 80px 0 0px;*/
+}
+
+@media (max-width: 991px) {
+  .nav-container {
+    max-width: 100%;
+  }
+}
+
+.nav-content {
+    align-self: center;
+  display: flex;
+  width: 100%;
+  gap: 20px 60px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-bottom: 0.1px solid #000;
+}
+
+@media (max-width: 991px) {
+  .nav-content {
+    max-width: 100%;
+  }
+}
+
+.brand-container {
+  align-self: center;
+  display: flex;
+  gap: 20px 30px;
+  color: #000;
+  justify-content: space-between;
+  padding-left: 2vw;
+}
+
+.brand-logo {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 25px;
+    max-width: 100%;
+}
+
+.brand-name {
+    margin: auto 0;
+    font: 400 23px 'DawnOfANewDay', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.search-container {
+    flex-grow: 1;
+    margin: 0 20px;
+  border-radius: 50px;
+  margin: 10px;
+  background-color: #e9e6e1;
+  align-self: center;
+  display: flex;
+  gap: 20px 20px;
+  color: #a6a6a8;
+  flex-wrap: wrap;
+  padding: 5px 10px;
+  font: 400 15px Raleway, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .search-container {
+    max-width: 100%;
+  }
+}
+
+.search-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 15px;
+}
+
+.search-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+}
+
+@media (max-width: 991px) {
+  .search-input {
+    max-width: 100%;
+  }
+}
+
+.user-actions {
+  align-self: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding-right: 2vw;
+}
+
+.action-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 20px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.profile-title {
+  color: #000;
+  align-self: start;
+  margin: 5px 0 0 70px;
+  font: 700 50px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+@media (max-width: 991px) {
+  .profile-title {
+    font-size: 50px;
+  }
+}
+.personal-info-container {
+     margin-top: 79px; 
+     margin: 5px 0 0 70px;
+}
+.info-layout { 
+    display: flex; 
+    gap: 30px; 
+}
+.user-profile { 
+    display: flex; 
+    gap: 26px; 
+    color: #000; 
+    font: 500 25px Raleway, sans-serif; 
+}
+.profile-image { 
+    aspect-ratio: 1; 
+    object-fit: contain; 
+    object-position: top; 
+    margin-top: 60px;
+    width: 60px; 
+    max-width: 100%; }
+.user-details { 
+    margin: 60px 0; 
+}
+.main-content { 
+    display: flex; 
+    flex-grow: 1; 
+    gap: 40px; 
+    flex-wrap: wrap; 
+}
+.divider { 
+     border-left: 0.1px solid #000;
+    margin-top: 60px; }
+.form-container { 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; 
+    flex-basis: 0; 
+    width: fit-content; 
+    margin-top: 25px;
+}
+.section-title { 
+    color: #000; 
+    font: 600 30px Raleway, sans-serif; 
+    margin-bottom: 10px;}
+.subsection-title { 
+    color: #000; 
+    margin-top: 0px; 
+    font: 500 25px Raleway, sans-serif; }
+.form-row { 
+    display: flex; 
+    margin-top: 30px; 
+}
+.form-group { 
+    display: flex; 
+    flex-direction: column; 
+    width: 50%; 
+    padding-right: 2vw;}
+.form-label { 
+    color: #000; 
+    font: 500 20px Raleway, sans-serif; }
+.form-input { 
+    border-radius: 10px; 
+    background-color: #fff; 
+    height: 40px; 
+    border: 2px solid #b9bfb8; 
+    margin-top: 10px; 
+    padding-left: 1vw;
+    font-size: 20px;}
+.address-label { 
+    color: #000; 
+    margin-top: 30px; 
+    font: 500 20px Raleway, sans-serif; }
+.address-input { 
+    border-radius: 10px; 
+    background-color: #fff; 
+    height: 40px; 
+    border: 2px solid #b9bfb8; 
+    margin-top: 10px; 
+    margin-right: 2vw;
+    padding-left: 1vw;
+    font-size: 20px;
+}
+.button-group { 
+    align-self: start; 
+    display: flex; 
+    margin-top: 50px; 
+    gap: 40px 49px; 
+    font: 600 20px Raleway, sans-serif; }
+.cancel-btn { 
+    border-radius: 10px; 
+    background-color: #fff; 
+    height: 50px; 
+    color: #000; 
+    padding: 0px 50px; 
+    border: 2px solid #b9bfb8;
+    font-size: 20px; 
+    }
+.save-btn { 
+    border-radius: 10px; 
+    background-color: #000; 
+    height: 50px; 
+    color: #fff; 
+    padding: 0px 50px; 
+    font-size: 20px;}
+
+
+@media (max-width: 991px) {
+    .personal-info-container { 
+        max-width: 100%; 
+        margin-top: 60px; 
+    }
+    .info-layout { 
+        flex-direction: column; 
+        align-items: stretch; 
+        gap: 0; }
+    .user-profile { 
+        margin-top: 60px; 
+        white-space: initial; 
+    }
+    .main-content { margin-top: 60px; }
+    .form-container { max-width: 100%; }
+    .section-title { max-width: 100%; font-size: 40px; }
+    .form-row { flex-direction: column; margin-top: 40px; }
+    .form-group { width: 100%; margin-top: 40px; }
+    .form-input, .address-input { max-width: 100%; }
+    .address-label { margin-top: 40px; }
+    .button-group { 
+        margin-top: 30px; white-space: normal; }
+    .cancel-btn, .save-btn { padding: 0 20px; }
+}
+    
