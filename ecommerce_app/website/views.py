@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 def register(request):
     if request.method == 'POST':
@@ -14,6 +15,6 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
 
+
 def landing_page(request):
     return render(request, "landing_page.html")
-
