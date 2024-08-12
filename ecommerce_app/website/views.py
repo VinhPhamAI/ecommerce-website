@@ -12,6 +12,5 @@ def authencation(request):
     return render(request, 'sign_up.html', {'form' : form})
 
 # Create your views here.
-@login_required
-def landing_page(request):
-    return render(request, 'landing_page.html', {})
+def index(request):
+    return render(request, 'checkout.html')
