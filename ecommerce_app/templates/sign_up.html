@@ -10,31 +10,45 @@
     <div class="wrapper">
         <div class="div">
             <div class="div-2">
-            <div class="column">
-                <img
-                    loading="lazy"
-                    srcset="../static/img/logo.jpg"
-                    class="img"
-                />
-            </div>
-            <div class="column-2">
-                <div class="div-4">
-                <div class="div-5">Lala Books</div>
-                <div class="div-6">Register your account</div>
-                <div class="div-7">Name</div>
-                <input class = 'div-8' type="text" id="searchBox" placeholder="Enter name" />
-                <div class="div-7">Email</div>
-                <input class = 'div-8' type="text" id="searchBox" placeholder="Enter email" />
-                <div class="div-7">Password</div>
-                <input class = 'div-8' type="text" id="searchBox" placeholder="Enter password" />
-                <div class="div-13">Sign up</div>
-                <div class="div-14">
-                    <div class="div-15">Already have an account?</div>
-                    <div class="div-16">Log in</div>
+                <div class="column">
+                    <img loading="lazy" srcset="../static/img/logo.jpg" class="img" />
                 </div>
+                <div class="column-2">
+                    <div class="div-4">
+                        <div class="div-5">Lala Books</div>
+                        <div class="div-6">Register your account</div>
+                        
+                        <!-- Start of the form -->
+                        <form method="post" action="{% url 'register' %}">
+
+                            {% csrf_token %}
+                            <div class="div-7">Name</div>
+                            <input class="div-8" type="text" name="username" placeholder="Enter name" required />
+                            
+                            <div class="div-7">Email</div>
+                            <input class="div-8" type="email" name="email" placeholder="Enter email" required />
+                            
+                            <div class="div-7">Password</div>
+                            <input class="div-8" type="password" name="password1" placeholder="Enter password" required />
+
+                            <div class="div-7">Confirm Password</div>
+                            <input class="div-8" type="password" name="password2" placeholder="Confirm your password" required />
+                            
+                            <!-- Submit button -->
+                            <div class="div-13">
+                                <input type="submit" value="Sign up" class="submit-button">
+                            </div>
+                        </form>
+                        <!-- End of the form -->
+
+                        <div class="div-14">
+                            <div class="div-15">Already have an account?</div>
+                            <div class="div-16"><a href="/login">Log in</a></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
 </body>
+</html>
