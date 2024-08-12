@@ -13,4 +13,4 @@ def authencation(request):
 
 # Create your views here.
 def index(request):
-    return render(request, 'checkout.html')
+    return render(request, 'book_list.html')

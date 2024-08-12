@@ -1,0 +1,358 @@
+@font-face {
+    font-family: 'DawnOfANewDay';
+    src: url('../font/DawningofaNewDay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Italiana';
+    src: url('../font/Italiana-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../font/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Thasadith';
+    src: url('../font/Thasadith-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'CormorantGaramond';
+  src: url('../font/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+    margin: 0px;
+    overflow-x: hidden;
+    /* background-color: #000; */
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: none;
+}
+
+.nav-container {
+    position: relative;
+    /* align-self: stretch; */
+    display: flex;
+    font: 500 20px Raleway, sans-serif;
+    width: 100%;
+    /* padding-left: 5vw; */
+  }
+  
+  .nav-content {
+    align-self: center;
+    display: flex;
+    width: 100%;
+    gap: 20px 84px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 0.1px solid #fff;
+
+  }
+
+  .nav-content-inside1 {
+    align-self: center;
+    display: flex;
+    /* width: 100%; */
+    gap: 20px 50px;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    padding-left: 2vw;
+  }
+  .nav-content-inside2 {
+    align-self: center;
+    display: flex;
+    /* width: 100%; */
+    gap: 20px 50px;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    padding-right: 2vw;
+  }
+
+  .logo-image {
+    aspect-ratio: 1.21;
+    object-fit: contain;
+    object-position: center;
+    width: 40px;
+    max-width: 100%;
+  }
+  
+  .brand-name {
+    /* flex-grow: 1; */
+    margin: auto 0;
+    font: 400 35px 'DawnOfANewDay', -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    /* width: 40vw; */
+    margin: 0 20px;
+    border-radius: 50px;
+    margin: 20px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    transition: background-color 0.3s, border 0.3s;
+    font-size: 17px;
+    opacity: 1;
+  }
+  .search-bar::placeholder {
+    color: white;
+    font-family: Raleway;
+    opacity: 1;
+}
+  
+  .nav-link {
+    margin: auto 0;
+    color: white;
+    text-decoration: none;
+  }
+.book-nav {
+  background-color: #bba59d;
+  padding: 18px 68px 18px 30px;
+}
+
+.nav-content {
+  display: flex;
+  gap: 20px;
+  background-color: #000000;
+}
+
+.logo-container {
+  display: flex;
+  flex-grow: 1;
+  gap: 19px;
+  color: #000;
+  font: 400 40px 'Dawning of a New Day', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.logo-image {
+  aspect-ratio: 1.2;
+  object-fit: contain;
+  /* width: 72px;
+  align-self: start; */
+  margin-top: 5px;
+}
+
+.brand-name {
+  flex-grow: 1;
+  width: 181px;
+  color: #ffffff;
+}
+
+.search-container {
+  border-radius: 30px;
+  background-color: #e9e6e1;
+  display: flex;
+  gap: 8px;
+  align-self: stretch;
+  color: #a6a6a8;
+  width: 100%;
+  margin: auto 0;
+  padding: 14px 12px;
+  font: 400 20px Raleway, sans-serif;
+}
+
+.search-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 20px;
+  align-self: start;
+}
+
+.search-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+}
+
+.user-actions {
+  display: flex;
+  gap: 40px;
+  align-self: stretch;
+  margin: auto 0;
+}
+
+.action-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 40px;
+}
+
+@media (max-width: 991px) {
+  .book-nav {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .nav-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .logo-container,
+  .search-container,
+  .user-actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .user-actions {
+    justify-content: space-between;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    /* background-color: #8c6144; */
+    /* padding: 10px 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-family: 'Cursive', sans-serif;
+}
+
+input[type="text"] {
+    padding: 5px;
+    font-size: 16px;
+    width: 200px;
+}
+
+.auth button {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
+}
+
+.books-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.book-item {
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.book-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.book-item p {
+    margin: 5px 0;
+}
+
+.book-info-price {
+    color: #8c6144;
+    font-weight: bold;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* height: 100%; */
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.book-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.book-item p {
+    margin: 5px 0;
+}
+
+.book-item p.book-title {
+    flex-grow: 1;
+    margin-bottom: 5px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.book-item p.book-price {
+    color: #8c6144;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.book-info-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
