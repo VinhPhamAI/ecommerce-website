@@ -7,28 +7,47 @@
     <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-    <div class="wrapper">
+    {% comment %} <div class="wrapper"> {% endcomment %}
         <div class="div">
             <div class="div-2">
-            <div class="column">
-                <img
-                    loading="lazy"
-                    srcset="../static/img/logo.jpg"
-                    class="img"
-                />
-            </div>
-            <div class="column-2">
-                <div class="div-4">
-                <div class="div-5">Lala Books</div>
-                <div class="div-6">Log into your account</div>
-                <div class="div-7">Name</div>
-                <input class = 'div-8' type="text" id="searchBox" placeholder="Enter Name" />
-                <div class="div-7">Password</div>
-                <input class = 'div-8' type="text" id="searchBox" placeholder="Enter password" />
-                <div class="div-13">Log In</div>
+                <div class="column">
+                    <img loading="lazy" srcset="../static/img/logo.jpg" class="img" />
+                </div>
+                <div class="column-2">
+                    <div class="div-4">
+                        <div class="div-5">Lala Books</div>
+                        <div class="div-6">Log into your account</div>
+                        
+                        <!-- Start of the form -->
+                        <div class='input-form'>
+
+                            {% csrf_token %}
+                            <div class="div-7">Name</div>
+                            <input class="div-8" type="text" name="username" placeholder="Enter name" required />
+
+                            <div class="div-7">Password</div>
+                            <input class="div-8" type="password" name="password1" placeholder="Enter password" required />
+
+                            <!-- Submit button -->
+                            {% comment %} <div class="div-13"> {% endcomment %}
+                                
+                            {% comment %} </div> {% endcomment %}
+                        </div>
+                        <div class='input-form'>
+
+                            {% csrf_token %}
+                            <input type="submit" class="submit-button div-13">
+                        </div>
+                        <!-- End of the form -->
+
+                        <div class="div-14">
+                            <div class="div-15">Don't have an account?</div>
+                            <div class="div-16"><a href="/sign_up">Sign up</a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
         </div>
-    </div>
+    {% comment %} </div> {% endcomment %}
 </body>
+</html>

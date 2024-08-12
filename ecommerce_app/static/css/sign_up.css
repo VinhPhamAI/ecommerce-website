@@ -7,7 +7,7 @@
 
 body {
     margin: 0px;
-    background-color: #dfcfbf;
+    /* background-color: #dfcfbf; */
 }
 .wrapper {
     display: flex;
@@ -17,10 +17,10 @@ body {
     background-color: #dfcfbf;
 }
 .div {
-    width: 60vw; 
+    /* width: 60vw;  */
     /* height: 60vh; */
     background-color: rgba(254, 250, 245, 1);
-    border-radius: 40px; 
+    /* border-radius: 40px;  */
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.4);
     /* padding-right: 70px; */
 }
@@ -63,8 +63,8 @@ body {
     justify-content: center;
     /* width: 100%; */
     padding: 10px 50px;
-    border-top-left-radius: 40px; /* Top left corner */
-    border-bottom-left-radius: 40px;
+    /* border-top-left-radius: 40px; */
+    /* border-bottom-left-radius: 40px; */
 }
 @media (max-width: 991px) {
     .div-3 {
@@ -78,8 +78,8 @@ body {
     object-fit: auto;
     object-position: center;
     width: 100%;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
+    /* border-top-left-radius: 40px; */
+    /* border-bottom-left-radius: 40px; */
     /* border-radius: 3000px; */
     /* margin-top: 85px; */
 }
@@ -137,7 +137,8 @@ body {
     font-weight: bold;
     font-weight: 700;
     margin-top: 32px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    /* text-align: left; */
 }
 @media (max-width: 991px) {
     .div-7 {
@@ -147,13 +148,20 @@ body {
 .div-8 {
     border-radius: 10px;
     background-color: rgba(254, 250, 245, 1);
-    margin-top: 16px;
+    /* margin-top: 16px; */
     height: 58px;
     border: 3px solid rgba(187, 165, 157, 1);
     font-size: 20px;
     padding-left: 15px;
     margin-right: 100px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    width: 100%;
+    max-width: 40vw;
+}
+
+.input-form{
+    align-items: center;
+    align-self: center;
 }
 @media (max-width: 991px) {
     .div-8 {
