@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="../static/css/cart.css">
+</head>
+
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+          <div class="brand-container">
+            <img src="../static/img/2311531.png" class="brand-logo" alt="Lala Books logo" />
+            <h1 class="brand-name">Lala Books</h1>
+          </div>
+          <form class="search-container" role="search">
+            <label for="book-search" class="visually-hidden">Search for book</label>
+            <img src="../static/img/search-icon-png-2.png" class="search-icon" alt="" />
+            <input type="search" id="book-search" class="search-input" placeholder="Search for book" aria-label="Search for book" />
+          </form>
+          <div class="user-actions">
+              <img src="../static/img/shopping-cart.png" class="action-icon" alt="" />
+              <img src="../static/img/Daco_2478382.png" class="action-icon" alt="" />
+          </div>
+        </div>
+    </nav>
+
+    <section class="profile-section">
+        <h1 class="profile-title">My Cart</h1>
+    </section>
+
+    <section class="product-summary">
+      <p class="product-name">PRODUCT NAME</p>
+      <div class="product-details">
+        <p class="price">PRICE</p>
+        <p class="quantity">QUANTITY</p>
+        <p class="total">TOTAL</p>
+      </div>
+    </section>
+
+    <section class="book-item">
+      <div class="book-container">
+        <div class="book-info-column">
+          <div class="book-info">
+            <img src="../static/img/HP.png" class="book-cover" alt="Cover of The Giving Tree" />
+            <h2 class="book-title">The Giving Tree</h2>
+          </div>
+        </div>
+        <div class="price-controls-column">
+          <div class="price-controls">
+            <span class="price">$4.87</span>
+            <div class="quantity-control">
+              <button class="quantity-btn" aria-label="Decrease quantity">-</button>
+              <span class="quantity">01</span>
+              <button class="quantity-btn" aria-label="Increase quantity">+</button>
+            </div>
+            <span class="price">$4.87</span>
+            <button class="remove-btn" aria-label="Remove item">x</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subtotal-container">
+      <p class="subtotal-label">Subtotal:</p>
+      <p class="subtotal-amount">$14.61</p>
+    </section>
+
+    <section class="shop-container">
+      <a href="#" class="back-link">&lt; Back to Shop</a>
+      <button class="order-button">ORDER NOW</button>
+    </section>
+
+</body>
