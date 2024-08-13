@@ -148,7 +148,7 @@ body::-webkit-scrollbar {
   color: #000;
   align-self: start;
   margin: 5px 0 0 70px;
-  font: 700 90px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+  font: 700 70px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -166,7 +166,7 @@ body::-webkit-scrollbar {
   color: #000;
   flex-wrap: wrap;
   justify-content: space-between;
-  font: 500 35px Raleway, sans-serif;
+  font: 500 25px Raleway, sans-serif;
   margin-right: 4vw;
   border-bottom: 0.1px solid #000;
 }
@@ -211,14 +211,14 @@ body::-webkit-scrollbar {
   flex-grow: 1;
   gap: 36px;
   color: #000;
-  font: 600 30px Cormorant Garamond, -apple-system, Roboto, Helvetica, sans-serif;
+  font: 600 20px Cormorant Garamond, -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .book-cover {
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  width: 250px;
+  width: 200px;
   max-width: 100%;
 }
 
@@ -237,7 +237,7 @@ body::-webkit-scrollbar {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-left: 350px;
-  font: 500 30px Raleway, sans-serif;
+  font: 500 25px Raleway, sans-serif;
 }
 
 
@@ -266,10 +266,8 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-
-
 .remove-btn {
-  background-color: #FEFAF5;
+  background-color: #fff;
   align-self: stretch;
   margin-top: 30px;
   margin-left: 10px;
@@ -279,7 +277,7 @@ body::-webkit-scrollbar {
   width: 50px;
   height: 50px;
   padding: 0 13px;
-  border: 1px solid #BBA59D;
+  border: 1px solid #000;
 }
 
 @media (max-width: 991px) {
@@ -324,25 +322,25 @@ body::-webkit-scrollbar {
 .shop-container {
   align-self: center;
   display: flex;
-  margin-top: 67px;
-  margin: 5px 0 0 70px;
+  margin: 50px 0 0 70px;
+  margin-bottom: 100px;
   gap: 50px;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-right: 4vw;
+  padding-right: 14vw;
 }
 
 .back-link {
   color: #000;
-  font: 600 45px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+  font: 500 30px Raleway, sans-serif;
 }
 
 .order-button {
   border-radius: 10px;
   background-color: #000;
   color: #fff;
-  padding: 30px 46px;
-  font: 600 30px Raleway, sans-serif;
+  padding: 20px 46px;
+  font: 500 20px Raleway, sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -363,26 +361,29 @@ body::-webkit-scrollbar {
 
 .subtotal-container {
   align-self: end;
-  display: flex;
+  display:flex;
   gap: 70px;
   font-family: Raleway, sans-serif;
   color: #000;
   white-space: nowrap;
   margin: 20px 0 0 70px;
+  justify-content: end;
+  padding-right: 14vw;
 }
 
 .subtotal-label {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 500;
 }
 
 .subtotal-amount {
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
 }
 
 @media (max-width: 991px) {
   .subtotal-container {
+    max-width: 100%;
     white-space: initial;
   }
 }

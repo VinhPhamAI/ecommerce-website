@@ -16,5 +16,5 @@ def register(request):
     return render(request, 'sign_up.html', {'form': form})
 
 # Create your views here.
-def index(request):
-    return render(request, 'index.html')
+def landing_page(request):
+    return render(request, 'cart.html')
