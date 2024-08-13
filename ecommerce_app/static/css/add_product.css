@@ -1,0 +1,59 @@
+.add-product-section { display: flex; flex-direction: column; }
+.section-title { color: #000; align-self: flex-start; margin-top: -13px; font: 700 65px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif; }
+.input-label { color: #000; align-self: flex-start; margin-top: 86px; font: 500 30px Raleway, sans-serif; }
+.input-field { font-size: 27px; border-radius: 10px; background-color: #fff; min-height: 67px; margin-top: 17px; width: 100%; border: 2px solid #B9BFB8; }
+.input-group { width: 100%; }
+.input-row { gap: 30px; display: flex; }
+.input-column { display: flex; flex-direction: column; line-height: normal; width: 33%; margin-left: 0; }
+.input-wrapper { display: flex; flex-grow: 1; flex-direction: column; color: #000; font: 500 30px Raleway, sans-serif; }
+.author-publisher-row { display: flex; margin-top: 59px; width: 857px; max-width: 100%; gap: 20px; color: #000; flex-wrap: wrap; justify-content: space-between; font: 500 30px Raleway, sans-serif; }
+.author-publisher-inputs { display: flex; margin-top: 17px; width: 100%; gap: 20px; flex-wrap: wrap; justify-content: space-between; }
+.author-input, .publisher-input { border-radius: 10px; background-color: #fff; width: 100%; max-width: 100%; height: 67px; border: 2px solid #B9BFB8; }
+.description-input { border-radius: 10px; background-color: #fff; min-height: 118px; margin-top: 17px; width: 100%; border: 2px solid #B9BFB8; }
+.button-group { align-self: center; display: flex; margin-top: 70px; max-width: 100%; gap: 20px; justify-content: space-between; font: 25px Raleway, sans-serif; }
+.cancel-button { border-radius: 10px; background-color: #fff; color: #000; font-weight: 600; padding: 19px 30px; border: 2px solid #B9BFB8; }
+.submit-button { border-radius: 10px; background-color: #000; color: #fff; font-weight: 700; padding: 18px 13px; }
+.author-publisher {
+    /* display: flex; */
+    gap: 30px;
+}
+.author {
+    flex-grow: 1;
+}
+.publisher {
+    flex-grow: 1;
+}
+@media (max-width: 991px) {
+    .section-title { max-width: 100%; font-size: 40px; }
+    .input-label { margin-top: 40px; }
+    .input-field { max-width: 100%; }
+    .input-group { max-width: 100%; margin-top: 40px; }
+    .input-row { flex-direction: column; align-items: stretch; gap: 0; }
+    .input-column { width: 100%; }
+    .input-wrapper { max-width: 100%; margin-top: 40px; }
+    .author-publisher-row { margin-top: 40px; }
+    .author-publisher-inputs { max-width: 100%; }
+    .button-group { margin-top: 40px; }
+    .cancel-button { padding: 0 20px; }
+    .author-publisher {
+    display: block;
+    gap: 30px;
+    }
+    .author {
+        flex-grow: 1;
+    }
+    .publisher {
+        flex-grow: 1;
+    }
+}
+
+.add-product-section {
+    margin: 100px;
+}
+
+.image-link {
+    padding-top: 86px;
+}
+.description {
+    margin-top: 86px;
+}
