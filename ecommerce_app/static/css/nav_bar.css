@@ -96,14 +96,14 @@ html {
     border: none;
     padding: 10px 20px;
     font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
     outline: none;
     transition: background-color 0.3s, border 0.3s;
     font-size: 17px;
     opacity: 1;
   }
   .search-bar::placeholder {
-    color: white;
+    color: rgb(0, 0, 0);
     font-family: Raleway;
     opacity: 1;
 }

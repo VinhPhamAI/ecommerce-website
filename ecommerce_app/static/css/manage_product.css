@@ -129,7 +129,7 @@ html {
 .nav-content {
   display: flex;
   gap: 20px;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .logo-container {
@@ -151,7 +151,7 @@ html {
 .brand-name {
   flex-grow: 1;
   width: 181px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .search-container {
@@ -658,7 +658,7 @@ html {
 
 /* Define column widths */
 .product-name {
-    width: 50%; /* Adjust as needed */
+    width: 40%; /* Adjust as needed */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Show ellipsis for overflow text */
     white-space: nowrap; /* Prevent text wrapping */
