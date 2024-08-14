@@ -270,7 +270,11 @@ input[type="text"] {
 main {
     padding: 20px;
 }
-
+.books-section {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vw;
+}
 .books-section h2 {
     font-size: 24px;
     margin-bottom: 20px;

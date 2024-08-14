@@ -247,8 +247,11 @@ html {
 }
 .checkout {
     color: rgba(0, 0, 0, 1);
-    font: 700 75px Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    font: 700 75px CormorantGaramond, -apple-system, Roboto, Helvetica,
     sans-serif;
+}
+.delivery-info {
+    font-weight: bold;
 }
 @media (max-width: 991px) {
     .checkout {

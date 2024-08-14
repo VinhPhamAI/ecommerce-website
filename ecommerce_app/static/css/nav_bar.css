@@ -125,8 +125,6 @@ html {
   display: none;
   position: absolute;
   top: 100%;
-  /* left: -20px; */
-  right: -30px;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   padding: 10px;
@@ -139,9 +137,8 @@ html {
   position: relative;
 }
 
-.burger-menu:hover .dropdown-content,
-.burger-menu:focus-within .dropdown-content {
-  display: block;
+.burger-dropdown {
+  left: 0; /* or whatever value suits the positioning for this dropdown */
 }
 
 /* Profile menu adjustments */
@@ -149,9 +146,8 @@ html {
   position: relative;
 }
 
-.profile-menu:hover .dropdown-content,
-.profile-menu:focus-within .dropdown-content {
-  display: block;
+.profile-dropdown {
+  right: 0; /* Aligns the dropdown to the right of the profile link */
 }
 
 /* Individual dropdown items */
@@ -169,4 +165,10 @@ html {
 
 .dropdown-item:hover {
   background-color: #f1f1f1;
+}
+
+/* Show dropdown on hover */
+.burger-menu:hover .burger-dropdown,
+.profile-menu:hover .profile-dropdown {
+  display: block;
 }
