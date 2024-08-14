@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'DawnOfANewDay';
+    src: url('../font/DawningofaNewDay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Italiana';
+    src: url('../font/Italiana-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('../font/Raleway-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Thasadith';
+    src: url('../font/Thasadith-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0px;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: none;
+}
+
+.nav-container {
+    position: relative;
+    /* align-self: stretch; */
+    display: flex;
+    font: 500 20px Raleway, sans-serif;
+    width: 100%;
+    /* padding-left: 5vw; */
+  }
+  
+  .nav-content {
+    align-self: center;
+    display: flex;
+    width: 100%;
+    gap: 20px 84px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 0.1px solid #000000;
+
+  }
+
+  .nav-content-inside1 {
+    align-self: center;
+    display: flex;
+    /* width: 100%; */
+    gap: 20px 50px;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    padding-left: 2vw;
+  }
+  .nav-content-inside2 {
+    align-self: center;
+    display: flex;
+    /* width: 100%; */
+    gap: 20px 50px;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    padding-right: 2vw;
+  }
+
+  .logo-image {
+    aspect-ratio: 1.21;
+    object-fit: contain;
+    object-position: center;
+    width: 40px;
+    max-width: 100%;
+  }
+  .brand-name {
+    /* flex-grow: 1; */
+    margin: auto 0;
+    font: 400 35px 'DawnOfANewDay', -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    /* width: 40vw; */
+    margin: 0 20px;
+    border-radius: 50px;
+    margin: 20px;
+    border: none;
+    padding: 10px 20px;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.3);
+    outline: none;
+    transition: background-color 0.3s, border 0.3s;
+    font-size: 17px;
+    opacity: 1;
+  }
+  .search-bar::placeholder {
+    color: white;
+    font-family: Raleway;
+    opacity: 1;
+}
+  
+  .nav-link {
+    margin: auto 0;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+
+
+  .burger-menu {
+    position: relative;
+    display: flex;
+}
+
+/* Common dropdown styling */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* left: -20px; */
+  right: -30px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+/* Styling for the burger menu dropdown */
+.burger-menu {
+  position: relative;
+}
+
+.burger-menu:hover .dropdown-content,
+.burger-menu:focus-within .dropdown-content {
+  display: block;
+}
+
+/* Profile menu adjustments */
+.profile-menu {
+  position: relative;
+}
+
+.profile-menu:hover .dropdown-content,
+.profile-menu:focus-within .dropdown-content {
+  display: block;
+}
+
+/* Individual dropdown items */
+.dropdown-item {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}

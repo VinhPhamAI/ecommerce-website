@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <link rel="stylesheet" href="../static/css/add_product.css">
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-content-inside1">
+                <div class="burger-menu" onclick="toggleDropdown('burger-dropdown')">
+                    <img src="../static/img/burgerblack.png" alt="Menu" class="logo-image" />
+                    <div id="burger-dropdown" class="dropdown-content">
+                        <a href="#" class="dropdown-item">Book type</a>
+                        <a href="#" class="dropdown-item">Lmao</a>
+                    </div>
+                </div>
+                <h1 class="brand-name">Lala Books</h1>
+            </div>
+            <input class="search-bar" placeholder="Search" />
+            <div class="nav-content-inside2">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'login' %}" class="nav-link">Log in</a>
+                    <a href="{% url 'register' %}" class="nav-link">Sign up</a>
+                {% else %}
+                    <a class="nav-link">Shopping Cart</a>
+                    <div class="profile-menu">
+                        <a class="nav-link profile-link">Profile</a>
+                        <div id="profile-dropdown" class="dropdown-content">
+                            <a href="#" class="dropdown-item">View profile</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+      
+    
+        
+    <section class="add-product-section">
+        <h1 class="section-title">Add New Product</h1>
+        
+        <form>
+        <label for="productName" class="input-label">Product Name</label>
+        <input type="text" id="productName" class="input-field" required>
+    
+        <div class="input-group">
+            <div class="input-row">
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="productId" class="input-label">Product ID</label>
+                <input type="text" id="productId" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="price" class="input-label">Price</label>
+                <input type="number" id="price" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="stock" class="input-label">Stock</label>
+                <input type="number" id="stock" class="input-field" required>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class='author-publisher'>
+            <div class='author'>
+                <div class="author-publisher-row">
+                    <label for="author">Author</label>
+                </div>
+                <div class="author-publisher-inputs">
+                    <input type="text" id="author" class="author-input" required>
+                </div>
+            </div>
+
+            <div class='publisher'>
+                <div class="author-publisher-row">
+                    <label for="publisher">Publisher</label>
+                </div>
+                <div class="author-publisher-inputs">
+                    <input type="text" id="publisher" class="publisher-input" required>
+                </div>
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="input-row">
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="language" class="input-label">Language</label>
+                <input type="text" id="language" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="binding" class="input-label">Binding</label>
+                <input type="text" id="binding" class="input-field" required>
+                </div>
+            </div>
+            <div class="input-column">
+                <div class="input-wrapper">
+                <label for="pages" class="input-label">Pages</label>
+                <input type="number" id="pages" class="input-field" required>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+        <div class='image-link'>
+            <label for="imageLink" class="input-label">Link to Image of Product</label>
+            <input type="url" id="imageLink" class="input-field" required>
+        </div>
+        <div class='description'>
+            <label for="description" class="input-label">Description</label>
+            <textarea id="description" class="description-input" required></textarea>
+        </div>
+        <div class="button-group">
+            <button type="button" class="cancel-button">Cancel</button>
+            <button type="submit" class="submit-button">Add Product</button>
+        </div>
+        </form>
+    </section>
+</body>
+</html>
