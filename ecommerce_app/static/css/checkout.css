@@ -450,19 +450,18 @@ html {
 .payment-method-title {
     color: #000;
     align-self: start;
-    margin-top: 47px;
-    font: 600 25px Raleway, sans-serif;
+    font: 500 20px Raleway, sans-serif;
+    padding-left: 35px;
 }
 
 @media (max-width: 991px) {
     .payment-method-title {
-    margin-top: 40px;
+    margin-top: 30px;
     }
 }
 
 .payment-options {
     background-color: #fff;
-    margin-top: 13px;
     width: 100%;
     overflow: hidden;
     padding: 38px 80px 38px 36px;
@@ -507,7 +506,7 @@ html {
     flex-grow: 1;
     gap: 14px;
     color: #000;
-    font: 500 25px Raleway, sans-serif;
+    font: 500 20px Raleway, sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -547,9 +546,9 @@ html {
 .cash-delivery-label {
     display: flex;
     flex-grow: 1;
-    gap: 6px;
+    gap: 14px;
     color: #000;
-    font: 500 25px Raleway, sans-serif;
+    font: 500 20px Raleway, sans-serif;
 }
 
 @media (max-width: 991px) {

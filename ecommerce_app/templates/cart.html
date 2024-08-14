@@ -4,27 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
     <link rel="stylesheet" href="../static/css/cart.css">
 </head>
 
 <body>
-    <nav class="nav-container">
-        <div class="nav-content">
-          <div class="brand-container">
-            <img src="../static/img/2311531.png" class="brand-logo" alt="Lala Books logo" />
-            <h1 class="brand-name">Lala Books</h1>
-          </div>
-          <form class="search-container" role="search">
-            <label for="book-search" class="visually-hidden">Search for book</label>
-            <img src="../static/img/search-icon-png-2.png" class="search-icon" alt="" />
-            <input type="search" id="book-search" class="search-input" placeholder="Search for book" aria-label="Search for book" />
-          </form>
-          <div class="user-actions">
-              <img src="../static/img/shopping-cart.png" class="action-icon" alt="" />
-              <img src="../static/img/Daco_2478382.png" class="action-icon" alt="" />
-          </div>
-        </div>
-    </nav>
+    {% include 'nav_bar.html' %}
 
     <section class="profile-section">
         <h1 class="profile-title">My Cart</h1>

@@ -17,4 +17,4 @@ def register(request):
 
 # Create your views here.
 def landing_page(request):
-    return render(request, "landing_page.html")
+    return render(request, "checkout.html")
