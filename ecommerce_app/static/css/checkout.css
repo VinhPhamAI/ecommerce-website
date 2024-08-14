@@ -129,7 +129,7 @@ html {
 .nav-content {
   display: flex;
   gap: 20px;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .logo-container {
@@ -151,7 +151,7 @@ html {
 .brand-name {
   flex-grow: 1;
   width: 181px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .search-container {
@@ -247,8 +247,11 @@ html {
 }
 .checkout {
     color: rgba(0, 0, 0, 1);
-    font: 700 75px Cormorant Garamond, -apple-system, Roboto, Helvetica,
+    font: 700 75px CormorantGaramond, -apple-system, Roboto, Helvetica,
     sans-serif;
+}
+.delivery-info {
+    font-weight: bold;
 }
 @media (max-width: 991px) {
     .checkout {

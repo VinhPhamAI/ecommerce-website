@@ -129,7 +129,7 @@ html {
 .nav-content {
   display: flex;
   gap: 20px;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .logo-container {
@@ -151,7 +151,7 @@ html {
 .brand-name {
   flex-grow: 1;
   width: 181px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .search-container {
@@ -270,7 +270,11 @@ input[type="text"] {
 main {
     padding: 20px;
 }
-
+.books-section {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 5vw;
+}
 .books-section h2 {
     font-size: 24px;
     margin-bottom: 20px;

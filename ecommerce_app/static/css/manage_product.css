@@ -129,7 +129,7 @@ html {
 .nav-content {
   display: flex;
   gap: 20px;
-  background-color: #000000;
+  /* background-color: #000000; */
 }
 
 .logo-container {
@@ -151,7 +151,7 @@ html {
 .brand-name {
   flex-grow: 1;
   width: 181px;
-  color: #ffffff;
+  color: #000000;
 }
 
 .search-container {
@@ -364,7 +364,7 @@ html {
 .product-header {
     display: flex;
     margin-top: 22px;
-    width: 100%;
+    width: 90%;
     max-width: 1553px;
     align-items: flex-start;
     gap: 20px;
@@ -381,7 +381,7 @@ html {
 .product-title {
     color: #000;
     align-self: start;
-    font: 700 75px 'Cormorant Garamond', -apple-system, Roboto, Helvetica, sans-serif;
+    font: 700 75px 'CormorantGaramond', -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -478,6 +478,7 @@ html {
 }
 
 .add-product-button {
+    border: none;
     border-radius: 10px;
     background-color: #bba59d;
     color: #fff;
@@ -485,6 +486,7 @@ html {
     flex-grow: 1;
     width: fit-content;
     padding: 18px 26px;
+    font-size: 20px;
 }
 
 @media (max-width: 991px) {
@@ -601,7 +603,7 @@ html {
 .pagination {
     display: flex;
     margin-top: 72px;
-    width: 100%;
+    /* width: 100%; */
     max-width: 1536px;
     gap: 20px;
     color: #000;
@@ -658,7 +660,7 @@ html {
 
 /* Define column widths */
 .product-name {
-    width: 50%; /* Adjust as needed */
+    width: 40%; /* Adjust as needed */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Show ellipsis for overflow text */
     white-space: nowrap; /* Prevent text wrapping */

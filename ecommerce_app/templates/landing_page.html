@@ -4,32 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lala Books</title>
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
+    <link rel="stylesheet" href="../static/css/book_list.css">
     <link rel="stylesheet" href="../static/css/landing_page.css">
 </head>
 <body>
     <div class="hero-section">
       <img src="..\static\img\banner.png" alt="" class="hero-background" />
-      <nav class="nav-container">
-        <div class="nav-content">
-          <div class="nav-content-inside1">
-            <img src="..\static\img\burger.png" alt="Lala Books Logo" class="logo-image" />
-            <h1 class="brand-name">Lala Books</h1>
-            
-          </div>
-          <input class="search-bar" placeholder="Search"/>
-          <div class="nav-content-inside2">
-            {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                <a href="{% url 'cart' %}" class="nav-link">Shopping Cart</a>
-                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
-            {% else %}
-                <a href="{% url 'login' %}" class="nav-link">Log in</a>
-                <a href="{% url 'register' %}" class="nav-link">Sign up</a>
-            {% endif %}
-        </div>
-          
-        </div>
-      </nav>
+      {% include 'nav_bar_white.html' %}
+      
       <div class="hero-title-block">
         <h2 class="hero-title">Lala Books</h2>
       </div>
@@ -41,38 +24,66 @@
       </p>
     </div>
     
-    <h3 class="section-title">-Fiction</h3>
-    
-    <div class="book-container">
-      <div class="book-grid">
-        <div class="book-column">
+    <section class="books-section">
+      <h2>Fiction</h2>
+      <div class="books-grid">
           <div class="book-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/93ae6afa17afe76cb98105eb555bbaf191386d44f96e146e1882f4ec256343ca?apiKey=99a2af43fc7a4b6e84b9146faa2de95e&&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="The Hunger Games book cover" class="book-cover" />
-            <h4 class="book-title">The Hunger Games</h4>
-            <p class="book-price">$5.09</p>
+              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <div class='book-info'>
+                  <div class='book-info-name'>
+                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                  </div>
+                  <div class='book-info-price'>
+                      <p>$7.38</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="book-column">
           <div class="book-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d2b9967a0a243a91066b6ec675e6d948f067145e7bccb5f2c654c1ac98cd499d?apiKey=99a2af43fc7a4b6e84b9146faa2de95e&&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Harry Potter and the Order of the Phoenix book cover" class="book-cover" />
-            <h4 class="book-title">Harry Potter and the Order of the Phoenix</h4>
-            <p class="book-price">$7.38</p>
+              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <div class='book-info'>
+                  <div class='book-info-name'>
+                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                  </div>
+                  <div class='book-info-price'>
+                      <p>$7.38</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="book-column">
           <div class="book-item">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/53eed82816a407ed435a8c6c8c3daae7eb31222fc1c0659a1f75ed8c9927fda9?apiKey=99a2af43fc7a4b6e84b9146faa2de95e&&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="The Lord of the Rings book cover" class="book-cover" />
-            <h4 class="book-title">The Lord of the Rings</h4>
-            <p class="book-price">$21.15</p>
+              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <div class='book-info'>
+                  <div class='book-info-name'>
+                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                  </div>
+                  <div class='book-info-price'>
+                      <p>$7.38</p>
+                  </div>
+              </div>
           </div>
-        </div>
+          <div class="book-item">
+              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <div class='book-info'>
+                  <div class='book-info-name'>
+                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                  </div>
+                  <div class='book-info-price'>
+                      <p>$7.38</p>
+                  </div>
+              </div>
+          </div>
+          <div class="book-item">
+              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <div class='book-info'>
+                  <div class='book-info-name'>
+                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                  </div>
+                  <div class='book-info-price'>
+                      <p>$7.38</p>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
+  </section>
     
-    <div class="see-more-container">
-      <span class="see-more-text">See more</span>
-      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/584884d95d23790d18c45d750e3035b0065e7195e5cb517e1129f89ece3b10cd?apiKey=99a2af43fc7a4b6e84b9146faa2de95e&&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="See more icon" class="see-more-icon" />
-    </div>
-    
-    <footer class="footer">Lala Books</footer>
+    {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}
 </body>

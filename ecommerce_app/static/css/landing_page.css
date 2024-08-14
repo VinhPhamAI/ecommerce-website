@@ -108,6 +108,7 @@ html {
     /* flex-grow: 1; */
     margin: auto 0;
     font: 400 35px 'DawnOfANewDay', -apple-system, Roboto, Helvetica, sans-serif;
+    color: #fff;
   }
   
   .search-bar {
