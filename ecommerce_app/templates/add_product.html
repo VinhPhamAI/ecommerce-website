@@ -11,9 +11,9 @@
     <nav class="nav-container">
         <div class="nav-content">
             <div class="nav-content-inside1">
-                <div class="burger-menu">
+                <div class="burger-menu" onclick="toggleDropdown('burger-dropdown')">
                     <img src="../static/img/burgerblack.png" alt="Menu" class="logo-image" />
-                    <div class="dropdown-content">
+                    <div id="burger-dropdown" class="dropdown-content">
                         <a href="#" class="dropdown-item">Book type</a>
                         <a href="#" class="dropdown-item">Lmao</a>
                     </div>
@@ -23,16 +23,22 @@
             <input class="search-bar" placeholder="Search" />
             <div class="nav-content-inside2">
                 {% if user.is_authenticated %}
-                    <a href="{% url 'profile' %}" class="nav-link">Profile</a>
-                    <a href="{% url 'cart' %}" class="nav-link">Shopping Cart</a>
-                    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
-                {% else %}
                     <a href="{% url 'login' %}" class="nav-link">Log in</a>
                     <a href="{% url 'register' %}" class="nav-link">Sign up</a>
+                {% else %}
+                    <a class="nav-link">Shopping Cart</a>
+                    <div class="profile-menu">
+                        <a class="nav-link profile-link">Profile</a>
+                        <div id="profile-dropdown" class="dropdown-content">
+                            <a href="#" class="dropdown-item">View profile</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
         </div>
     </nav>
+      
     
         
     <section class="add-product-section">
