@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-up Page</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-    {% comment %} <div class="wrapper"> {% endcomment %}
+    <div class="wrapper">
         <div class="div">
             <div class="div-2">
                 <div class="column">
@@ -19,35 +19,27 @@
                         <div class="div-6">Log into your account</div>
                         
                         <!-- Start of the form -->
-                        <div class='input-form'>
-
+                        <form method="post" action="{% url 'login' %}" class='input-form'>
                             {% csrf_token %}
-                            <div class="div-7">Name</div>
-                            <input class="div-8" type="text" name="username" placeholder="Enter name" required />
+                            <div class="div-7">Username</div>
+                            <input class="div-8" type="text" name="username" placeholder="Enter username" required />
 
                             <div class="div-7">Password</div>
-                            <input class="div-8" type="password" name="password1" placeholder="Enter password" required />
+                            <input class="div-8" type="password" name="password" placeholder="Enter password" required />
 
                             <!-- Submit button -->
-                            {% comment %} <div class="div-13"> {% endcomment %}
-                                
-                            {% comment %} </div> {% endcomment %}
-                        </div>
-                        <div class='input-form'>
-
-                            {% csrf_token %}
-                            <input type="submit" class="submit-button div-13">
-                        </div>
+                            <input type="submit" value="Log in" class="submit-button div-13">
+                        </form>
                         <!-- End of the form -->
 
                         <div class="div-14">
                             <div class="div-15">Don't have an account?</div>
-                            <div class="div-16"><a href="/sign_up">Sign up</a></div>
+                            <div class="div-16"><a href="{% url 'register' %}">Sign up</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    {% comment %} </div> {% endcomment %}
+    </div>
 </body>
 </html>

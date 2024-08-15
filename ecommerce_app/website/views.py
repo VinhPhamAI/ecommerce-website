@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .form import LoginForm
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 
 def register(request):
     if request.method == 'POST':
@@ -18,20 +19,19 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
 
-@login_required
-def dashboard(request): 
-    return render(request, 'dashboard.html')
-
 # Create your views here.
 def landing_page(request):
     return render(request, "landing_page.html")
 
+def log_out(request):
+    logout(request)
+    return redirect('landing_page')
 
-def login(request): 
-    """Hàm view của user login"""
+
+def user_login(request): 
+    """View function for user login"""
     if request.method == 'POST': 
         form = LoginForm(data=request.POST)
-
         if form.is_valid(): 
             cd = form.cleaned_data
             user = authenticate(
@@ -41,13 +41,12 @@ def login(request):
             )
             if user is not None: 
                 if user.is_active: 
-                    login(request, user)
-                    return HttpResponse('Authenticated successfully')
+                    login(request, user)  # Use `auth_login` instead of `login`
+                    return redirect('landing_page')  # Redirect to dashboard after successful login
                 else: 
                     return HttpResponse('Disabled account')
-            else : 
+            else:
                 return HttpResponse('Invalid login')
-
-    else : 
+    else: 
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
