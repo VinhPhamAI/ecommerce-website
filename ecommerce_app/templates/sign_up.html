@@ -35,15 +35,9 @@
                             <input class="div-8" type="password" name="password2" placeholder="Confirm your password" required />
                             
                             <!-- Submit button -->
-                            {% comment %} <div class="div-13"> {% endcomment %}
-                                
-                            {% comment %} </div> {% endcomment %}
+                            <input type="submit" value="Sign up" class="div-13">
                         </form>
-                        <form method="post" action="{% url 'register' %}" class='input-form'>
 
-                            {% csrf_token %}
-                            <input type="submit" value="Sign up" class="submit-button div-13">
-                        </form>
                         <!-- End of the form -->
 
                         <div class="div-14">

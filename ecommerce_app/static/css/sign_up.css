@@ -216,11 +216,13 @@ body {
     max-width: 100%;
     }
 }
+
 .div-13 {
     /* font-family: 'DawnOfANewDay'; */
     border-radius: 30px;
     background-color: rgba(187, 165, 157, 1);
     align-self: center;
+    display: flex;
     margin-top: 33px;
     color: rgba(255, 255, 255, 1);
     font-weight: 700;
