@@ -95,8 +95,8 @@
     </section>
 
     <section class="shop-container">
-      <a href="#" class="back-link">&lt; Back to Shop</a>
-      <button class="order-button">ORDER NOW</button>
+      <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
+      <button class="order-button" onclick="window.location.href='{% url 'credit' %}';">ORDER NOW</button>
     </section>
 
 </body>

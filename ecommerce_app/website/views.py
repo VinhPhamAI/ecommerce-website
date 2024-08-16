@@ -89,3 +89,19 @@ def user_login(request):
     else: 
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
+
+@login_required
+def shopping_cart(request):
+    return render(request, 'cart.html')
+
+@login_required
+def checkout(request):
+    return render(request, 'checkout.html')
+
+@login_required
+def manage_product(request):
+    return render(request, 'manage_product.html')
+
+@login_required
+def add_product(request):
+    return render(request, 'add_product.html')
