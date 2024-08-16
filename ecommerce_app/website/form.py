@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth import authenticate
 
+
+
+
 class LoginForm(forms.Form):
     """ Đây là form đăng nhập của tài khoản người dùng """
     username = forms.CharField(

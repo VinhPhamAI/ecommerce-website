@@ -20,54 +20,55 @@
             <div class="user-profile">
                 <img src="../static/img/Daco_2478382.png" alt="User profile" class="profile-image" />
                 <div class="user-details">
-                    Bộ ba thất nghiệp <br /> thatnghiep@gmail
+                    {{ user_profile.first_name }} {{ user_profile.last_name }} <br />
+                    {{ user_profile.email }}
                 </div>
             </div>
             <div class="main-content">
                 <div class="divider" role="separator"></div>
-                <form class="form-container">
+                <form method="post" class="form-container">
+                    {% csrf_token %}
                     <h1 class="section-title">Personal Information</h1>
                     <h2 class="subsection-title">Change Information</h2>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" id="firstName" class="form-input" aria-label="First Name">
+                            <input type="text" id="firstName" name="first_name" class="form-input" value="{{ user_profile.first_name }}" aria-label="First Name">
                         </div>
                         <div class="form-group">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" id="lastName" class="form-input" aria-label="Last Name">
+                            <input type="text" id="lastName" name="last_name" class="form-input" value="{{ user_profile.last_name }}" aria-label="Last Name">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" id="email" class="form-input" aria-label="Email Address">
+                            <input type="email" id="email" name="email" class="form-input" value="{{ user_profile.email }}" aria-label="Email Address">
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" id="phone" class="form-input" aria-label="Phone Number">
+                            <input type="tel" id="phone" name="phone_number" class="form-input" value="{{ user_profile.phone_number }}" aria-label="Phone Number">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-input" aria-label="Password">
+                            <label for="gender" class="form-label">Gender</label>
+                            <input type="text" id="gender" name="gender" class="form-input" value="{{ user_profile.gender }}" aria-label="Gender">
                         </div>
                         <div class="form-group">
                             <label for="dob" class="form-label">Date Of Birth</label>
-                            <input type="text" id="dob" class="form-input" aria-label="Date Of Birth">
+                            <input type="date" id="dob" name="date_of_birth" class="form-input" value="{{ user_profile.date_of_birth|date:'Y-m-d' }}" aria-label="Date Of Birth">
                         </div>
                     </div>
                     <label for="address" class="address-label">Your Address</label>
-                    <input type="text" id="address" class="address-input" aria-label="Your Address">
+                    <input type="text" id="address" name="address" class="address-input" value="{{ user_profile.address }}" aria-label="Your Address">
                     <div class="button-group">
-                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="button" class="cancel-btn" onclick="window.location.href='{% url 'landing_page' %}';">Cancel</button>
                         <button type="submit" class="save-btn">Save</button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
-
-    
 </body>
+</html>

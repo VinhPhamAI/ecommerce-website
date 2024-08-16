@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .form import LoginForm
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
+from .models import Profile
 
 def register(request):
     if request.method == 'POST':
@@ -26,6 +26,45 @@ def landing_page(request):
 def log_out(request):
     logout(request)
     return redirect('landing_page')
+
+@login_required
+def user_profile(request):
+    return render(request, 'profile.html')
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .models import Profile
+
+@login_required
+def update_profile(request):
+    # Nếu Profile không tồn tại, tạo mới
+    user_profile, created = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        # Lấy dữ liệu từ form
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+        gender = request.POST.get('gender')
+        date_of_birth = request.POST.get('date_of_birth')
+        address = request.POST.get('address')
+        
+        # Cập nhật thông tin profile
+        user_profile.first_name = first_name
+        user_profile.last_name = last_name
+        user_profile.email = email
+        user_profile.phone_number = phone_number
+        user_profile.gender = gender
+        user_profile.date_of_birth = date_of_birth
+        user_profile.address = address
+        user_profile.save()
+        
+        return redirect('landing_page')  # Hoặc chuyển hướng đến một trang khác nếu cần
+
+    # Render template với thông tin hiện tại của profile
+    return render(request, 'profile.html', {'user_profile': user_profile})
+
 
 
 def user_login(request): 
