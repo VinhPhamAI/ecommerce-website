@@ -28,14 +28,6 @@ def log_out(request):
     return redirect('landing_page')
 
 @login_required
-def user_profile(request):
-    return render(request, 'profile.html')
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import Profile
-
-@login_required
 def update_profile(request):
     # Nếu Profile không tồn tại, tạo mới
     user_profile, created = Profile.objects.get_or_create(user=request.user)
