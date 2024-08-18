@@ -4,7 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .form import LoginForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile
+from .models import Profile, Book
+import requests
+from io import BytesIO
+from PIL import Image
+from django.core.files import File
+import random
+import os
 
 def register(request):
     if request.method == 'POST':
@@ -21,7 +27,42 @@ def register(request):
 
 # Create your views here.
 def landing_page(request):
-    return render(request, "landing_page.html")
+    # Lấy tất cả các sách
+    all_books = list(Book.objects.all())
+    
+    # Chọn 10 sách ngẫu nhiên
+    random_books = random.sample(all_books, min(10, len(all_books)))
+
+    # Thư mục lưu trữ hình ảnh
+    image_dir = os.path.join('static', 'image')
+    os.makedirs(image_dir, exist_ok=True)
+
+    # Tải và lưu hình ảnh
+    for book in random_books:
+        if book.image_url_l:
+            try:
+                # Thêm tiêu đề HTTP `User-Agent`
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+                response = requests.get(book.image_url_l, headers=headers)
+                response.raise_for_status()  # Kiểm tra mã trạng thái HTTP
+
+                # Mở hình ảnh và lưu trữ
+                img = Image.open(BytesIO(response.content))
+                img_name = f"{book.isbn}.jpg"  # Tạo tên file dựa trên ISBN
+                img_path = f"../static/image/{img_name}"
+                img.save(img_path)
+                
+                # Cập nhật đường dẫn hình ảnh trong cơ sở dữ liệu
+                book.image_url_l = os.path.join('image', img_name)
+                book.save()
+            except Exception as e:
+                # Xử lý lỗi và tiếp tục với sách tiếp theo
+                print(f"Error loading image for book '{book.title}': {e}")
+
+    # Render trang với danh sách sách
+    return render(request, 'landing_page.html', {'books': random_books})
 
 def log_out(request):
     logout(request)

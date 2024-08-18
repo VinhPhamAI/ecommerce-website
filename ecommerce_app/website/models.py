@@ -24,11 +24,9 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     year_of_publication = models.IntegerField()
     publisher = models.CharField(max_length=255)
-    image_url_s = models.URLField(max_length=200, blank=True, null=True)
-    image_url_m = models.URLField(max_length=200, blank=True, null=True)
     image_url_l = models.URLField(max_length=200, blank=True, null=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
-    genres = models.JSONField(blank=True, null=True)  # Use JSONField to store lists of genres
+    genres = models.CharField(max_length=255, default='')
     rating = models.FloatField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     pages = models.TextField(blank=True, null=True)

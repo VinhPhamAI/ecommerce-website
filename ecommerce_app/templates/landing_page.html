@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="hero-section">
-      <img src="..\static\img\banner.png" alt="" class="hero-background" />
+      <img src="../static/img/banner.png" alt="" class="hero-background" />
       {% include 'nav_bar_white.html' %}
       
       <div class="hero-title-block">
@@ -25,65 +25,27 @@
     </div>
     
     <section class="books-section">
-      <h2>Fiction</h2>
+      <h2>Featured Books</h2>
       <div class="books-grid">
+          {% for book in books %}
           <div class="book-item">
-              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+              <!-- Hiển thị hình ảnh -->
+              <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
               <div class='book-info'>
+                  <!-- Hiển thị tiêu đề -->
                   <div class='book-info-name'>
-                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                      <p>{{ book.title }}</p>
                   </div>
+                  <!-- Hiển thị giá -->
                   <div class='book-info-price'>
-                      <p>$7.38</p>
+                      <p>${{ book.price }}</p>
                   </div>
               </div>
           </div>
-          <div class="book-item">
-              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-              <div class='book-info'>
-                  <div class='book-info-name'>
-                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                  </div>
-                  <div class='book-info-price'>
-                      <p>$7.38</p>
-                  </div>
-              </div>
-          </div>
-          <div class="book-item">
-              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-              <div class='book-info'>
-                  <div class='book-info-name'>
-                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                  </div>
-                  <div class='book-info-price'>
-                      <p>$7.38</p>
-                  </div>
-              </div>
-          </div>
-          <div class="book-item">
-              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-              <div class='book-info'>
-                  <div class='book-info-name'>
-                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                  </div>
-                  <div class='book-info-price'>
-                      <p>$7.38</p>
-                  </div>
-              </div>
-          </div>
-          <div class="book-item">
-              <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-              <div class='book-info'>
-                  <div class='book-info-name'>
-                      <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                  </div>
-                  <div class='book-info-price'>
-                      <p>$7.38</p>
-                  </div>
-              </div>
-          </div>
+          {% endfor %}
       </div>
   </section>
     
     {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}
 </body>
+</html>

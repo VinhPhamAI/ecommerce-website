@@ -6,7 +6,7 @@ from django.contrib import admin
 class BookResource(resources.ModelResource):
     class Meta:
         model = Book
-        fields = ('isbn', 'title', 'author', 'year_of_publication', 'publisher', 'image_url_s', 'image_url_m', 'image_url_l', 'price', 'genres', 'rating', 'description', 'pages', 'number_of_books')
+        fields = ('isbn', 'title', 'author', 'year_of_publication', 'publisher', 'image_url_l', 'price', 'genres', 'rating', 'description', 'pages', 'number_of_books')
         import_id_fields = ['isbn']
 
 @admin.register(Book)
