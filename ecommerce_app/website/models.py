@@ -31,6 +31,7 @@ class Book(models.Model):
     description = models.TextField(blank=True, null=True)
     pages = models.TextField(blank=True, null=True)
     number_of_books = models.IntegerField(default=0)
+    new_column = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.title

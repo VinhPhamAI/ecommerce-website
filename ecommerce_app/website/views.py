@@ -29,13 +29,13 @@ def register(request):
 def landing_page(request):
     # Lấy tất cả các sách
     all_books = list(Book.objects.all())
-    
     # Chọn 10 sách ngẫu nhiên
     random_books = random.sample(all_books, min(10, len(all_books)))
 
-    # Thư mục lưu trữ hình ảnh
-    image_dir = os.path.join('static', 'image')
-    os.makedirs(image_dir, exist_ok=True)
+    # Đảm bảo thư mục lưu hình ảnh tồn tại
+    img_dir = os.path.join('static', 'image')
+    if not os.path.exists(img_dir):
+        os.makedirs(img_dir)
 
     # Tải và lưu hình ảnh
     for book in random_books:
@@ -46,19 +46,22 @@ def landing_page(request):
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
                 }
                 response = requests.get(book.image_url_l, headers=headers)
-                response.raise_for_status()  # Kiểm tra mã trạng thái HTTP
+                response.raise_for_status()
 
-                # Mở hình ảnh và lưu trữ
                 img = Image.open(BytesIO(response.content))
+
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+
                 img_name = f"{book.isbn}.jpg"  # Tạo tên file dựa trên ISBN
-                img_path = f"../static/image/{img_name}"
+                img_path = os.path.join(img_dir, img_name)
                 img.save(img_path)
-                
+
                 # Cập nhật đường dẫn hình ảnh trong cơ sở dữ liệu
-                book.image_url_l = os.path.join('image', img_name)
+                book.new_column = img_path
                 book.save()
             except Exception as e:
-                # Xử lý lỗi và tiếp tục với sách tiếp theo
+                # Ghi lại lỗi và tiếp tục với sách tiếp theo
                 print(f"Error loading image for book '{book.title}': {e}")
 
     # Render trang với danh sách sách
