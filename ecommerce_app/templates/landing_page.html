@@ -29,7 +29,7 @@
                 <!-- Liên kết đến trang chi tiết sách -->
                 <a href="{% url 'book_detail' book.isbn %}">
                     <!-- Hiển thị hình ảnh -->
-                    <img src="{{ book.new_column }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
                     <div class='book-info'>
                         <!-- Hiển thị tiêu đề -->
                         <div class='book-info-name'>

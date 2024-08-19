@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book detail</title>
-    <link rel="stylesheet" href="../static/css/book_list.css">
-    <link rel="stylesheet" href="../static/css/book_detail.css">
-    <link rel="stylesheet" href="../static/css/nav_bar.css">
+    <link rel="stylesheet" href="../../static/css/book_list.css">
+    <link rel="stylesheet" href="../../static/css/book_detail.css">
+    <link rel="stylesheet" href="../../static/css/nav_bar.css">
 </head>
 <body>
-    {% include 'nav_bar.html' %}
+    {% include 'nav_bar_bookdetail.html' %}
     <section class="book-details">
         <div class="book-cover">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e0ce9802d5488c8b9893f134ff08e80ef7e470737441007d2dee5aff59c4e6fc?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of Harry Potter and the Order of the Phoenix" class="book-cover-image" />
+            <img src="{{ book.image_url_l }}" alt="Cover of {{ book.title }}" class="book-cover-image" />
         </div>
         <div class="book-info">
-            <p class="author">By J. K. Rowling</p>
-            <h1 class="book-title">Harry Potter and the Order of the Phoenix</h1>
+            <p class="author">By {{ book.author }}</p>
+            <h1 class="book-title">{{ book.title }}</h1>
             <div class="book-details-grid">
                 <div class="book-details-left">
-                <p class="book-detail"><strong>Publisher:</strong> Scholastic Inc.</p>
-                <p class="book-detail"><strong>Pages:</strong> 870</p>
-                <p class="book-price">$7.38</p>
+                    <p class="book-detail"><strong>Publisher:</strong> {{ book.publisher }}</p>
+                    <p class="book-detail"><strong>Pages:</strong> {{ book.pages }}</p>
+                    <p class="book-price">${{ book.price }}</p>
                 </div>
                 <div class="book-details-right">
-                <p class="book-detail"><strong>Language:</strong> English</p>
-                <p class="book-detail"><strong>Binding:</strong> Paperback</p>
+                    <p class="book-detail"><strong>Year of Publication:</strong> {{ book.year_of_publication }}</p>
+                    <p class="book-detail"><strong>Rating:</strong> {{ book.rating }}</p>
                 </div>
-        </div>
-        <button class="add-to-cart-btn">Add to cart</button>
-        <p class="book-description"><strong>Description:</strong> There is a door at the end of a silent corridor. And it's haunting Harry Pottter's dreams. Why else would he be waking in the middle of the night, screaming in terror?</p>
+            </div>
+            <button class="add-to-cart-btn">Add to cart</button>
+            <p class="book-description"><strong>Description:</strong> {{ book.description }}</p>
         </div>
     </section>
 
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="book-item">
-                <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+                <img src="../../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
                 <div class='book-info'>
                     <div class='book-info-name'>
                         <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
