@@ -4,3 +4,4 @@ __pycache__
 myenv
 ecommerce_app\ecommerce_app\settings.py
 .env
+image

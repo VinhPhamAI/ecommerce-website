@@ -17,33 +17,33 @@
         <h2 class="hero-title">Lala Books</h2>
       </div>
       <p class="hero-quote">
-        Insert some very long and emotional quote here, <br />
-        Insert some very long and emotional quote here, <br />
-        Insert some very long and emotional quote here, <br />
-        Insert some very long and emotional quote here, <br />
+        "Books are a uniquely portable magic." - Stephen King <br />
       </p>
     </div>
     
     <section class="books-section">
-      <h2>Featured Books</h2>
-      <div class="books-grid">
-          {% for book in books %}
-          <div class="book-item">
-              <!-- Hiển thị hình ảnh -->
-              <img src="{{ book.new_column }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-              <div class='book-info'>
-                  <!-- Hiển thị tiêu đề -->
-                  <div class='book-info-name'>
-                      <p>{{ book.title }}</p>
-                  </div>
-                  <!-- Hiển thị giá -->
-                  <div class='book-info-price'>
-                      <p>${{ book.price }}</p>
-                  </div>
-              </div>
-          </div>
-          {% endfor %}
-      </div>
+        <h2>Featured Books</h2>
+        <div class="books-grid">
+            {% for book in books %}
+            <div class="book-item">
+                <!-- Liên kết đến trang chi tiết sách -->
+                <a href="{% url 'book_detail' book.isbn %}">
+                    <!-- Hiển thị hình ảnh -->
+                    <img src="{{ book.new_column }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                    <div class='book-info'>
+                        <!-- Hiển thị tiêu đề -->
+                        <div class='book-info-name'>
+                            <p>{{ book.title }}</p>
+                        </div>
+                        <!-- Hiển thị giá -->
+                        <div class='book-info-price'>
+                            <p>${{ book.price }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
   </section>
     
     {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}

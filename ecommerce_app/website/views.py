@@ -141,3 +141,10 @@ def manage_product(request):
 @login_required
 def add_product(request):
     return render(request, 'add_product.html')
+
+@login_required
+def book_detail(request, isbn):
+    # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
+    book = get_object_or_404(Book, isbn=isbn)
+    # Truyền sách vào template
+    return render(request, 'book_detail.html', {'book': book})
