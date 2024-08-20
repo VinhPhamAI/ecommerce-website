@@ -153,3 +153,19 @@ def add_to_cart(request, isbn):
         print("Profile does not exist for the user.")  # In ra console nếu không tìm thấy profile
     
     return redirect('landing_page')
+
+def book_list(request, genre):
+    # Filter books by the selected genre
+    books = Book.objects.filter(genres=genre)
+    
+    # Convert QuerySet to list
+    books_list = list(books)
+    
+    # Sample from the list
+    random_books = random.sample(books_list, min(12, len(books_list))) if books_list else []
+    
+    context = {
+        'books': random_books,
+        'genre': genre,
+    }
+    return render(request, 'book_list.html', context)

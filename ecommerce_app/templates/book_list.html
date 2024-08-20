@@ -3,185 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Store</title>
-    <link rel="stylesheet" href="../static/css/book_list.css">
-    <link rel="stylesheet" href="../static/css/nav_bar.css">
+    <title>Book Store - {{ genre }}</title>
+    <link rel="stylesheet" href="../../static/css/book_list.css">
+    <link rel="stylesheet" href="../../static/css/nav_bar.css">
 </head>
 <body>
     <header>
-        {% include 'nav_bar.html' %}
+        {% include 'nav_bar_bookdetail.html' %}
     </header>
     
     <main>
         <section class="books-section">
-            <h2 style="font-size: 35px;">Fiction</h2>
+            <h2 style="font-size: 35px;">{{ genre }} Books</h2>
             <div class="books-grid">
+                {% for book in books %}
                 <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
+                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
                     <div class='book-info'>
                         <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
+                            <p>{{ book.title }}</p>
                         </div>
                         <div class='book-info-price'>
-                            <p>$7.38</p>
+                            <p>${{ book.price }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-item">
-                    <img src="../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                        </div>
-                        <div class='book-info-price'>
-                            <p>$7.38</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Repeat book items as needed -->
+                {% endfor %}
             </div>
         </section>
     </main>
