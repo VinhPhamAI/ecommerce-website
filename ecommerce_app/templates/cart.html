@@ -15,84 +15,38 @@
         <h1 class="profile-title">My Cart</h1>
     </section>
 
-    <section class="product-summary">
-      <p class="product-name">PRODUCT NAME</p>
-      <div class="product-details">
-        <p class="price">PRICE</p>
-        <p class="quantity">QUANTITY</p>
-        <p class="total">TOTAL</p>
-        <button class="remove-btn" style="border: solid #fff;"></button>
-      </div>
-    </section>
+    {% if cart_books %}
+        {% for book in cart_books %}
+        <section class="book-item">
+            <div class="book-info-column">
+                <div class="book-info">
+                    <img src="{{ book.image_url_l }}" class="book-cover" alt="Cover of {{ book.title }}" />
+                    <h2 class="book-title">{{ book.title }}</h2>
+                </div>
+            </div>
+            <div class="price-controls-column">
+                <div class="price-controls">
+                    <span class="price" style="margin-top: 82px;">${{ book.price }}</span>
+                    <div class="quantity-control">
+                        <!-- Thêm nút tăng giảm số lượng -->
+                        <button class="quantity-btn" aria-label="Decrease quantity">-</button>
+                        <span class="quantity" style="margin-top: 82px;">01</span>
+                        <button class="quantity-btn" aria-label="Increase quantity">+</button>
+                    </div>
+                    <span class="price" style="margin-top: 82px;">${{ book.price }}</span>
+                    <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
+                </div>
+            </div>
+        </section>
+        {% endfor %}
 
-    <section class="book-item">
-      <div class="book-info-column">
-        <div class="book-info">
-          <img src="../static/img/HP.png" class="book-cover" alt="Cover of The Giving Tree" />
-          <h2 class="book-title">The Giving Tree</h2>
-        </div>
-      </div>
-      <div class="price-controls-column">
-        <div class="price-controls">
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <div class="quantity-control">
-            <button class="quantity-btn" aria-label="Decrease quantity">-</button>
-            <span class="quantity" style="margin-top: 82px;">01</span>
-            <button class="quantity-btn" aria-label="Increase quantity">+</button>
-          </div>
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="book-item">
-      <div class="book-info-column">
-        <div class="book-info">
-          <img src="../static/img/HP.png" class="book-cover" alt="Cover of The Giving Tree" />
-          <h2 class="book-title">The Giving Tree</h2>
-        </div>
-      </div>
-      <div class="price-controls-column">
-        <div class="price-controls">
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <div class="quantity-control">
-            <button class="quantity-btn" aria-label="Decrease quantity">-</button>
-            <span class="quantity" style="margin-top: 82px;">01</span>
-            <button class="quantity-btn" aria-label="Increase quantity">+</button>
-          </div>
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="book-item">
-      <div class="book-info-column">
-        <div class="book-info">
-          <img src="../static/img/HP.png" class="book-cover" alt="Cover of The Giving Tree" />
-          <h2 class="book-title">The Giving Tree</h2>
-        </div>
-      </div>
-      <div class="price-controls-column">
-        <div class="price-controls">
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <div class="quantity-control">
-            <button class="quantity-btn" aria-label="Decrease quantity">-</button>
-            <span class="quantity" style="margin-top: 82px;">01</span>
-            <button class="quantity-btn" aria-label="Increase quantity">+</button>
-          </div>
-          <span class="price" style="margin-top: 82px;">$4.87</span>
-          <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
-        </div>
-      </div>
-    </section>
-    
-
-    <section class="subtotal-container">
-      <p class="subtotal-label">Subtotal:</p>
-      <p class="subtotal-amount">$14.61</p>
-    </section>
+        <section class="subtotal-container">
+            <p class="subtotal-label">Subtotal:</p>
+            <p class="subtotal-amount">${{ total_amount }}</p>
+        </section>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
 
     <section class="shop-container">
       <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
@@ -100,3 +54,4 @@
     </section>
 
 </body>
+</html>

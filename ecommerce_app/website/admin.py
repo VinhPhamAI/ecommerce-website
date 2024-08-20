@@ -19,13 +19,16 @@ class ProfileResource(resources.ModelResource):
     class Meta:
         model = Profile
         fields = ('id', 'user', 'first_name', 'last_name', 'email', 'phone_number', 
-                  'gender', 'date_of_birth', 'address')
+                  'gender', 'date_of_birth', 'address', 'cart_books')
         export_order = ('id', 'user', 'first_name', 'last_name', 'email', 
                         'phone_number', 'gender', 'date_of_birth', 'address')
 
 @admin.register(Profile)
 class ProfileAdmin(ImportExportModelAdmin):
     resource_class = ProfileResource
-    list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number', 'gender', 'date_of_birth')
+    list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number', 'gender', 'cart_books_list')
     search_fields = ('first_name', 'last_name', 'email', 'user__username')
     list_filter = ('gender', 'date_of_birth')
+    def cart_books_list(self, obj):
+        return ", ".join([book.title for book in obj.cart_books.all()])
+    cart_books_list.short_description = 'Cart Books'

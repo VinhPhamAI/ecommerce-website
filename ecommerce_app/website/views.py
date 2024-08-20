@@ -6,16 +6,13 @@ from .form import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile, Book
 import requests
-from io import BytesIO
-from PIL import Image
 from django.core.files import File
 import random
-import os
+import logging
 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
             return redirect('login')  # Hoặc chuyển hướng đến một trang khác sau khi đăng ký thành công
@@ -95,8 +92,15 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 @login_required
-def shopping_cart(request):
-    return render(request, 'cart.html')
+def cart_view(request):
+    profile = request.user.profile
+    cart_books = profile.cart_books.all()
+    total_amount = sum(book.price for book in cart_books)
+    context = {
+        'cart_books': cart_books,
+        'total_amount': total_amount,
+    }
+    return render(request, 'cart.html', context)
 
 @login_required
 def checkout(request):
@@ -114,6 +118,24 @@ def add_product(request):
 def book_detail(request, isbn):
     # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
     book = get_object_or_404(Book, isbn=isbn)
-    print(book)
     # Truyền sách vào template
     return render(request, 'book_detail.html', {'book': book})
+
+@login_required
+def add_to_cart(request, isbn):
+    book = get_object_or_404(Book, isbn=isbn)
+    print("add_to_cart view was called")
+    try:
+        profile = request.user.profile
+        logging.info(f"Profile found: {profile}")  # Log thông tin của profile
+        print(f"Profile found: {profile}")  # In thông tin của profile ra console
+        
+        # Thêm sách vào giỏ hàng của user
+        profile.cart_books.add(book)
+        profile.save()
+        
+    except Profile.DoesNotExist:
+        logging.error("Profile does not exist for the user.")
+        print("Profile does not exist for the user.")  # In ra console nếu không tìm thấy profile
+    
+    return redirect('book_detail', isbn=isbn)

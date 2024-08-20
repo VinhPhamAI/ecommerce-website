@@ -10,7 +10,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')], blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
-
+    cart_books = models.ManyToManyField('Book', blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
