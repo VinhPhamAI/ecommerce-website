@@ -28,9 +28,10 @@
                 <div class="price-controls">
                     <div class="quantity-control">
                         <!-- Thêm nút tăng giảm số lượng -->
-                        <button class="quantity-btn" aria-label="Decrease quantity">-</button>
-                        <span class="quantity" style="margin-top: 82px;">01</span>
-                        <button class="quantity-btn" aria-label="Increase quantity">+</button>
+                        <button class="quantity-btn" aria-label="Decrease quantity" onclick="changeQuantity(this, -1)">-</button>
+                        <span class="quantity" style="margin-top: 82px;" >01</span>
+                        <input type="text" class="quantity" style="margin-top: 82px;" value="1" readonly>
+                        <button class="quantity-btn" aria-label="Increase quantity" onclick="changeQuantity(this, 1)">+</button>
                     </div>
                     <span class="price" style="margin-top: 82px;">${{ book.price }}</span>
                     <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
@@ -51,6 +52,6 @@
       <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
       <button class="order-button" onclick="window.location.href='{% url 'credit' %}';">ORDER NOW</button>
     </section>
-
+    <script src="..\static\js\checkout.js"></script>
 </body>
 </html>
