@@ -18,19 +18,25 @@
             <div class="books-grid">
                 {% for book in books %}
                 <div class="book-item">
-                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-                    <div class='book-info'>
-                        <div class='book-info-name'>
-                            <p>{{ book.title }}</p>
+                    <a href="{% url 'book_detail' book.isbn %}">
+                        <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                        <div class='book-info'>
+                            <div class='book-info-name'>
+                                <p>{{ book.title }}</p>
+                            </div>
+                            <div class='book-info-price'>
+                                <p>${{ book.price }}</p>
+                            </div>
                         </div>
-                        <div class='book-info-price'>
-                            <p>${{ book.price }}</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
         </section>
+
     </main>
+    <section class="shop-container">
+        <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
+    </section>
 </body>
 </html>

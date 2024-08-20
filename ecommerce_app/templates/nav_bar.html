@@ -4,11 +4,11 @@
             <div class="burger-menu">
                 <img src="../static/img/burgerblack.png" alt="Menu" class="logo-image" />
                 <div class="dropdown-content burger-dropdown">
-                    <a href="#" class="dropdown-item">Book type 1</a>
-                    <a href="#" class="dropdown-item">Book type 2</a>
-                    <a href="#" class="dropdown-item">Book type 3</a>
-                    <a href="#" class="dropdown-item">Book type 4</a>
-                    <a href="#" class="dropdown-item">Book type 5</a>
+                    <a href="{% url 'book_list' genre='Fiction' %}" class="dropdown-item">Fiction</a>
+                    <a href="{% url 'book_list' genre='Philosophy' %}" class="dropdown-item">Philosophy</a>
+                    <a href="{% url 'book_list' genre='Romance' %}" class="dropdown-item">Romance</a>
+                    <a href="{% url 'book_list' genre='Horror' %}" class="dropdown-item">Horror</a>
+                    <a href="{% url 'book_list' genre='Mystery' %}" class="dropdown-item">Mystery</a>
                 </div>
             </div>
             <h1 class="brand-name">Lala Books</h1>

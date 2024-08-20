@@ -41,7 +41,21 @@ body::-webkit-scrollbar {
 html {
     scrollbar-width: none;
 }
-
+.shop-container {
+  align-self: center;
+  display: flex;
+  margin: 50px 0 0 70px;
+  margin-bottom: 100px;
+  gap: 50px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 6vw;
+}
+.back-link {
+  color: #000;
+  font: 500 30px Raleway, sans-serif;
+  margin-top: 20px;
+}
 .nav-container {
     position: relative;
     /* align-self: stretch; */
