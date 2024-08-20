@@ -3,67 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout</title>
+    <title>Manage Products</title>
     <link rel="stylesheet" href="../static/css/manage_product.css">
     <link rel="stylesheet" href="../static/css/nav_bar.css">
 </head>
 <body>
     {% include 'nav_bar.html' %}
     
-        
     <section class="manage-product">
         <div class="product-header">
-            <h2 class="product-title">Product</h2>
+            <h2 class="product-title">Your Products</h2>
             <div class="product-controls">
-            <div class="showing-container">
-                <span class="showing-text">Showing: All</span>
-                {% comment %} <span class="showing-number">10</span> {% endcomment %}
-            </div>
-            <div class="action-buttons">
-                <button class="filter-button">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c588a20b7517c1cc316b04f56939235541e35a6b05cb9996e43ab7a55a280e14?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Filter Icon" class="filter-icon">
-                <span class="filter-text">Filter</span>
-                </button>
-                <button class="add-product-button" onclick="window.location.href='{% url 'add_product' %}';">+ Add New Product</button>
-
-            </div>
+                <div class="action-buttons">
+                    <button class="add-product-button" onclick="window.location.href='{% url 'add_product' %}';">+ Add New Product</button>
+                </div>
             </div>
         </div>
     
         <table class="product-table">
             <thead>
                 <tr class="product-table-header">
-                    <th class = 'product-name'>Product Name</th>
-                    <th class = 'product-id'>Product ID</th>
-                    <th class = 'price'>Price</th>
-                    <th class = 'stock'>Stock</th>
-                    <th class = 'action'>Action</th>
+                    <th class="product-name">Product Name</th>
+                    <th class="product-id">Product ID</th>
+                    <th class="price">Price</th>
+                    <th class="stock">Stock</th>
+                    <th class="history">History</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="product-row">
-                    <td class="product-name">Harry Potter and the Order of the Phoenix</td>
-                    <td class="product-id">#OK99373847</td>
-                    <td class = 'price'>$7.83</td>
-                    <td class = 'stock'>100</td>
-                    <td class = 'action'><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b048555ffce1f66055e782002dbc540d75bc013c914b40c5ac89840bf75651c9?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Action Menu" class="action-icon"></td>
-                </tr>
-                <tr class="product-row">
-                    <td class="product-name">Harry Potter and the Order of that bitch of a wizard he is</td>
-                    <td class="product-id">#OK99373847</td>
-                    <td class = 'price'>$7.83</td>
-                    <td class = 'stock'>100</td>
-                    <td class = 'action'><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b048555ffce1f66055e782002dbc540d75bc013c914b40c5ac89840bf75651c9?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Action Menu" class="action-icon"></td>
-                </tr>
+                {% for book in books %}
+                    <tr class="product-row">
+                        <td class="product-name">{{ book.title }}</td>
+                        <td class="product-id">{{ book.isbn }}</td>
+                        <td class="price">${{ book.price }}</td>
+                        <td class="stock">{{ book.number_of_books }}</td>
+                        <td class="history"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b048555ffce1f66055e782002dbc540d75bc013c914b40c5ac89840bf75651c9?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Action Menu" class="action-icon"></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No products found</td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
-        
     
         <nav class="pagination" aria-label="Pagination">
-            {% comment %} <button class='add-product-button'>&lt; Previous</button>
-            <button class='add-product-button'>Next &gt;</button> {% endcomment %}
+            <!-- Pagination buttons here -->
         </nav>    
         <footer class="footer"></footer>
     </section>
 </body>
-    
+</html>

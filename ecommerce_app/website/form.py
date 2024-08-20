@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate
-
+from .models import Book
 
 
 
@@ -26,3 +26,12 @@ class LoginForm(forms.Form):
             if user is None:
                 raise forms.ValidationError("Invalid username or password")
         return cleaned_data
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = [
+            'isbn', 'title', 'author', 'year_of_publication', 'publisher',
+            'image_url_l', 'price', 'genres', 'rating', 'description', 
+            'pages', 'number_of_books'
+        ]

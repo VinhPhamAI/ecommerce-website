@@ -2,13 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .form import LoginForm
+from .form import LoginForm, BookForm
 from django.contrib.auth import authenticate, login, logout
 from .models import Profile, Book
-import requests
-from django.core.files import File
 import random
 import logging
+import string
 
 def register(request):
     if request.method == 'POST':
@@ -33,6 +32,7 @@ def landing_page(request):
         user_profile, created = Profile.objects.get_or_create(user=request.user)
     # Render trang với danh sách sách
     return render(request, 'landing_page.html', {'books': random_books, 'user_profile': user_profile})
+
 
 def log_out(request):
     logout(request)
@@ -144,10 +144,54 @@ def checkout(request):
 
 @login_required
 def manage_product(request):
-    return render(request, 'manage_product.html')
+    profile = Profile.objects.get(user=request.user)
+    books = profile.book_product.all()
+
+    return render(request, 'manage_product.html', {'books': books})
 
 @login_required
 def add_product(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        year_of_publication = request.POST.get('year_of_publication')
+        image_url_l = request.POST.get('image_url_l')
+        price = request.POST.get('price')
+        genres = request.POST.get('genres')
+        description = request.POST.get('description')
+        pages = request.POST.get('pages')
+        number_of_books = request.POST.get('number_of_books')
+
+        # Tạo productId tự động
+        title_prefix = title[:5].upper()  # Lấy 5 chữ cái đầu tiên của tên sản phẩm
+        random_suffix = ''.join(random.choices(string.digits, k=5))  # 5 số ngẫu nhiên
+        isbn = f"{title_prefix}{random_suffix}"
+        print(isbn)
+        # Tạo một đối tượng Book mới và lưu vào cơ sở dữ liệu
+        book = Book(
+            isbn=isbn,
+            title=title,
+            author=author,
+            year_of_publication=year_of_publication,
+            publisher=request.user,
+            image_url_l=image_url_l,
+            price=price,
+            genres=genres,
+            rating=request.POST.get('rating'),
+            description=description,
+            pages=pages,
+            number_of_books=number_of_books
+        )
+        book.save()
+        # Cập nhật Profile của người dùng hiện tại
+        if request.user.is_authenticated:
+            profile = Profile.objects.get(user=request.user)
+            profile.book_product.add(book)
+            profile.save()
+
+        # Chuyển hướng đến trang thành công hoặc một view khác
+        return redirect('landing_page')
+
     return render(request, 'add_product.html')
 
 @login_required

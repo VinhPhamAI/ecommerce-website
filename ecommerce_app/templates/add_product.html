@@ -12,87 +12,41 @@
     <section class="add-product-section">
         <h1 class="section-title">Add New Product</h1>
         
-        <form>
-        <label for="productName" class="input-label">Product Name</label>
-        <input type="text" id="productName" class="input-field" required>
-    
-        <div class="input-group">
-            <div class="input-row">
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="productId" class="input-label">Product ID</label>
-                <input type="text" id="productId" class="input-field" required>
-                </div>
-            </div>
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="price" class="input-label">Price</label>
-                <input type="number" id="price" class="input-field" required>
-                </div>
-            </div>
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="stock" class="input-label">Stock</label>
-                <input type="number" id="stock" class="input-field" required>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class='author-publisher'>
-            <div class='author'>
-                <div class="author-publisher-row">
-                    <label for="author">Author</label>
-                </div>
-                <div class="author-publisher-inputs">
-                    <input type="text" id="author" class="author-input" required>
-                </div>
-            </div>
+        <form method="post" action="{% url 'add_product' %}">
+            {% csrf_token %}
+            <label for="productName" class="input-label">Name Of The Book</label>
+            <input type="text" id="productName" name="title" class="input-field" required minlength="6">
 
-            <div class='publisher'>
-                <div class="author-publisher-row">
-                    <label for="publisher">Publisher</label>
-                </div>
-                <div class="author-publisher-inputs">
-                    <input type="text" id="publisher" class="publisher-input" required>
-                </div>
-            </div>
-        </div>
-        <div class="input-group">
-            <div class="input-row">
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="date" class="input-label">Year Of Publication</label>
-                <input type="text" id="date" class="input-field" required>
-                </div>
-            </div>
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="binding" class="input-label">Binding</label>
-                <input type="text" id="binding" class="input-field" required>
-                </div>
-            </div>
-            <div class="input-column">
-                <div class="input-wrapper">
-                <label for="pages" class="input-label">Pages</label>
-                <input type="number" id="pages" class="input-field" required>
-                </div>
-            </div>
-            </div>
-        </div>
-    
-        <div class='image-link'>
+            <label for="price" class="input-label">Price</label>
+            <input type="number" id="price" name="price" class="input-field" required>
+
+            <label for="stock" class="input-label">Stock</label>
+            <input type="number" id="stock" name="number_of_books" class="input-field" required>
+
+            <label for="author" class="input-label">Author</label>
+            <input type="text" id="author" name="author" class="input-field" required>
+
+            <label for="date" class="input-label">Year Of Publication</label>
+            <input type="number" id="date" name="year_of_publication" class="input-field" required min="100" max="2024">
+
+            <label for="genres" class="input-label">Genre</label>
+            <input type="text" id="genres" name="genres" class="input-field" required>
+
+            <label for="pages" class="input-label">Pages</label>
+            <input type="number" id="pages" name="pages" class="input-field" required>
+
             <label for="imageLink" class="input-label">Link to Image of Product</label>
-            <input type="url" id="imageLink" class="input-field" required>
-        </div>
-        <div class='description'>
+            <input type="url" id="imageLink" name="image_url_l" class="input-field" required>
+
             <label for="description" class="input-label">Description</label>
-            <textarea id="description" class="description-input" required></textarea>
-        </div>
-        <div class="button-group">
-            <button type="button" class="cancel-button" onclick="window.location.href='{% url 'landing_page' %}';">Cancel</button>
-            <button type="submit" class="submit-button" >Add Product</button>
-        </div>
+            <textarea id="description" name="description" class="description-input" required></textarea>
+
+            <div class="button-group">
+                <button type="button" class="cancel-button" onclick="window.location.href='{% url 'landing_page' %}';">Cancel</button>
+                <button type="submit" class="submit-button">Add Product</button>
+            </div>
         </form>
+
     </section>
 </body>
 </html>
