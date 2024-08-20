@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import Book, Profile
+from .models import Book, Profile, Product
 from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 
@@ -32,3 +32,10 @@ class ProfileAdmin(ImportExportModelAdmin):
     def cart_books_list(self, obj):
         return ", ".join([book.title for book in obj.cart_books.all()])
     cart_books_list.short_description = 'Cart Books'
+
+class ProductForm(resources.ModelResource):
+    class Meta:
+        model = Product
+        fields = ['title', 'isbn', 'price', 'stock', 'author', 'publisher', 'binding', 'pages', 'image_link', 'description']
+        exclude = ['user']  # Exclude user from the form since it's set in the view
+

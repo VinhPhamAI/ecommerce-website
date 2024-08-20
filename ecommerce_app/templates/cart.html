@@ -26,13 +26,17 @@
             </div>
             <div class="price-controls-column">
                 <div class="price-controls">
-                        <div class="item-picker">
-                          <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
+                    <div class="item-picker">
+                        <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
                         <input type="text" class="itemQuantity" value="1" readonly>
-                          <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                        </div>
+                        <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
                     <span class="price" style="margin-top: 82px;">${{ book.price }}</span>
-                    <button class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="remove_book_id" value="{{ book.isbn }}">
+                        <button type="submit" class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -48,8 +52,20 @@
 
     <section class="shop-container">
       <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
-      <button class="order-button" onclick="window.location.href='{% url 'credit' %}';">ORDER NOW</button>
+      <button class="order-button" onclick="handleOrderNow()">ORDER NOW</button>
     </section>
-    <script src="..\static\js\checkout.js"></script>
+
+    <script src="../static/js/checkout.js"></script>
+    <script>
+        function handleOrderNow() {
+            var cartBooks = {{ cart_books|length }};  
+            
+            if (cartBooks === 0) {
+                window.location.href = "{% url 'landing_page' %}";  // Chuyển về trang landing_page
+            } else {
+                window.location.href = "{% url 'credit' %}";  // Chuyển đến trang thanh toán nếu giỏ hàng không trống
+            }
+        }
+    </script>
 </body>
 </html>

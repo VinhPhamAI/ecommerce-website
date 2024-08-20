@@ -25,12 +25,14 @@ def register(request):
 # Create your views here.
 def landing_page(request):
     # Lấy tất cả các sách
-    all_books = list(Book.objects.all())
+    all_books = list(Book.objects.all())     
     # Chọn 10 sách ngẫu nhiên
     random_books = random.sample(all_books, min(4, len(all_books)))
-
+    user_profile = None
+    if request.user.is_authenticated:
+        user_profile, created = Profile.objects.get_or_create(user=request.user)
     # Render trang với danh sách sách
-    return render(request, 'landing_page.html', {'books': random_books})
+    return render(request, 'landing_page.html', {'books': random_books, 'user_profile': user_profile})
 
 def log_out(request):
     logout(request)
@@ -50,15 +52,22 @@ def update_profile(request):
         gender = request.POST.get('gender')
         date_of_birth = request.POST.get('date_of_birth')
         address = request.POST.get('address')
-        
-        # Cập nhật thông tin profile
-        user_profile.first_name = first_name
-        user_profile.last_name = last_name
-        user_profile.email = email
-        user_profile.phone_number = phone_number
-        user_profile.gender = gender
-        user_profile.date_of_birth = date_of_birth
-        user_profile.address = address
+                # Chỉ cập nhật các trường nếu chúng có giá trị
+        if first_name:
+            user_profile.first_name = first_name
+        if last_name:
+            user_profile.last_name = last_name
+        if email:
+            user_profile.email = email
+        if phone_number:
+            user_profile.phone_number = phone_number
+        if gender:
+            user_profile.gender = gender
+        if date_of_birth:
+            user_profile.date_of_birth = date_of_birth
+        if address:
+            user_profile.address = address
+
         user_profile.save()
         
         return redirect('landing_page')  # Hoặc chuyển hướng đến một trang khác nếu cần
@@ -92,9 +101,21 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 from decimal import Decimal
+
 @login_required
 def cart_view(request):
     profile = request.user.profile
+
+    # Xử lý việc xóa sách khỏi giỏ hàng
+    if request.method == 'POST' and 'remove_book_id' in request.POST:
+        book_id = request.POST.get('remove_book_id')
+        book = get_object_or_404(Book, isbn=book_id)
+        
+        # Xóa sách khỏi giỏ hàng của người dùng
+        profile.cart_books.remove(book)
+        profile.save()  # Lưu lại profile sau khi thay đổi
+
+    # Lấy lại danh sách sách trong giỏ hàng sau khi có thể đã xóa
     cart_books = profile.cart_books.all()
     total_amount = sum(book.price for book in cart_books)
     
@@ -103,6 +124,7 @@ def cart_view(request):
         'total_amount': total_amount,
     }
     return render(request, 'cart.html', context)
+
 
 @login_required
 def checkout(request):
@@ -152,7 +174,7 @@ def add_to_cart(request, isbn):
         logging.error("Profile does not exist for the user.")
         print("Profile does not exist for the user.")  # In ra console nếu không tìm thấy profile
     
-    return redirect('landing_page')
+    return redirect('shopping_cart')
 
 def book_list(request, genre):
     # Filter books by the selected genre
@@ -169,3 +191,4 @@ def book_list(request, genre):
         'genre': genre,
     }
     return render(request, 'book_list.html', context)
+

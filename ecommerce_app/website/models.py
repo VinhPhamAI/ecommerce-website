@@ -33,3 +33,20 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+
+class Product(models.Model):
+    title = models.CharField(max_length=255)
+    isbn = models.CharField(max_length=50, unique=True)
+    author = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField()
+    publisher = models.CharField(max_length=255)
+    binding = models.CharField(max_length=50)
+    pages = models.PositiveIntegerField()
+    image_link = models.URLField()
+    description = models.TextField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='user_products')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='products')
+
+    def __str__(self):
+        return self.title

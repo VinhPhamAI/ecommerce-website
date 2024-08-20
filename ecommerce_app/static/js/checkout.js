@@ -8,4 +8,3 @@ function changeQuantity(button, amount) {
       quantityInput.value = newQuantity;
     }
   }
-
