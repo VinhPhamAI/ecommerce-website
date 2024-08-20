@@ -316,8 +316,21 @@ html {
     }
   }
   
+  .books-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
+.show-more {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #000000;
+    cursor: pointer;
+}
 
-
-
-  
+.show-more span {
+    margin-left: 5px;
+}

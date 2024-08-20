@@ -22,7 +22,13 @@
     </div>
     
     <section class="books-section">
-        <h2>Books recommended for you</h2>
+        <div class="books-header">
+            <h2>Books recommended for you</h2>
+            <div class="show-more">
+                <h2>Show more</h2>
+                <h2>&rarr;</h2>
+            </div>
+        </div>
         <div class="books-grid">
             {% for book in books %}
             <div class="book-item">

@@ -216,6 +216,7 @@ body {
 }
 .div-13 {
     /* font-family: 'DawnOfANewDay'; */
+    font-size: 16px;
     border-radius: 30px;
     background-color: rgba(187, 165, 157, 1);
     align-self: center;
@@ -251,4 +252,26 @@ body {
 .div-16 {
     font-family: Raleway, sans-serif;
     font-weight: 600;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.submit-button-div-13 {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #cba33d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 25px;
+}
+
+.submit-button-div-13:hover {
+    background-color: #333333;
 }
