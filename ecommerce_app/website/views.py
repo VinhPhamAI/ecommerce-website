@@ -27,7 +27,7 @@ def landing_page(request):
     # Lấy tất cả các sách
     all_books = list(Book.objects.all())
     # Chọn 10 sách ngẫu nhiên
-    random_books = random.sample(all_books, min(10, len(all_books)))
+    random_books = random.sample(all_books, min(4, len(all_books)))
 
     # Render trang với danh sách sách
     return render(request, 'landing_page.html', {'books': random_books})
@@ -91,11 +91,13 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+from decimal import Decimal
 @login_required
 def cart_view(request):
     profile = request.user.profile
     cart_books = profile.cart_books.all()
     total_amount = sum(book.price for book in cart_books)
+    
     context = {
         'cart_books': cart_books,
         'total_amount': total_amount,
@@ -104,7 +106,19 @@ def cart_view(request):
 
 @login_required
 def checkout(request):
-    return render(request, 'checkout.html')
+    profile = request.user.profile
+    cart_books = profile.cart_books.all()
+    
+    # Tính tổng tiền của các sách trong giỏ hàng
+    total_amount = sum(book.price for book in cart_books)
+    total_amount_with_ship = total_amount + Decimal('5.00')
+    # Truyền dữ liệu vào template checkout.html
+    context = {
+        'cart_books': cart_books,
+        'total_amount': total_amount,
+        'total_amount_with_ship': total_amount_with_ship,
+    }
+    return render(request, 'checkout.html', context)
 
 @login_required
 def manage_product(request):
@@ -138,4 +152,4 @@ def add_to_cart(request, isbn):
         logging.error("Profile does not exist for the user.")
         print("Profile does not exist for the user.")  # In ra console nếu không tìm thấy profile
     
-    return redirect('book_detail', isbn=isbn)
+    return redirect('landing_page')

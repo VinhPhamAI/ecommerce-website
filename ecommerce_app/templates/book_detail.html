@@ -21,6 +21,7 @@
                 <div class="book-details-left">
                     <p class="book-detail"><strong>Publisher:</strong> {{ book.publisher }}</p>
                     <p class="book-detail"><strong>Pages:</strong> {{ book.pages }}</p>
+                    <p class="book-detail"><strong>Number of books: </strong> {{ book.number_of_books }}</p>
                     <p class="book-price">${{ book.price }}</p>
                 </div>
                 <div class="book-details-right">
@@ -28,6 +29,7 @@
                     <p class="book-detail"><strong>Rating:</strong> {{ book.rating }}</p>
                 </div>
             </div>
+            
             <button class="add-to-cart-btn" onclick="window.location.href='{% url 'add_to_cart' book.isbn %}'">Add to cart</button>
             <p class="book-description"><strong>Description:</strong> {{ book.description }}</p>
         </div>

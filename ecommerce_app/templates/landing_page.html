@@ -22,6 +22,28 @@
     </div>
     
     <section class="books-section">
+        <h2>Books recommended for you</h2>
+        <div class="books-grid">
+            {% for book in books %}
+            <div class="book-item">
+                <!-- Liên kết đến trang chi tiết sách -->
+                <a href="{% url 'book_detail' book.isbn %}">
+                    <!-- Hiển thị hình ảnh -->
+                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                    <div class='book-info'>
+                        <!-- Hiển thị tiêu đề -->
+                        <div class='book-info-name'>
+                            <p>{{ book.title }}</p>
+                        </div>
+                        <!-- Hiển thị giá -->
+                        <div class='book-info-price'>
+                            <p>${{ book.price }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
         <h2>Featured Books</h2>
         <div class="books-grid">
             {% for book in books %}
@@ -46,6 +68,5 @@
         </div>
   </section>
     
-    {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}
 </body>
 </html>

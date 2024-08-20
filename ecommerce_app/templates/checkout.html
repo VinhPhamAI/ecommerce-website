@@ -55,129 +55,44 @@
                 <aside class="order-summary">
                   <div class="summary-container">
                     <div class="book-section">
-                        <div class="book-list">
-                          <article class="book-item">
-                            
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">Harry Potter and his bitch of a step father</h2>
-                              <p class="book-price">$4.87</p>
+                      <div class="book-list">
+                        {% for book in cart_books %}
+                        <article class="book-item">
+                          <img src="{{ book.image_url_l }}" alt="Cover of {{ book.title }}" class="book-cover" loading="lazy">
+                          <div class="book-info">
+                            <h2 class="book-title">{{ book.title }}</h2>
+                            <p class="book-price">${{ book.price }}</p>
+                          </div>
+                          <aside class="sidebar">
+                            <div class="item-picker">
+                              <input type="text" class="itemQuantity" value="1" readonly>
                             </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                          <article class="book-item">
-                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8f6a7de916f9db6c5c9417eba3b11da5aaf1ca29bee689213575ae4402a89309?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Cover of The Giving Tree" class="book-cover" loading="lazy">
-                            <div class="book-info">
-                              <h2 class="book-title">The Giving Tree</h2>
-                              <p class="book-price">$4.87</p>
-                            </div>
-                            <aside class="sidebar">
-                              <div class="item-picker">
-                                <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                                <input type="text" class="itemQuantity" value="1" readonly>
-                                <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
-                              </div>
-                            </aside>
-                          </article>
-                        </div>
-                        
+                          </aside>
+                        </article>
+                        {% endfor %}
                       </div>
+                    </div>
                     <div class="summary-divider"></div>
-                    
                     <div class="summary-details">
                       <div class="summary-labels">
                         <span class="subtotal-label">Subtotal</span>
                         <span class="shipping-label">Shipping</span>
                       </div>
                       <div class="summary-values">
-                        <span>$9.64</span>
-                        <span class="shipping-value">$9.64</span>
+                        <span class="subtotal-amount">${{ total_amount }}</span>
+                        <span class="shipping-value">$5.00</span>  <!-- Bạn có thể tính toán phí vận chuyển -->
                       </div>
                     </div>
                     <div class="total-divider"></div>
                     <div class="total-details">
                       <span class="total-label">Total</span>
-                      <span class="total-value">$9.64</span>
+                      <span class="total-value">${{ total_amount_with_ship }}</span> <!-- Tổng cộng -->
                     </div>
+                    
                     <button class="confirm-order-btn">Confirm Order</button>
                   </div>
                 </aside>
+
               </div>
             </section>
         </div>
