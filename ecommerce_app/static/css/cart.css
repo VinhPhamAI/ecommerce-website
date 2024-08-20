@@ -233,6 +233,36 @@ body::-webkit-scrollbar {
   font: 500 25px Raleway, sans-serif;
   padding-right: 2vw;
 }
+.item-picker {
+  display: flex;
+  position: relative;
+  align-items: center;
+  margin-top: 80px;
+  gap: 10px;
+}
+.item-button {
+ 
+  background-color: #fff;
+  font-size: 25px;
+  color: #000;
+  font-weight: 400;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+  text-align: center;
+}
+.itemQuantity {
+  
+  background-color: #fff;
+  font-size: 20px;
+  color: #000;
+  font-weight: 400;
+  width: 30px;
+  height: 30px;
+  padding: 0px 0px;
+  border: 1px solid #000;
+  text-align: center;
+}
 
 .quantity-control {
   display: flex;
