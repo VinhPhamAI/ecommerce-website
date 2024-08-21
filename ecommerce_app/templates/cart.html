@@ -20,8 +20,8 @@
         <section class="book-item">
             <div class="book-info-column">
                 <div class="book-info">
-                    <img src="{{ book.image_url_l }}" class="book-cover" alt="Cover of {{ book.title }}" />
-                    <h2 class="book-title">{{ book.title }}</h2>
+                    <img src="{{ book.book.image_url_l }}" class="book-cover" alt="Cover of {{ book.book.title }}" />
+                    <h2 class="book-title">{{ book.truncated_title }}</h2>
                 </div>
             </div>
             <div class="price-controls-column">
@@ -31,10 +31,10 @@
                         <input type="text" class="itemQuantity" value="1" readonly>
                         <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
                     </div>
-                    <span class="price" style="margin-top: 82px;">${{ book.price }}</span>
+                    <span class="price" style="margin-top: 82px;">${{ book.book.price }}</span>
                     <form method="post" style="display:inline;">
                         {% csrf_token %}
-                        <input type="hidden" name="remove_book_id" value="{{ book.isbn }}">
+                        <input type="hidden" name="remove_book_id" value="{{ book.book.isbn }}">
                         <button type="submit" class="remove-btn" aria-label="Remove item" style="margin-top: 70px;">x</button>
                     </form>
                 </div>

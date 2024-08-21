@@ -119,11 +119,25 @@ def cart_view(request):
     cart_books = profile.cart_books.all()
     total_amount = sum(book.price for book in cart_books)
     
+    # Cập nhật tiêu đề sách nếu tiêu đề dài hơn 20 ký tự
+    truncated_books = []
+    for book in cart_books:
+        if len(book.title) > 20:
+            truncated_title = book.title[:20] + '...'
+        else:
+            truncated_title = book.title
+        # Tạo đối tượng sách đã được cập nhật tiêu đề
+        truncated_books.append({
+            'book': book,
+            'truncated_title': truncated_title
+        })
+    
     context = {
-        'cart_books': cart_books,
+        'cart_books': truncated_books,
         'total_amount': total_amount,
     }
     return render(request, 'cart.html', context)
+
 
 
 @login_required
@@ -131,10 +145,8 @@ def checkout(request):
     profile = request.user.profile
     cart_books = profile.cart_books.all()
     
-    # Tính tổng tiền của các sách trong giỏ hàng
     total_amount = sum(book.price for book in cart_books)
     total_amount_with_ship = total_amount + Decimal('5.00')
-    # Truyền dữ liệu vào template checkout.html
     context = {
         'cart_books': cart_books,
         'total_amount': total_amount,
