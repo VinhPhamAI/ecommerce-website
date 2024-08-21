@@ -649,7 +649,7 @@ html {
 .product-table {
     width: 90%;
     border-collapse: collapse;
-    table-layout: fixed; /* Ensure columns have fixed widths */
+    /* table-layout: fixed;  */
 }
 
 .product-table-header th, .product-row td {
