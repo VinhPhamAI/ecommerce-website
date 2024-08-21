@@ -11,7 +11,9 @@
                     <a href="{% url 'book_list' genre='Mystery' %}" class="dropdown-item">Mystery</a>
                 </div>
             </div>
-            <h1 class="brand-name">Lala Books</h1>
+            <a href="{% url 'landing_page' %}" class="brand-link">
+                <h1 class="brand-name">Lala Books</h1>
+            </a>
         </div>
         <form method="GET" action="{% url 'search_books' %}" class='input-form'>
             <input type="text" name="q" class="search-bar" placeholder="Search by Title, Id, or Genre" />

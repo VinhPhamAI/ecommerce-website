@@ -2,32 +2,35 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .form import LoginForm, BookForm
+from .form import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 import random
 import logging
 import string
 from django.db.models import Q
+import json
+from django.http import JsonResponse
+from decimal import Decimal
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Hoặc chuyển hướng đến một trang khác sau khi đăng ký thành công
+            return redirect('login')  
         else:
             print(form.errors)
     else:
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
 
-# Create your views here.
 def landing_page(request):
-    # Lấy tất cả các sách
+
     all_books = list(Book.objects.all())     
-    # Chọn 10 sách ngẫu nhiên
-    random_books = random.sample(all_books, min(4, len(all_books)))
+    random_books = random.sample(all_books, min(12, len(all_books)))
     user_profile = None
     if request.user.is_authenticated:
         user_profile, created = Profile.objects.get_or_create(user=request.user)
@@ -101,11 +104,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-from decimal import Decimal
 
-
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 @csrf_exempt
 @require_POST
 def update_order_items(request):
@@ -274,12 +273,24 @@ def add_product(request):
 
     return render(request, 'add_product.html')
 
+from website.AI.model_ai import infer
+
 @login_required
 def book_detail(request, isbn):
-    # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
     book = get_object_or_404(Book, isbn=isbn)
+    try:
+    # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
+        similar_isbns = infer(isbn)
+    # Fetch similar books from the database
+        similar_books = Book.objects.filter(isbn__in=similar_isbns)
+    except ValueError as e:
+        all_books = list(Book.objects.all())  
+        similar_books = random.sample(all_books, min(12, len(all_books)))
     # Truyền sách vào template
-    return render(request, 'book_detail.html', {'book': book})
+    return render(request, 'book_detail.html', {
+        'book': book,
+        'similar_books': similar_books
+    })
 
 @login_required
 def add_to_cart(request, isbn):
@@ -317,8 +328,7 @@ def book_list(request, genre):
     }
     return render(request, 'book_list.html', context)
 
-import json
-from django.http import JsonResponse
+
 
 @login_required
 def process_order(request):

@@ -23,47 +23,8 @@
     
     <section class="books-section">
         <div class="books-header">
-            <h2>Books recommended for you</h2>
-            <div class="show-more">
-                <h2>Show more</h2>
-                <h2>&rarr;</h2>
-            </div>
-        </div>
-        <div class="books-grid">
-            {% for book in books %}
-            <div class="book-item">
-                <!-- Liên kết đến trang chi tiết sách hoặc trang đăng nhập -->
-                {% if user.is_authenticated %}
-                    <a href="{% url 'book_detail' book.isbn %}">
-                {% else %}
-                    <a href="{% url 'login' %}">
-                {% endif %}
-                    <!-- Hiển thị hình ảnh -->
-                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-                </a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'book_detail' book.isbn %}">
-                {% else %}
-                    <a href="{% url 'login' %}">
-                {% endif %}
-                    <!-- Hiển thị hình ảnh -->
-                    <div class='book-info'>
-                        <!-- Hiển thị tiêu đề -->
-                        <div class='book-info-name'>
-                            <p>{{ book.title }}</p>
-                        </div>
-                        <!-- Hiển thị giá -->
-                        <div class='book-info-price'>
-                            <p>${{ book.price }}</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        <div class="books-header">
             <h2>Featured books</h2>
-            <div id="show-more-featured" class="show-more">
+            <div class="show-more">
                 <h2>Show more</h2>
                 <h2>&rarr;</h2>
             </div>

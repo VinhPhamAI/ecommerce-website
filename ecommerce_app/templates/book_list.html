@@ -22,19 +22,33 @@
                         <h3 style="font-size: 30px;">{{ genre }} Books</h3>
                         <div class="books-grid">
                             {% for book in books %}
-                            <div class="book-item">
-                                <a href="{% url 'book_detail' book.isbn %}">
-                                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-                                    <div class='book-info'>
-                                        <div class='book-info-name'>
-                                            <p>{{ book.title }}</p>
-                                        </div>
-                                        <div class='book-info-price'>
-                                            <p>${{ book.price }}</p>
+                                {% if user.is_authenticated %}
+                                    <div class="book-item">
+                                        <a href="{% url 'book_detail' book.isbn %}">
+                                            <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                            <div class='book-info'>
+                                                <div class='book-info-name'>
+                                                    <p>{{ book.title }}</p>
+                                                </div>
+                                                <div class='book-info-price'>
+                                                    <p>${{ book.price }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="book-item">
+                                        <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                        <div class='book-info'>
+                                            <div class='book-info-name'>
+                                                <p>{{ book.title }}</p>
+                                            </div>
+                                            <div class='book-info-price'>
+                                                <p>${{ book.price }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     {% endfor %}
@@ -48,21 +62,35 @@
                         <h3 style="font-size: 30px;">{{ genre }} Books</h3>
                         <div class="books-grid">
                             {% for book in books %}
-                            <div class="book-item">
-                                <a href="{% url 'book_detail' book.isbn %}">
-                                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-                                </a>
-                                <a href="{% url 'book_detail' book.isbn %}" class='book-inside'>
-                                    <div class='book-info'>
-                                        <div class='book-info-name'>
-                                            <p>{{ book.title }}</p>
-                                        </div>
-                                        <div class='book-info-price'>
-                                            <p>${{ book.price }}</p>
-                                        </div>
+                                {% if user.is_authenticated %}
+                                    <div class="book-item">
+                                        <a href="{% url 'book_detail' book.isbn %}">
+                                            <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                        </a>
+                                        <a href="{% url 'book_detail' book.isbn %}" class='book-inside'>
+                                            <div class='book-info'>
+                                                <div class='book-info-name'>
+                                                    <p>{{ book.title }}</p>
+                                                </div>
+                                                <div class='book-info-price'>
+                                                    <p>${{ book.price }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
+                                {% else %}
+                                    <div class="book-item">
+                                        <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                        <div class='book-info'>
+                                            <div class='book-info-name'>
+                                                <p>{{ book.title }}</p>
+                                            </div>
+                                            <div class='book-info-price'>
+                                                <p>${{ book.price }}</p>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     {% endfor %}
