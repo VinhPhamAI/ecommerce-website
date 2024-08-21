@@ -19,4 +19,5 @@ urlpatterns = [
     path('books/<str:genre>/', views.book_list, name='book_list'),
     path('search/', views.search_books, name='search_books'),
     path('update_order_items/', views.update_order_items, name='update_order_items'),
+    path('confirm_order/', views.confirm_order, name='confirm_order'),
 ]

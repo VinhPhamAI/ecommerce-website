@@ -176,12 +176,18 @@ def checkout(request):
     total_amount = sum(item.book.price * item.quantity for item in order_items)
     shipping_cost = Decimal(5.00)  # Adjust as needed
     total_amount_with_ship = total_amount + shipping_cost
-
+    first_name = profile.first_name
+    last_name = profile.last_name
+    name = first_name + " " + last_name
     context = {
         'order_items': order_items,
         'total_amount': total_amount,
         'shipping_cost': shipping_cost,
         'total_amount_with_ship': total_amount_with_ship,
+        'name': name,
+        'phone': profile.phone_number,
+        'email': profile.email,  # Email comes from the User model
+        'address': profile.address,
     }
     return render(request, 'checkout.html', context)
 
@@ -313,6 +319,8 @@ def book_list(request, genre):
 
 import json
 from django.http import JsonResponse
+
+@login_required
 def process_order(request):
     if request.method == 'POST':
         # Extract cart data from form
@@ -338,3 +346,18 @@ def process_order(request):
 
         return redirect('order_confirmation')  # Redirect to a confirmation page or landing page
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+@login_required
+def confirm_order(request):
+    profile = request.user.profile
+    order_items = OrderItem.objects.filter(profile=profile)
+    for item in order_items:
+        book = item.book
+        # If the quantity in the order matches the number of books in stock, delete the book entry
+        if item.quantity == book.number_of_books:
+            book.delete()
+
+    OrderItem.objects.filter(profile=profile).delete()
+    profile.cart_books.clear()
+    return render(request, "checkout_success.html")
