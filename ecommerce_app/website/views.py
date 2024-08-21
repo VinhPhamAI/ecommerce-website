@@ -170,15 +170,17 @@ def cart_view(request):
 @login_required
 def checkout(request):
     profile = request.user.profile
-    cart_books = profile.cart_books.all()
-    
-    total_amount = sum(book.price for book in cart_books)
-    total_amount_with_ship = total_amount + Decimal('5.00')
-    print(request.POST)
+    order_items = OrderItem.objects.filter(profile=profile)
+
+    # Calculate total amount with shipping
+    total_amount = sum(item.book.price * item.quantity for item in order_items)
+    shipping_cost = Decimal(5.00)  # Adjust as needed
+    total_amount_with_ship = total_amount + shipping_cost
 
     context = {
-        'cart_books': cart_books,
+        'order_items': order_items,
         'total_amount': total_amount,
+        'shipping_cost': shipping_cost,
         'total_amount_with_ship': total_amount_with_ship,
     }
     return render(request, 'checkout.html', context)

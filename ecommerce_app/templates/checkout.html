@@ -56,16 +56,16 @@
                   <div class="summary-container">
                     <div class="book-section">
                       <div class="book-list">
-                        {% for book in cart_books %}
-                        <article class="book-item">
-                          <img src="{{ book.image_url_l }}" alt="Cover of {{ book.title }}" class="book-cover" loading="lazy">
+                        {% for item in order_items %}
+                        <article class="book-item" data-isbn="{{ item.book.isbn }}">
+                          <img src="{{ item.book.image_url_l }}" alt="Cover of {{ item.book.title }}" class="book-cover" loading="lazy">
                           <div class="book-info">
-                            <h2 class="book-title">{{ book.title }}</h2>
-                            <p class="book-price">${{ book.price }}</p>
+                            <h2 class="book-title">{{ item.book.title }}</h2>
+                            <p class="book-price">${{ item.book.price }}</p>
                           </div>
                           <aside class="sidebar">
                             <div class="item-picker">
-                              <input type="text" class="itemQuantity" value="1" readonly>
+                              <input type="text" class="itemQuantity" value="{{ item.quantity }}" readonly>
                             </div>
                           </aside>
                         </article>
@@ -80,13 +80,13 @@
                       </div>
                       <div class="summary-values">
                         <span class="subtotal-amount">${{ total_amount }}</span>
-                        <span class="shipping-value">$5.00</span>  <!-- Bạn có thể tính toán phí vận chuyển -->
+                        <span class="shipping-value">${{ shipping_cost }}</span>
                       </div>
                     </div>
                     <div class="total-divider"></div>
                     <div class="total-details">
                       <span class="total-label">Total</span>
-                      <span class="total-value">${{ total_amount_with_ship }}</span> <!-- Tổng cộng -->
+                      <span class="total-value">${{ total_amount_with_ship }}</span>
                     </div>
                     
                     <button class="confirm-order-btn">Confirm Order</button>
@@ -101,4 +101,4 @@
     {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}
     <script src="..\static\js\checkout.js"></script>
 </body>
-    
+</html>
