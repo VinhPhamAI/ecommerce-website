@@ -17,7 +17,7 @@
 
     {% if cart_books %}
         {% for book in cart_books %}
-        <section class="book-item" data-price="{{ book.book.price }}">
+        <section class="book-item" data-price="{{ book.book.price }}" data-isbn="{{ book.book.isbn }}">
             <div class="book-info-column">
                 <div class="book-info">
                     <img src="{{ book.book.image_url_l }}" class="book-cover" alt="Cover of {{ book.book.title }}" />
@@ -53,7 +53,8 @@
     {% endif %}
     <section class="shop-container">
         <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
-        <button class="order-button" onclick="handleOrderNow()">ORDER NOW</button>
+        
+        <button class="order-button" name="order_now" onclick="handleOrderNow()">ORDER NOW</button>
     </section>
 
     <script src="../static/js/checkout.js"></script>
@@ -89,13 +90,36 @@
 
         function handleOrderNow() {
             var cartBooks = {{ cart_books|length }};
+            var cartItems = [];
             
+            document.querySelectorAll('.book-item').forEach(function(item) {
+                var isbn = item.getAttribute('data-isbn');
+                var quantity = item.querySelector('input.itemQuantity').value;
+                cartItems.push({ isbn: isbn, quantity: quantity });
+            });
+
             if (cartBooks === 0) {
                 window.location.href = "{% url 'landing_page' %}";  // Redirect to landing_page
             } else {
-                window.location.href = "{% url 'credit' %}";  // Redirect to payment page if cart is not empty
+                fetch("{% url 'update_order_items' %}", { // URL should match the Django view URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ cart_items: cartItems })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "{% url 'credit' %}";  // Redirect to payment page if successful
+                    } else {
+                        alert("There was an issue processing your order.");
+                    }
+                });
             }
         }
+
     </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import Book, Profile
+from .models import Book, Profile, OrderItem
 from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 
@@ -35,3 +35,16 @@ class ProfileAdmin(ImportExportModelAdmin):
     def book_product_list(self, obj):
         return ", ".join([book.title for book in obj.book_product.all()])
     book_product_list.short_description = 'Book Products'
+
+class OrderItemResource(resources.ModelResource):
+    class Meta:
+        model = OrderItem
+        fields = ('user', 'book', 'quantity', 'ordered_at')
+        export_order = ('user', 'book', 'quantity')
+
+@admin.register(OrderItem)
+class OrderItemAdmin(ImportExportModelAdmin):
+    resource_class = OrderItemResource
+    list_display = ('profile', 'book', 'quantity', 'ordered_at')
+    search_fields = ('profile__user__username', 'book__title')
+    list_filter = ('profile', 'book')

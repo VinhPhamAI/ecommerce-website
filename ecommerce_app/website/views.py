@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .form import LoginForm, BookForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile, Book
+from .models import *
 import random
 import logging
 import string
@@ -103,31 +103,57 @@ def user_login(request):
 
 from decimal import Decimal
 
+
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+@csrf_exempt
+@require_POST
+def update_order_items(request):
+    try:
+        data = json.loads(request.body)
+        cart_items = data.get('cart_items', [])
+        user_profile = request.user.profile
+        
+        # Clear existing order items for this user
+        OrderItem.objects.filter(profile=user_profile).delete()
+        
+        for item in cart_items:
+            isbn = item['isbn']
+            quantity = int(item['quantity'])
+            book = Book.objects.get(isbn=isbn)
+            
+            # Create or update OrderItem for this book
+            OrderItem.objects.create(
+                profile=user_profile,
+                book=book,
+                quantity=quantity
+            )
+        
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print(f"Error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)})
+
+
 @login_required
 def cart_view(request):
     profile = request.user.profile
+    if request.method == 'POST':
+        if 'remove_book_id' in request.POST:
+            book_id = request.POST.get('remove_book_id')
+            book = get_object_or_404(Book, isbn=book_id)
+            profile.cart_books.remove(book)
+            profile.save()
 
-    # Xử lý việc xóa sách khỏi giỏ hàng
-    if request.method == 'POST' and 'remove_book_id' in request.POST:
-        book_id = request.POST.get('remove_book_id')
-        book = get_object_or_404(Book, isbn=book_id)
-        
-        # Xóa sách khỏi giỏ hàng của người dùng
-        profile.cart_books.remove(book)
-        profile.save()  # Lưu lại profile sau khi thay đổi
-
-    # Lấy lại danh sách sách trong giỏ hàng sau khi có thể đã xóa
     cart_books = profile.cart_books.all()
     total_amount = sum(book.price for book in cart_books)
-    
-    # Cập nhật tiêu đề sách nếu tiêu đề dài hơn 20 ký tự
+
     truncated_books = []
     for book in cart_books:
         if len(book.title) > 20:
             truncated_title = book.title[:20] + '...'
         else:
             truncated_title = book.title
-        # Tạo đối tượng sách đã được cập nhật tiêu đề
         truncated_books.append({
             'book': book,
             'truncated_title': truncated_title
@@ -148,6 +174,8 @@ def checkout(request):
     
     total_amount = sum(book.price for book in cart_books)
     total_amount_with_ship = total_amount + Decimal('5.00')
+    print(request.POST)
+
     context = {
         'cart_books': cart_books,
         'total_amount': total_amount,
@@ -281,3 +309,30 @@ def book_list(request, genre):
     }
     return render(request, 'book_list.html', context)
 
+import json
+from django.http import JsonResponse
+def process_order(request):
+    if request.method == 'POST':
+        # Extract cart data from form
+        book_isbns = json.loads(request.POST.get('book_isbns', '[]'))
+        book_quantities = json.loads(request.POST.get('book_quantities', '[]'))
+        profile = Profile.objects.get(user=request.user)  # Assuming user is logged in
+        
+        # Validate the lengths
+        if len(book_isbns) != len(book_quantities):
+            return JsonResponse({'error': 'Invalid data'}, status=400)
+
+        # Create OrderItem entries
+        for isbn, quantity in zip(book_isbns, book_quantities):
+            try:
+                book = Book.objects.get(isbn=isbn)
+                OrderItem.objects.create(
+                    profile=profile,
+                    book=book,
+                    quantity=quantity
+                )
+            except Book.DoesNotExist:
+                continue  # Handle book not found scenario if needed
+
+        return redirect('order_confirmation')  # Redirect to a confirmation page or landing page
+    return JsonResponse({'error': 'Invalid request'}, status=400)

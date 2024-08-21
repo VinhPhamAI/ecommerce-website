@@ -32,3 +32,12 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+class OrderItem(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='order_items')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='ordered_items')
+    quantity = models.PositiveIntegerField()
+    ordered_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.book.title} - {self.quantity} pcs"
