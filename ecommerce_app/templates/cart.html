@@ -47,9 +47,11 @@
             <p class="subtotal-amount">${{ total_amount }}</p>
         </section>
     {% else %}
-        <p>Your cart is empty.</p>
+        <div class="empty-cart">
+            <p>Your cart is empty.</p>
+            {% comment %} <a href="{% url 'landing_page' %}" class="back-link">Continue Shopping</a> {% endcomment %}
+        </div>
     {% endif %}
-
     <section class="shop-container">
       <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
       <button class="order-button" onclick="handleOrderNow()">ORDER NOW</button>
