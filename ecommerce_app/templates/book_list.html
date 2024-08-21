@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Store - {{ genre }}</title>
+    <title>Book Store - Search Results</title>
     <link rel="stylesheet" href="../../static/css/book_list.css">
     <link rel="stylesheet" href="../../static/css/nav_bar.css">
 </head>
@@ -14,29 +14,65 @@
     
     <main>
         <section class="books-section">
-            <h2 style="font-size: 35px;">{{ genre }} Books</h2>
-            <div class="books-grid">
-                {% for book in books %}
-                <div class="book-item">
-                    <a href="{% url 'book_detail' book.isbn %}">
-                        <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
-                        <div class='book-info'>
-                            <div class='book-info-name'>
-                                <p>{{ book.title }}</p>
+            {% if query %}
+                <h2 style="font-size: 35px;">Search Results for "{{ query }}"</h2>
+                
+                {% if genre_books %}
+                    {% for genre, books in genre_books.items %}
+                        <h3 style="font-size: 30px;">{{ genre }} Books</h3>
+                        <div class="books-grid">
+                            {% for book in books %}
+                            <div class="book-item">
+                                <a href="{% url 'book_detail' book.isbn %}">
+                                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                    <div class='book-info'>
+                                        <div class='book-info-name'>
+                                            <p>{{ book.title }}</p>
+                                        </div>
+                                        <div class='book-info-price'>
+                                            <p>${{ book.price }}</p>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <div class='book-info-price'>
-                                <p>${{ book.price }}</p>
-                            </div>
+                            {% endfor %}
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No books found matching "{{ query }}"</p>
+                {% endif %}
+                
+            {% else %}
+                {% if genre_books %}
+                    {% for genre, books in genre_books.items %}
+                        <h3 style="font-size: 30px;">{{ genre }} Books</h3>
+                        <div class="books-grid">
+                            {% for book in books %}
+                            <div class="book-item">
+                                <a href="{% url 'book_detail' book.isbn %}">
+                                    <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                    <div class='book-info'>
+                                        <div class='book-info-name'>
+                                            <p>{{ book.title }}</p>
+                                        </div>
+                                        <div class='book-info-price'>
+                                            <p>${{ book.price }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No books found matching "{{ query }}"</p>
+                {% endif %}
+            {% endif %}
+            
             <section class="shop-container">
                 <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
             </section>
         </section>
-
     </main>
     
 </body>

@@ -46,9 +46,16 @@
                 {% endfor %}
             </tbody>
         </table>
-    
+        <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
+        <style>
+        .back-link {
+            color: #000;
+            font: 500 30px Raleway, sans-serif;
+            margin-top: 20px;
+        }
+        </style>
         <nav class="pagination" aria-label="Pagination">
-            <!-- Pagination buttons here -->
+            
         </nav>    
         <footer class="footer"></footer>
     </section>

@@ -8,6 +8,7 @@ from .models import Profile, Book
 import random
 import logging
 import string
+from django.db.models import Q
 
 def register(request):
     if request.method == 'POST':
@@ -154,6 +155,37 @@ def checkout(request):
     }
     return render(request, 'checkout.html', context)
 
+def search_books(request):
+    query = request.GET.get('q', '')  # Get search query from search bar
+    genre_books = {}
+
+    if query:
+        # Get books matching the search query
+        results = Book.objects.filter(
+            Q(title__icontains=query) |
+            Q(isbn__icontains=query) |
+            Q(genres__icontains=query)
+        ).distinct()  # Ensure distinct results
+
+        # Limit results to 60
+        limited_results = results[:100]
+
+        # Group books by genre
+        for book in limited_results:
+            genres = book.genres.split(',')  # Assuming genres are comma-separated
+            for genre in genres:
+                genre = genre.strip()  # Remove any extra whitespace
+                if genre not in genre_books:
+                    genre_books[genre] = []
+                genre_books[genre].append(book)
+
+    context = {
+        'genre_books': genre_books,
+        'query': query,
+    }
+
+    return render(request, 'book_list.html', context)
+
 @login_required
 def manage_product(request):
     profile = Profile.objects.get(user=request.user)
@@ -234,7 +266,7 @@ def add_to_cart(request, isbn):
 
 def book_list(request, genre):
     # Filter books by the selected genre
-    books = Book.objects.filter(genres=genre)
+    books = Book.objects.filter(genres__icontains=genre)
     
     # Convert QuerySet to list
     books_list = list(books)
@@ -242,8 +274,9 @@ def book_list(request, genre):
     # Sample from the list
     random_books = random.sample(books_list, min(12, len(books_list))) if books_list else []
     
+    # Prepare the context for the template
     context = {
-        'books': random_books,
+        'genre_books': {genre: random_books},  # Pass the books grouped by the genre
         'genre': genre,
     }
     return render(request, 'book_list.html', context)
