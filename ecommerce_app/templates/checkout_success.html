@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Success</title>
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-bar {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .container h1 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            font-size: 18px;
+            color: #333333;
+            margin-bottom: 30px;
+        }
+
+        .container .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container .back-button:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <div class="container">
+        <h1>Checkout Complete</h1>
+        <p>Thank you for your purchase! Your order has been successfully processed.</p>
+        <a href="{% url 'landing_page' %}" class="back-button">Back to Landing Page</a>
+    </div>
+</body>
+</html>

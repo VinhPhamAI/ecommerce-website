@@ -5,3 +5,4 @@ myenv
 ecommerce_app\ecommerce_app\settings.py
 .env
 image
+docker-compose.yml
