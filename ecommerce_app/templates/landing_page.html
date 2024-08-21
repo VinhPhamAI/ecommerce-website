@@ -40,6 +40,13 @@
                 {% endif %}
                     <!-- Hiển thị hình ảnh -->
                     <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                </a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'book_detail' book.isbn %}">
+                {% else %}
+                    <a href="{% url 'login' %}">
+                {% endif %}
+                    <!-- Hiển thị hình ảnh -->
                     <div class='book-info'>
                         <!-- Hiển thị tiêu đề -->
                         <div class='book-info-name'>
@@ -72,6 +79,13 @@
                 {% endif %}
                     <!-- Hiển thị hình ảnh -->
                     <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                </a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'book_detail' book.isbn %}">
+                {% else %}
+                    <a href="{% url 'login' %}">
+                {% endif %}
+                    <!-- Hiển thị hình ảnh -->
                     <div class='book-info'>
                         <!-- Hiển thị tiêu đề -->
                         <div class='book-info-name'>

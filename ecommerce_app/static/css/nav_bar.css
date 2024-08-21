@@ -89,7 +89,7 @@ html {
   
   .search-bar {
     flex-grow: 1;
-    /* width: 40vw; */
+    width: 30vw;
     margin: 0 20px;
     border-radius: 50px;
     margin: 20px;
@@ -171,4 +171,11 @@ html {
 .burger-menu:hover .burger-dropdown,
 .profile-menu:hover .profile-dropdown {
   display: block;
+}
+
+.input-form {
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* margin: 20px; */
 }

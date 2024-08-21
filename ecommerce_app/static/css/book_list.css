@@ -265,12 +265,12 @@ header {
     font-size: 24px;
     font-family: 'Cursive', sans-serif;
 }
-
+/* 
 input[type="text"] {
     padding: 5px;
     font-size: 16px;
     width: 200px;
-}
+} */
 
 .auth button {
     background-color: transparent;
@@ -329,7 +329,7 @@ main {
 .book-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     /* height: 100%; */
     text-align: center;
     background-color: white;
@@ -390,4 +390,11 @@ main {
 .back-link:hover {
   background-color: #333333;
   color: #ffffff;
+}
+
+.book-inside {
+  justify-content: end;
+  text-decoration: none;
+  color: black; 
+  font-weight: bold;
 }

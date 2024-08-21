@@ -51,6 +51,8 @@
                             <div class="book-item">
                                 <a href="{% url 'book_detail' book.isbn %}">
                                     <img src="{{ book.image_url_l }}" alt="{{ book.title }}" style="width: 200px; height: auto;">
+                                </a>
+                                <a href="{% url 'book_detail' book.isbn %}" class='book-inside'>
                                     <div class='book-info'>
                                         <div class='book-info-name'>
                                             <p>{{ book.title }}</p>
