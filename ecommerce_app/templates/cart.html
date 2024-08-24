@@ -17,7 +17,7 @@
 
     {% if cart_books %}
         {% for book in cart_books %}
-        <section class="book-item">
+        <section class="book-item" data-price="{{ book.book.price }}" data-isbn="{{ book.book.isbn }}">
             <div class="book-info-column">
                 <div class="book-info">
                     <img src="{{ book.book.image_url_l }}" class="book-cover" alt="Cover of {{ book.book.title }}" />
@@ -27,11 +27,11 @@
             <div class="price-controls-column">
                 <div class="price-controls">
                     <div class="item-picker">
-                        <button class="item-button" onclick="changeQuantity(this, -1)">-</button>
-                        <input type="text" class="itemQuantity" value="1" readonly>
-                        <button class="item-button" onclick="changeQuantity(this, 1)">+</button>
+                        <button class="item-button" onclick="changeQuantity(this, -1, {{ book.book.number_of_books }})">-</button>
+                        <input type="number" class="itemQuantity" value="1" min="1" max="{{ book.book.number_of_books }}" readonly>
+                        <button class="item-button" onclick="changeQuantity(this, 1, {{ book.book.number_of_books }})">+</button>
                     </div>
-                    <span class="price" style="margin-top: 82px;">${{ book.book.price }}</span>
+                    <span class="price" style="margin-top: 82px;">$<span class="price-value">{{ book.book.price }}</span></span>
                     <form method="post" style="display:inline;">
                         {% csrf_token %}
                         <input type="hidden" name="remove_book_id" value="{{ book.book.isbn }}">
@@ -44,30 +44,82 @@
 
         <section class="subtotal-container">
             <p class="subtotal-label">Subtotal:</p>
-            <p class="subtotal-amount">${{ total_amount }}</p>
+            <p class="subtotal-amount">$<span id="subtotal">{{ total_amount }}</span></p>
         </section>
     {% else %}
         <div class="empty-cart">
             <p>Your cart is empty.</p>
-            {% comment %} <a href="{% url 'landing_page' %}" class="back-link">Continue Shopping</a> {% endcomment %}
         </div>
     {% endif %}
     <section class="shop-container">
-      <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
-      <button class="order-button" onclick="handleOrderNow()">ORDER NOW</button>
+        <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
+        
+        <button class="order-button" name="order_now" onclick="handleOrderNow()">ORDER NOW</button>
     </section>
 
     <script src="../static/js/checkout.js"></script>
     <script>
-        function handleOrderNow() {
-            var cartBooks = {{ cart_books|length }};  
-            
-            if (cartBooks === 0) {
-                window.location.href = "{% url 'landing_page' %}";  // Chuyển về trang landing_page
-            } else {
-                window.location.href = "{% url 'credit' %}";  // Chuyển đến trang thanh toán nếu giỏ hàng không trống
+        function changeQuantity(button, delta, max) {
+            var itemSection = button.closest('.book-item');
+            var input = itemSection.querySelector('.itemQuantity');
+            var priceSpan = itemSection.querySelector('.price-value');
+            var currentQuantity = parseInt(input.value, 10);
+            var newQuantity = currentQuantity + delta;
+            var pricePerUnit = parseFloat(itemSection.getAttribute('data-price'));
+
+            if (newQuantity >= 1 && newQuantity <= max) {
+                input.value = newQuantity;
+                // Update the price for this book
+                var totalPrice = newQuantity * pricePerUnit;
+                priceSpan.textContent = totalPrice.toFixed(2);
+                // Recalculate the subtotal
+                updateSubtotal();
             }
         }
+
+        function updateSubtotal() {
+            var subtotal = 0;
+            var priceElements = document.querySelectorAll('.price-value');
+
+            priceElements.forEach(function(priceElement) {
+                subtotal += parseFloat(priceElement.textContent);
+            });
+
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+        }
+
+        function handleOrderNow() {
+            var cartBooks = {{ cart_books|length }};
+            var cartItems = [];
+            
+            document.querySelectorAll('.book-item').forEach(function(item) {
+                var isbn = item.getAttribute('data-isbn');
+                var quantity = item.querySelector('input.itemQuantity').value;
+                cartItems.push({ isbn: isbn, quantity: quantity });
+            });
+
+            if (cartBooks === 0) {
+                window.location.href = "{% url 'landing_page' %}";  // Redirect to landing_page
+            } else {
+                fetch("{% url 'update_order_items' %}", { // URL should match the Django view URL
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ cart_items: cartItems })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = "{% url 'credit' %}";  // Redirect to payment page if successful
+                    } else {
+                        alert("There was an issue processing your order.");
+                    }
+                });
+            }
+        }
+
     </script>
 </body>
 </html>

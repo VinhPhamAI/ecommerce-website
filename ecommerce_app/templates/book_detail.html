@@ -30,7 +30,12 @@
                 </div>
             </div>
             
-            <button class="add-to-cart-btn" onclick="window.location.href='{% url 'add_to_cart' book.isbn %}'">Add to cart</button>
+            <!-- Kiểm tra số lượng sách -->
+            {% if book.number_of_books > 0 %}
+                <button class="add-to-cart-btn" onclick="window.location.href='{% url 'add_to_cart' book.isbn %}'">Add to cart</button>
+            {% else %}
+                <p class="out-of-stock">Out of Stock</p>
+            {% endif %}
             <p class="book-description"><strong>Description:</strong> {{ book.description }}</p>
         </div>
     </section>
@@ -38,18 +43,26 @@
     <section class="books-section">
         <h2 style="font-size: 35px;">You may also like</h2>
         <div class="books-grid">
-            <div class="book-item">
-                <img src="../../static/img/HP.png" alt="Harry Potter and the Order of the Phoenix">
-                <div class='book-info'>
-                    <div class='book-info-name'>
-                        <p>Harry Potter and the Order of the Phoenix Harry Potter and the Order of the Phoenix</p>
-                    </div>
-                    <div class='book-info-price'>
-                        <p>$7.38</p>
-                    </div>
+            {% for similar_book in similar_books %}
+                <div class="book-item">
+                    <a href="{% url 'book_detail' similar_book.isbn %}">
+                        <img src="{{ similar_book.image_url_l }}" alt="Cover of {{ similar_book.title }}">
+                    
+                        <div class='book-info'>
+                            <div class='book-info-name'>
+                                <p>{{ similar_book.title }}</p>
+                            </div>
+                            <div class='book-info-price'>
+                                <p>${{ similar_book.price }}</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
+            {% empty %}
+                <p>No similar books found.</p>
+            {% endfor %}
         </div>
     </section>
     {% comment %} <footer class="footer">Lala Books</footer> {% endcomment %}
 </body>
+</html>

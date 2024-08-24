@@ -252,16 +252,25 @@ body::-webkit-scrollbar {
   text-align: center;
 }
 .itemQuantity {
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #fff;
   font-size: 20px;
   color: #000;
   font-weight: 400;
   width: 30px;
   height: 30px;
-  padding: 0px 0px;
+  padding: 0;
   border: 1px solid #000;
   text-align: center;
+  -moz-appearance: textfield; /* Remove spinner in Firefox */
+}
+
+.itemQuantity::-webkit-outer-spin-button,
+.itemQuantity::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Remove spinner in Chrome, Safari, Edge, Opera */
+  margin: 0;
 }
 
 .quantity-control {

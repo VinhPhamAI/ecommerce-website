@@ -2,32 +2,37 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .form import LoginForm, BookForm
+from .form import LoginForm
 from django.contrib.auth import authenticate, login, logout
-from .models import Profile, Book
+from .models import *
 import random
 import logging
 import string
 from django.db.models import Q
+import json
+from django.http import JsonResponse
+from decimal import Decimal
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Hoặc chuyển hướng đến một trang khác sau khi đăng ký thành công
+            return redirect('login')  
         else:
             print(form.errors)
     else:
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
 
-# Create your views here.
+
+
 def landing_page(request):
-    # Lấy tất cả các sách
+
     all_books = list(Book.objects.all())     
-    # Chọn 10 sách ngẫu nhiên
-    random_books = random.sample(all_books, min(4, len(all_books)))
+    random_books = random.sample(all_books, min(12, len(all_books)))
     user_profile = None
     if request.user.is_authenticated:
         user_profile, created = Profile.objects.get_or_create(user=request.user)
@@ -53,7 +58,9 @@ def update_profile(request):
         gender = request.POST.get('gender')
         date_of_birth = request.POST.get('date_of_birth')
         address = request.POST.get('address')
-                # Chỉ cập nhật các trường nếu chúng có giá trị
+        payment_method = request.POST.get('payment_method')
+        
+        # Chỉ cập nhật các trường nếu chúng có giá trị
         if first_name:
             user_profile.first_name = first_name
         if last_name:
@@ -68,7 +75,8 @@ def update_profile(request):
             user_profile.date_of_birth = date_of_birth
         if address:
             user_profile.address = address
-
+        if payment_method:
+            user_profile.payment_method = payment_method
         user_profile.save()
         
         return redirect('landing_page')  # Hoặc chuyển hướng đến một trang khác nếu cần
@@ -101,33 +109,55 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-from decimal import Decimal
+
+@csrf_exempt
+@require_POST
+def update_order_items(request):
+    try:
+        data = json.loads(request.body)
+        cart_items = data.get('cart_items', [])
+        user_profile = request.user.profile
+        
+        # Clear existing order items for this user
+        OrderItem.objects.filter(profile=user_profile).delete()
+        
+        for item in cart_items:
+            isbn = item['isbn']
+            quantity = int(item['quantity'])
+            book = Book.objects.get(isbn=isbn)
+            
+            # Create or update OrderItem for this book
+            OrderItem.objects.create(
+                profile=user_profile,
+                book=book,
+                quantity=quantity
+            )
+        
+        return JsonResponse({'success': True})
+    except Exception as e:
+        print(f"Error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)})
+
 
 @login_required
 def cart_view(request):
     profile = request.user.profile
+    if request.method == 'POST':
+        if 'remove_book_id' in request.POST:
+            book_id = request.POST.get('remove_book_id')
+            book = get_object_or_404(Book, isbn=book_id)
+            profile.cart_books.remove(book)
+            profile.save()
 
-    # Xử lý việc xóa sách khỏi giỏ hàng
-    if request.method == 'POST' and 'remove_book_id' in request.POST:
-        book_id = request.POST.get('remove_book_id')
-        book = get_object_or_404(Book, isbn=book_id)
-        
-        # Xóa sách khỏi giỏ hàng của người dùng
-        profile.cart_books.remove(book)
-        profile.save()  # Lưu lại profile sau khi thay đổi
-
-    # Lấy lại danh sách sách trong giỏ hàng sau khi có thể đã xóa
     cart_books = profile.cart_books.all()
     total_amount = sum(book.price for book in cart_books)
-    
-    # Cập nhật tiêu đề sách nếu tiêu đề dài hơn 20 ký tự
+
     truncated_books = []
     for book in cart_books:
         if len(book.title) > 20:
             truncated_title = book.title[:20] + '...'
         else:
             truncated_title = book.title
-        # Tạo đối tượng sách đã được cập nhật tiêu đề
         truncated_books.append({
             'book': book,
             'truncated_title': truncated_title
@@ -144,14 +174,25 @@ def cart_view(request):
 @login_required
 def checkout(request):
     profile = request.user.profile
-    cart_books = profile.cart_books.all()
-    
-    total_amount = sum(book.price for book in cart_books)
-    total_amount_with_ship = total_amount + Decimal('5.00')
+    order_items = OrderItem.objects.filter(profile=profile)
+
+    # Calculate total amount with shipping
+    total_amount = sum(item.book.price * item.quantity for item in order_items)
+    shipping_cost = Decimal(5.00)  # Adjust as needed
+    total_amount_with_ship = total_amount + shipping_cost
+    first_name = profile.first_name
+    last_name = profile.last_name
+    name = first_name + " " + last_name
     context = {
-        'cart_books': cart_books,
+        'order_items': order_items,
         'total_amount': total_amount,
+        'shipping_cost': shipping_cost,
         'total_amount_with_ship': total_amount_with_ship,
+        'name': name,
+        'phone': profile.phone_number,
+        'email': profile.email,  # Email comes from the User model
+        'address': profile.address,
+        'payment_method': profile.payment_method,
     }
     return render(request, 'checkout.html', context)
 
@@ -188,8 +229,8 @@ def search_books(request):
 
 @login_required
 def manage_product(request):
-    profile = Profile.objects.get(user=request.user)
-    books = profile.book_product.all()
+    products = Product.objects.filter(user=request.user)
+    books = Book.objects.filter(product_books__in=products)
 
     return render(request, 'manage_product.html', {'books': books})
 
@@ -229,21 +270,40 @@ def add_product(request):
         book.save()
         # Cập nhật Profile của người dùng hiện tại
         if request.user.is_authenticated:
-            profile = Profile.objects.get(user=request.user)
-            profile.book_product.add(book)
-            profile.save()
+            product = Product(
+                user=request.user,
+                title=title,
+                description=description,
+                price=price,
+            )
+            product.save()
+            product.book_product.add(book)  # Add the new book to the product
+            product.save()
 
         # Chuyển hướng đến trang thành công hoặc một view khác
         return redirect('landing_page')
 
     return render(request, 'add_product.html')
 
+from website.AI.model_ai import infer
+
 @login_required
 def book_detail(request, isbn):
-    # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
     book = get_object_or_404(Book, isbn=isbn)
+
+    try:
+    # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
+        similar_isbns = infer(isbn)
+    # Fetch similar books from the database
+        similar_books = Book.objects.filter(isbn__in=similar_isbns)
+    except ValueError as e:
+        all_books = list(Book.objects.all())  
+        similar_books = random.sample(all_books, min(12, len(all_books)))
     # Truyền sách vào template
-    return render(request, 'book_detail.html', {'book': book})
+    return render(request, 'book_detail.html', {
+        'book': book,
+        'similar_books': similar_books
+    })
 
 @login_required
 def add_to_cart(request, isbn):
@@ -281,3 +341,46 @@ def book_list(request, genre):
     }
     return render(request, 'book_list.html', context)
 
+@login_required
+def purchase_order(request):
+    orders = Order.objects.filter(user=request.user)
+    books = Book.objects.filter(order_books__in=orders)
+    return render(request, "purchase_oder.html", {'books': books})
+
+@login_required
+def confirm_order(request):
+    profile = request.user.profile
+    order_items = OrderItem.objects.filter(profile=profile)
+
+    total_amount = sum(item.book.price * item.quantity for item in order_items)
+    shipping_cost = Decimal(5.00)  # Adjust as needed
+    total_amount_with_ship = total_amount + shipping_cost
+    # Create a new Order object
+    order = Order(
+        user=request.user,
+        name=f"{profile.first_name} {profile.last_name}",
+        phone_number=profile.phone_number,
+        email=profile.email,
+        address=profile.address,
+        payment_method=profile.payment_method,
+        price=total_amount,
+        shipping_cost=shipping_cost,
+        total_cost=total_amount_with_ship
+    )
+    order.save()
+
+    # Add books to the Order's ManyToMany field
+    order.book_order.set(item.book for item in order_items)
+
+    for item in order_items:
+        book = item.book
+        # If the quantity in the order matches the number of books in stock, delete the book entry
+        print("item :", item.quantity)
+        print(book.number_of_books)
+        book.number_of_books = book.number_of_books - item.quantity
+        
+        book.save()
+
+    OrderItem.objects.filter(profile=profile).delete()
+    profile.cart_books.clear()
+    return render(request, "checkout_success.html")

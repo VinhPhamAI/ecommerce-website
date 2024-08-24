@@ -699,3 +699,10 @@ html {
 .product-name, .product-id, .product-details span {
     display: block; /* Ensure proper alignment within cells */
 }
+
+.no-products-found {
+    color: #000;
+    font: 500 30px Raleway, sans-serif;
+    margin-top: 40px;
+    text-align: center;
+}

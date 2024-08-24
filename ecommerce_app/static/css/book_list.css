@@ -296,9 +296,11 @@ main {
 }
 
 .books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  gap: 20px;
+  justify-content: start;
+  text-decoration: none;
 }
 
 .book-item {
@@ -337,6 +339,7 @@ main {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    text-decoration: none;
 }
 
 .book-item img {
@@ -367,12 +370,14 @@ main {
 }
 
 .book-info-name {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  width: 200px; 
+  text-decoration: none;
 }
 
 .back-link {
@@ -397,4 +402,14 @@ main {
   text-decoration: none;
   color: black; 
   font-weight: bold;
+}
+
+.book-info {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+p {
+  text-decoration: none;
 }

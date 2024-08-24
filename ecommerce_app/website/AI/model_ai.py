@@ -1,7 +1,7 @@
 from sklearn.neighbors import NearestNeighbors
 from scipy.sparse import csr_matrix
 import numpy as np
-from data import books_user_ratings_df
+from .data import data_process
 
 def create_matrix(df):
 
@@ -23,12 +23,10 @@ def create_matrix(df):
 
     return X, user_mapper, book_mapper, user_inv_mapper, book_inv_mapper
 
-X, user_mapper, book_mapper, user_inv_mapper, book_inv_mapper = create_matrix(books_user_ratings_df)
 
-def find_similar_books(book_id, X, k, metric='cosine', show_distance=False):
-
+def find_similar_books(book_id,books_user_ratings_df, k, metric='cosine', show_distance=False):
     neighbour_ids = []
-    
+    X, user_mapper, book_mapper, user_inv_mapper, book_inv_mapper = create_matrix(books_user_ratings_df)
     book_ind = book_mapper[book_id]
     book_vec = X[book_ind]
     k+=1
@@ -41,3 +39,30 @@ def find_similar_books(book_id, X, k, metric='cosine', show_distance=False):
         neighbour_ids.append(book_inv_mapper[n])
     neighbour_ids.pop(0)
     return neighbour_ids
+
+def infer(Book_isbn):
+    # Truy xuất dữ liệu sách và tạo dictionary
+    books_user_ratings_df = data_process()
+    # Create a mapping from ISBN to Book-ID
+    isbn_to_book_id = dict(zip(books_user_ratings_df['ISBN'], books_user_ratings_df['Book-ID']))
+    
+    # Create a reverse mapping from Book-ID to ISBN
+    book_id_to_isbn = {book_id: isbn for isbn, book_id in isbn_to_book_id.items()}
+
+    # Get the Book-ID from the given ISBN
+    if Book_isbn not in isbn_to_book_id:
+        raise ValueError(f"ISBN {Book_isbn} not found in book_titles")
+    
+    Book_id = isbn_to_book_id[Book_isbn]
+
+    # Find similar Book-IDs
+    similar_ids = find_similar_books(Book_id, books_user_ratings_df, k=12)
+    similar_isbns = []
+
+    # Map Book-IDs from similar_ids to ISBNs
+    for similar_id in similar_ids:
+        if similar_id in book_id_to_isbn:
+            similar_isbns.append(book_id_to_isbn[similar_id])
+
+    return similar_isbns
+

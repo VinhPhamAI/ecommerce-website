@@ -27,7 +27,6 @@
                     <th class="product-id">Product ID</th>
                     <th class="price">Price</th>
                     <th class="stock">Stock</th>
-                    <th class="history">History</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,11 +36,10 @@
                         <td class="product-id">{{ book.isbn }}</td>
                         <td class="price">${{ book.price }}</td>
                         <td class="stock">{{ book.number_of_books }}</td>
-                        <td class="history"><img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b048555ffce1f66055e782002dbc540d75bc013c914b40c5ac89840bf75651c9?placeholderIfAbsent=true&apiKey=99a2af43fc7a4b6e84b9146faa2de95e" alt="Action Menu" class="action-icon"></td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">No products found</td>
+                        <td class = 'no-products-found'>No products found</td>
                     </tr>
                 {% endfor %}
             </tbody>

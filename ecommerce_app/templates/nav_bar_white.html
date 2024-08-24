@@ -11,7 +11,9 @@
                     <a href="{% url 'book_list' genre='Mystery' %}" class="dropdown-item">Mystery</a>
                 </div>
             </div>
-            <h1 class="brand-name">Lala Books</h1>
+            <a href="{% url 'landing_page' %}" class="brand-link">
+                <h1 class="brand-name">Lala Books</h1>
+            </a>
         </div>
         <form method="GET" action="{% url 'search_books' %}" class='input-form'>
             <input type="text" name="q" class="search-bar" placeholder="Search by Title, Id, or Genre" />
@@ -25,6 +27,7 @@
                     <div class="dropdown-content profile-dropdown">
                         <a href="{% url 'profile' %}" class="dropdown-item">View profile</a>
                         <a href="{% url 'manage_product' %}" class="dropdown-item">Manage product</a>
+                        <a href="{% url 'purchase_order' %}" class="dropdown-item">Purchase order</a>
                         <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                     </div>
                 </div>

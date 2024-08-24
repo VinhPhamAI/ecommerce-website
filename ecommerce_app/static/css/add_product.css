@@ -39,7 +39,7 @@
 .author-publisher-row { display: flex; margin-top: 59px; width: 857px; max-width: 100%; gap: 20px; color: #000; flex-wrap: wrap; justify-content: space-between; font: 500 30px Raleway, sans-serif; }
 .author-publisher-inputs { display: flex; margin-top: 17px; width: 100%; gap: 20px; flex-wrap: wrap; justify-content: space-between; }
 .author-input, .publisher-input { border-radius: 10px; background-color: #fff; width: 100%; max-width: 100%; height: 67px; border: 2px solid #B9BFB8; }
-.description-input { border-radius: 10px; background-color: #fff; min-height: 118px; margin-top: 17px; width: 100%; border: 2px solid #B9BFB8; }
+.description-input {font-size: 20px; border-radius: 10px; background-color: #fff; min-height: 118px; margin-top: 17px; width: 100%; border: 2px solid #B9BFB8; }
 .button-group { align-self: center; display: flex; margin-top: 70px; max-width: 100%; gap: 20px; justify-content: space-between; font: 25px Raleway, sans-serif; }
 .cancel-button { font-family: Raleway;
     font-size: 20px;
