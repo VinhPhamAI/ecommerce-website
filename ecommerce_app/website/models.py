@@ -67,3 +67,11 @@ class Order(models.Model):
     shipping_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     total_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
 
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.book.title} - {self.quantity} pcs"

@@ -227,12 +227,23 @@ def search_books(request):
 
     return render(request, 'book_list.html', context)
 
+from django.db.models import Sum
+
 @login_required
 def manage_product(request):
     products = Product.objects.filter(user=request.user)
     books = Book.objects.filter(product_books__in=products)
-
+    
+    # Calculate quantity sold for each book
+    sold_quantities = OrderItems.objects.filter(book__in=books).values('book').annotate(total_sold=Sum('quantity')).values('book', 'total_sold')
+    sold_quantities_dict = {item['book']: item['total_sold'] for item in sold_quantities}
+    
+    # Attach sold quantities to each book
+    for book in books:
+        book.sold = sold_quantities_dict.get(book.id, 0)
+    
     return render(request, 'manage_product.html', {'books': books})
+
 
 @login_required
 def add_product(request):
@@ -344,8 +355,22 @@ def book_list(request, genre):
 @login_required
 def purchase_order(request):
     orders = Order.objects.filter(user=request.user)
-    books = Book.objects.filter(order_books__in=orders)
-    return render(request, "purchase_oder.html", {'books': books})
+    order_items = OrderItems.objects.filter(order__in=orders)
+    
+    # Gather books and their corresponding quantities and total price
+    books_with_quantities = []
+    for item in order_items:
+        total_price = item.book.price * item.quantity
+        books_with_quantities.append({
+            'book': item.book,
+            'quantity': item.quantity,
+            'price': item.book.price,
+            'total_price': total_price
+        })
+    
+    return render(request, "purchase_order.html", {'books_with_quantities': books_with_quantities})
+
+
 
 @login_required
 def confirm_order(request):
@@ -380,6 +405,14 @@ def confirm_order(request):
         book.number_of_books = book.number_of_books - item.quantity
         
         book.save()
+        
+        order_item = OrderItems(
+            order=order,
+            book=book,
+            quantity=item.quantity,
+            price=book.price
+        )
+        order_item.save()
 
     ShoppingCart.objects.filter(profile=profile).delete()
     profile.cart_books.clear()

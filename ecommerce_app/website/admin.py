@@ -70,3 +70,9 @@ class OrderAdmin(admin.ModelAdmin):
     display_books.short_description = 'Books'
 
 admin.site.register(Order, OrderAdmin)
+
+@admin.register(OrderItems)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('order', 'book', 'quantity', 'price')
+    list_filter = ('order', 'book')
+    search_fields = ('book__title', 'order__user__username')

@@ -27,6 +27,7 @@
                     <th class="product-id">Product ID</th>
                     <th class="price">Price</th>
                     <th class="stock">Stock</th>
+                    <th class="sold">Sold</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +37,11 @@
                         <td class="product-id">{{ book.isbn }}</td>
                         <td class="price">${{ book.price }}</td>
                         <td class="stock">{{ book.number_of_books }}</td>
+                        <td class="sold">{{ book.sold }}</td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td class = 'no-products-found'>No products found</td>
+                        <td colspan="5" class="no-products-found">No products found</td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -664,7 +664,7 @@ html {
 
 /* Define column widths */
 .product-name {
-    width: 40%; /* Adjust as needed */
+    width: 30%; /* Adjust as needed */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Show ellipsis for overflow text */
     white-space: nowrap; /* Prevent text wrapping */

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Products</title>
+    <title>Your Orders</title>
     <link rel="stylesheet" href="../static/css/manage_product.css">
     <link rel="stylesheet" href="../static/css/nav_bar.css">
 </head>
@@ -20,21 +20,25 @@
                 <tr class="product-table-header">
                     <th class="product-name">Product Name</th>
                     <th class="product-id">Product ID</th>
-                    <th class="price">Price </th>
+                    <th class="price">Price</th>
+                    <th class="quantity">Quantity</th>
+                    <th class="total">Total</th>
                     <th class="state">State</th>
                 </tr>
             </thead>
             <tbody>
-                {% for book in books %}
+                {% for item in books_with_quantities %}
                     <tr class="product-row">
-                        <td class="product-name">{{ book.title }}</td>
-                        <td class="product-id">{{ book.isbn }}</td>
-                        <td class="price">${{ book.price }}</td>
+                        <td class="product-name">{{ item.book.title }}</td>
+                        <td class="product-id">{{ item.book.isbn }}</td>
+                        <td class="price">${{ item.price }}</td>
+                        <td class="quantity">{{ item.quantity }}</td>
+                        <td class="total">${{ item.total_price }}</td>
                         <td class="state">Paid</td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td class = 'no-products-found'>No products found</td>
+                        <td colspan="6" class="no-products-found">No products found</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -48,7 +52,7 @@
         }
         </style>
         <nav class="pagination" aria-label="Pagination">
-            
+            <!-- Pagination controls if needed -->
         </nav>    
         <footer class="footer"></footer>
     </section>
