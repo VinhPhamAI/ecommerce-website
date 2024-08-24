@@ -119,7 +119,7 @@ def update_order_items(request):
         user_profile = request.user.profile
         
         # Clear existing order items for this user
-        OrderItem.objects.filter(profile=user_profile).delete()
+        ShoppingCart.objects.filter(profile=user_profile).delete()
         
         for item in cart_items:
             isbn = item['isbn']
@@ -127,7 +127,7 @@ def update_order_items(request):
             book = Book.objects.get(isbn=isbn)
             
             # Create or update OrderItem for this book
-            OrderItem.objects.create(
+            ShoppingCart.objects.create(
                 profile=user_profile,
                 book=book,
                 quantity=quantity
@@ -174,7 +174,7 @@ def cart_view(request):
 @login_required
 def checkout(request):
     profile = request.user.profile
-    order_items = OrderItem.objects.filter(profile=profile)
+    order_items = ShoppingCart.objects.filter(profile=profile)
 
     # Calculate total amount with shipping
     total_amount = sum(item.book.price * item.quantity for item in order_items)
@@ -350,7 +350,7 @@ def purchase_order(request):
 @login_required
 def confirm_order(request):
     profile = request.user.profile
-    order_items = OrderItem.objects.filter(profile=profile)
+    order_items = ShoppingCart.objects.filter(profile=profile)
 
     total_amount = sum(item.book.price * item.quantity for item in order_items)
     shipping_cost = Decimal(5.00)  # Adjust as needed
@@ -381,6 +381,6 @@ def confirm_order(request):
         
         book.save()
 
-    OrderItem.objects.filter(profile=profile).delete()
+    ShoppingCart.objects.filter(profile=profile).delete()
     profile.cart_books.clear()
     return render(request, "checkout_success.html")

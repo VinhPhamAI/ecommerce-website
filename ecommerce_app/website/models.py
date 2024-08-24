@@ -34,7 +34,7 @@ class Book(models.Model):
         return self.title
 
 
-class OrderItem(models.Model):
+class ShoppingCart(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='order_items')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='ordered_items')
     quantity = models.PositiveIntegerField()
@@ -66,3 +66,4 @@ class Order(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     shipping_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     total_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+

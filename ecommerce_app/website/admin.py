@@ -36,15 +36,15 @@ class ProfileAdmin(ImportExportModelAdmin):
         return ", ".join([book.title for book in obj.book_product.all()])
     book_product_list.short_description = 'Book Products'
 
-class OrderItemResource(resources.ModelResource):
+class ShoppingCartResource(resources.ModelResource):
     class Meta:
-        model = OrderItem
+        model = ShoppingCart
         fields = ('user', 'book', 'quantity', 'ordered_at')
         export_order = ('user', 'book', 'quantity')
 
-@admin.register(OrderItem)
-class OrderItemAdmin(ImportExportModelAdmin):
-    resource_class = OrderItemResource
+@admin.register(ShoppingCart)
+class ShoppingCartAdmin(ImportExportModelAdmin):
+    resource_class = ShoppingCartResource
     list_display = ('profile', 'book', 'quantity', 'ordered_at')
     search_fields = ('profile__user__username', 'book__title')
     list_filter = ('profile', 'book')
