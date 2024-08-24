@@ -27,6 +27,8 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'sign_up.html', {'form': form})
 
+
+
 def landing_page(request):
 
     all_books = list(Book.objects.all())     
@@ -56,7 +58,9 @@ def update_profile(request):
         gender = request.POST.get('gender')
         date_of_birth = request.POST.get('date_of_birth')
         address = request.POST.get('address')
-                # Chỉ cập nhật các trường nếu chúng có giá trị
+        payment_method = request.POST.get('payment_method')
+        
+        # Chỉ cập nhật các trường nếu chúng có giá trị
         if first_name:
             user_profile.first_name = first_name
         if last_name:
@@ -71,7 +75,8 @@ def update_profile(request):
             user_profile.date_of_birth = date_of_birth
         if address:
             user_profile.address = address
-
+        if payment_method:
+            user_profile.payment_method = payment_method
         user_profile.save()
         
         return redirect('landing_page')  # Hoặc chuyển hướng đến một trang khác nếu cần
@@ -187,6 +192,7 @@ def checkout(request):
         'phone': profile.phone_number,
         'email': profile.email,  # Email comes from the User model
         'address': profile.address,
+        'payment_method': profile.payment_method,
     }
     return render(request, 'checkout.html', context)
 
@@ -223,8 +229,8 @@ def search_books(request):
 
 @login_required
 def manage_product(request):
-    profile = Profile.objects.get(user=request.user)
-    books = profile.book_product.all()
+    products = Product.objects.filter(user=request.user)
+    books = Book.objects.filter(product_books__in=products)
 
     return render(request, 'manage_product.html', {'books': books})
 
@@ -264,9 +270,15 @@ def add_product(request):
         book.save()
         # Cập nhật Profile của người dùng hiện tại
         if request.user.is_authenticated:
-            profile = Profile.objects.get(user=request.user)
-            profile.book_product.add(book)
-            profile.save()
+            product = Product(
+                user=request.user,
+                title=title,
+                description=description,
+                price=price,
+            )
+            product.save()
+            product.book_product.add(book)  # Add the new book to the product
+            product.save()
 
         # Chuyển hướng đến trang thành công hoặc một view khác
         return redirect('landing_page')
@@ -278,6 +290,7 @@ from website.AI.model_ai import infer
 @login_required
 def book_detail(request, isbn):
     book = get_object_or_404(Book, isbn=isbn)
+
     try:
     # Truy vấn sách từ cơ sở dữ liệu dựa trên ISBN
         similar_isbns = infer(isbn)
@@ -328,35 +341,9 @@ def book_list(request, genre):
     }
     return render(request, 'book_list.html', context)
 
-
-
 @login_required
-def process_order(request):
-    if request.method == 'POST':
-        # Extract cart data from form
-        book_isbns = json.loads(request.POST.get('book_isbns', '[]'))
-        book_quantities = json.loads(request.POST.get('book_quantities', '[]'))
-        profile = Profile.objects.get(user=request.user)  # Assuming user is logged in
-        
-        # Validate the lengths
-        if len(book_isbns) != len(book_quantities):
-            return JsonResponse({'error': 'Invalid data'}, status=400)
-
-        # Create OrderItem entries
-        for isbn, quantity in zip(book_isbns, book_quantities):
-            try:
-                book = Book.objects.get(isbn=isbn)
-                OrderItem.objects.create(
-                    profile=profile,
-                    book=book,
-                    quantity=quantity
-                )
-            except Book.DoesNotExist:
-                continue  # Handle book not found scenario if needed
-
-        return redirect('order_confirmation')  # Redirect to a confirmation page or landing page
-    return JsonResponse({'error': 'Invalid request'}, status=400)
-
+def purchase_order(request):
+    return render(request, "purchase_oder.html")
 
 @login_required
 def confirm_order(request):
@@ -365,8 +352,11 @@ def confirm_order(request):
     for item in order_items:
         book = item.book
         # If the quantity in the order matches the number of books in stock, delete the book entry
-        if item.quantity == book.number_of_books:
-            book.delete()
+        print("item :", item.quantity)
+        print(book.number_of_books)
+        book.number_of_books = book.number_of_books - item.quantity
+        
+        book.save()
 
     OrderItem.objects.filter(profile=profile).delete()
     profile.cart_books.clear()

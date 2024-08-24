@@ -1,5 +1,5 @@
 from import_export import resources
-from .models import Book, Profile, OrderItem
+from .models import *
 from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
 
@@ -48,3 +48,13 @@ class OrderItemAdmin(ImportExportModelAdmin):
     list_display = ('profile', 'book', 'quantity', 'ordered_at')
     search_fields = ('profile__user__username', 'book__title')
     list_filter = ('profile', 'book')
+
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('user', 'title', 'description', 'price', 'created_at')  # Fields to display in the list view
+    search_fields = ('title', 'user__username')  # Add search capability for title and user
+    list_filter = ('created_at', 'price')  # Add filters for created_at and price
+    ordering = ('-created_at',)  # Default ordering by created_at in descending order
+    filter_horizontal = ('book_product',)  # Horizontal filter for the many-to-many relationship
+
+admin.site.register(Product, ProductAdmin)

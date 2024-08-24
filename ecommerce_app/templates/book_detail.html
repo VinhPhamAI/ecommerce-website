@@ -30,7 +30,12 @@
                 </div>
             </div>
             
-            <button class="add-to-cart-btn" onclick="window.location.href='{% url 'add_to_cart' book.isbn %}'">Add to cart</button>
+            <!-- Kiểm tra số lượng sách -->
+            {% if book.number_of_books > 0 %}
+                <button class="add-to-cart-btn" onclick="window.location.href='{% url 'add_to_cart' book.isbn %}'">Add to cart</button>
+            {% else %}
+                <p class="out-of-stock">Out of Stock</p>
+            {% endif %}
             <p class="book-description"><strong>Description:</strong> {{ book.description }}</p>
         </div>
     </section>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products</title>
+    <link rel="stylesheet" href="../static/css/manage_product.css">
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    
+    <section class="manage-product">
+        <div class="product-header">
+            <h2 class="product-title">Your Products</h2>
+        </div>
+    
+        <table class="product-table">
+            <thead>
+                <tr class="product-table-header">
+                    <th class="product-name">Product Name</th>
+                    <th class="product-id">Product ID</th>
+                    <th class="price">Price</th>
+                    <th class="stock">Stock</th>
+                    <th class="state">State</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                    <tr class="product-row">
+                        <td class="product-name">{{ book.title }}</td>
+                        <td class="product-id">{{ book.isbn }}</td>
+                        <td class="price">${{ book.price }}</td>
+                        <td class="stock">{{ book.number_of_books }}</td>
+                        <td class="state">Paid</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No products found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'landing_page' %}" class="back-link">&lt; Back to Shop</a>
+        <style>
+        .back-link {
+            color: #000;
+            font: 500 30px Raleway, sans-serif;
+            margin-top: 20px;
+        }
+        </style>
+        <nav class="pagination" aria-label="Pagination">
+            
+        </nav>    
+        <footer class="footer"></footer>
+    </section>
+</body>
+</html>

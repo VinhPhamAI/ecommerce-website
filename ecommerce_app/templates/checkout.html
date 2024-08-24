@@ -34,6 +34,7 @@
                     <label class="payment-method-title">Payment Method</label>
                     <div class="payment-options">
                         <div class="payment-options-wrapper">
+                            {% if payment_method == 'credit_card' %}
                             <div class="online-payment-option">
                                 <label class="online-payment-label">
                                     <input type="radio" name="payment" value="online" class="visually-hidden" required>
@@ -41,6 +42,7 @@
                                     <span class="online-payment-text">Online Payment</span>
                                 </label>
                             </div>
+                            {% elif payment_method == 'cash_on_delivery' %}
                             <div class="cash-delivery-option">
                                 <label class="cash-delivery-label">
                                     <input type="radio" name="payment" value="cash" class="visually-hidden" required>
@@ -48,6 +50,7 @@
                                     <span class="cash-delivery-text">Cash on Delivery</span>
                                 </label>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </form>
