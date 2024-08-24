@@ -58,3 +58,15 @@ class ProductAdmin(admin.ModelAdmin):
     filter_horizontal = ('book_product',)  # Horizontal filter for the many-to-many relationship
 
 admin.site.register(Product, ProductAdmin)
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name', 'phone_number', 'email', 'address', 'payment_method', 'display_books', 'total_cost')
+    search_fields = ('name', 'email', 'phone_number')
+    list_filter = ('payment_method',)
+    ordering = ('-total_cost',)
+    def display_books(self, obj):
+        return ", ".join(book.title for book in obj.book_order.all())
+    display_books.short_description = 'Books'
+
+admin.site.register(Order, OrderAdmin)

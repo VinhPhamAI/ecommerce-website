@@ -343,12 +343,35 @@ def book_list(request, genre):
 
 @login_required
 def purchase_order(request):
-    return render(request, "purchase_oder.html")
+    orders = Order.objects.filter(user=request.user)
+    books = Book.objects.filter(order_books__in=orders)
+    return render(request, "purchase_oder.html", {'books': books})
 
 @login_required
 def confirm_order(request):
     profile = request.user.profile
     order_items = OrderItem.objects.filter(profile=profile)
+
+    total_amount = sum(item.book.price * item.quantity for item in order_items)
+    shipping_cost = Decimal(5.00)  # Adjust as needed
+    total_amount_with_ship = total_amount + shipping_cost
+    # Create a new Order object
+    order = Order(
+        user=request.user,
+        name=f"{profile.first_name} {profile.last_name}",
+        phone_number=profile.phone_number,
+        email=profile.email,
+        address=profile.address,
+        payment_method=profile.payment_method,
+        price=total_amount,
+        shipping_cost=shipping_cost,
+        total_cost=total_amount_with_ship
+    )
+    order.save()
+
+    # Add books to the Order's ManyToMany field
+    order.book_order.set(item.book for item in order_items)
+
     for item in order_items:
         book = item.book
         # If the quantity in the order matches the number of books in stock, delete the book entry

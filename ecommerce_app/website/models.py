@@ -54,3 +54,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
+    name = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField()
+    address = models.TextField(blank=True, null=True)
+    payment_method = models.CharField(max_length=20, blank=True, null=True)
+    book_order = models.ManyToManyField('Book', blank=True, related_name='order_books')
+    price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    shipping_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
+    total_cost = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
