@@ -19,5 +19,8 @@ COPY . /app/
 # Expose the port that the app runs on
 EXPOSE 8000
 
-# Run migrations and start the Django development server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Ensure the entrypoint script is executable
+RUN chmod +x /app/entrypoint.sh
+
+# Use the entrypoint script to run migrations, create superuser, and import CSV data
+ENTRYPOINT ["/app/entrypoint.sh"]
