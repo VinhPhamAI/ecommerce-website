@@ -296,6 +296,41 @@ def add_product(request):
 
     return render(request, 'add_product.html')
 
+@login_required
+def update_product(request):
+    if request.method == 'POST':
+        book_id = request.POST.get('book_id')
+        book = Book.objects.filter(isbn=book_id).first()
+        if not book:
+            return render(request, 'update_fail.html')
+
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        year_of_publication = request.POST.get('year_of_publication')
+        image_url_l = request.POST.get('image_url_l')
+        price = request.POST.get('price')
+        genres = request.POST.get('genres')
+        description = request.POST.get('description')
+        pages = request.POST.get('pages')
+        number_of_books = request.POST.get('number_of_books')
+
+        # Cập nhật thông tin cuốn sách
+        book.title = title
+        book.author = author
+        book.year_of_publication = year_of_publication
+        book.image_url_l = image_url_l
+        book.price = price
+        book.genres = genres
+        book.description = description
+        book.pages = pages
+        book.number_of_books = number_of_books
+        book.save()
+
+        # Chuyển hướng đến trang quản lý sản phẩm hoặc một trang khác
+        return redirect('manage_product')
+
+    return render(request, 'update_product.html')
+
 from website.AI.model_ai import infer
 
 @login_required

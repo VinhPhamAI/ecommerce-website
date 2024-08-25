@@ -21,4 +21,5 @@ urlpatterns = [
     path('update_order_items/', views.update_order_items, name='update_order_items'),
     path('confirm_order/', views.confirm_order, name='confirm_order'),
     path('purchase_order/', views.purchase_order, name='purchase_order'),
+    path('update_product/', views.update_product, name='update_product'),
 ]

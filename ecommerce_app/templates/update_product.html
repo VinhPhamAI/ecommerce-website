@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="../static/css/add_product.css">
+    <link rel="stylesheet" href="../static/css/nav_bar.css">
+</head>
+<body>
+    {% include 'nav_bar.html' %}
+    <section class="add-product-section">
+        <h1 class="section-title">Update Product</h1>
+        
+        <form method="post" action="{% url 'update_product' %}">
+            {% csrf_token %}
+            
+            <label for="bookId" class="input-label">Book ID</label>
+            <input type="text" id="bookId" name="book_id" class="input-field" required minlength="6">
+
+            <label for="productName" class="input-label">Name Of The Book</label>
+            <input type="text" id="productName" name="title" class="input-field" required minlength="6">
+
+            <label for="price" class="input-label">Price</label>
+            <input type="number" id="price" name="price" class="input-field" required>
+
+            <label for="stock" class="input-label">Stock</label>
+            <input type="number" id="stock" name="number_of_books" class="input-field" required>
+
+            <label for="author" class="input-label">Author</label>
+            <input type="text" id="author" name="author" class="input-field" required>
+
+            <label for="date" class="input-label">Year Of Publication</label>
+            <input type="number" id="date" name="year_of_publication" class="input-field" required min="100" max="2024">
+
+            <label for="genres" class="input-label">Genre</label>
+            <input type="text" id="genres" name="genres" class="input-field" required>
+
+            <label for="pages" class="input-label">Pages</label>
+            <input type="number" id="pages" name="pages" class="input-field" required>
+
+            <label for="imageLink" class="input-label">Link to Image of Product</label>
+            <input type="url" id="imageLink" name="image_url_l" class="input-field" required>
+
+            <label for="description" class="input-label">Description</label>
+            <textarea id="description" name="description" class="description-input" required></textarea>
+
+            <div class="button-group">
+                <button type="button" class="cancel-button" onclick="window.location.href='{% url 'manage_product' %}';">Cancel</button>
+                <button type="submit" class="submit-button">Update Product</button>
+            </div>
+        </form>
+
+    </section>
+</body>
+</html>
