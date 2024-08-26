@@ -6,7 +6,6 @@
 <img src="https://img.shields.io/badge/PostgreSQL-CC2927?logo=microsoft-sql-server&logoColor=white" />
 <img src="https://img.shields.io/badge/html5-E34F26?logo=html5&logoColor=white" />
 <img src="https://img.shields.io/badge/css3-1572B6?logo=css3&logoColor=white" />
-<img src="https://img.shields.io/badge/bootstrap-563D7C?logo=bootstrap&logoColor=white" />
 <img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white" />
 
 </p>
@@ -51,9 +50,9 @@ Mở http://localhost:8000 và dùng thử website của chúng tôi.
 ## Contributing
 
 <tr>
-<td align="center" valign="top" width="14.28%"><sub><b>Phạm Quang Vinh</b></sub></td>
-<td align="center" valign="top" width="14.28%">Vũ Minh Tiến</b></sub></td>
-<td align="center" valign="top" width="14.28%"><sub><b>Phạm Thị Kim Huệ</b></sub></td>
+<td align="center" valign="top" width="14.28%">Phạm Quang Vinh</td>
+<td align="center" valign="top" width="14.28%">Vũ Minh Tiến</td>
+<td align="center" valign="top" width="14.28%">Phạm Thị Kim Huệ</td>
 </tr>
 
 ## License
