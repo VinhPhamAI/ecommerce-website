@@ -33,6 +33,3 @@ def import_books(csv_file_path):
         print('Successfully imported book data from CSV')
     except Exception as e:
         print(f'Error importing data: {e}')
-
-# Call the function with the path to your CSV
-import_books('/app/data.csv')  # Adjust the path to where your CSV file is located
