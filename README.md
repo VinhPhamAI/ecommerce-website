@@ -1,145 +1,63 @@
-# Ecommerce Website
+# Lala Books
 
-## Folder Structure, How to run a code
-**Lưu ý** : Trước khi push code phải tạo branch ghi rõ tên và push code lên branch đó, thêm virtual environment của mình vào .gitignore
+<p align='center'>
+<img src="https://img.shields.io/badge/Django-239120?logo=django&logoColor=white" />
+<img src="https://img.shields.io/badge/Python-563D7C?logo=python&logoColor=white" />
+<img src="https://img.shields.io/badge/PostgreSQL-CC2927?logo=microsoft-sql-server&logoColor=white" />
+<img src="https://img.shields.io/badge/html5-E34F26?logo=html5&logoColor=white" />
+<img src="https://img.shields.io/badge/css3-1572B6?logo=css3&logoColor=white" />
+<img src="https://img.shields.io/badge/bootstrap-563D7C?logo=bootstrap&logoColor=white" />
+<img src="https://img.shields.io/badge/Github-181717?logo=github&logoColor=white" />
 
-1. ecommerce_app/templates : code html.
-2. ecommerce_app/static : code js, css.
-3. ecommerce_app/ecommerce_app : Nơi quản lý database và các file nói chung.
-4. ecommerce_app/website : Đ biết là cái gì nma nó là nơi nhận đường link của html và js, css code.
+</p>
 
-### Cách chạy repo
-1. Clone về
-2. Mở WSL lên và tạo virtualenv
-    ```sh
-    sudo apt install python3-venv
-    # khong thich myenv thi dat ten khac
-    python3 -m venv myenv
-    source myenv/bin/activate
-    ```
-3. Chỉnh database ở ecommerce_app/ecommerce_app/settings.py theo tutorial ở phần dưới
-4. Chạy lệnh:
-    ```sh
-    pip install -r requirements.txt
-    cd ecommerce_app
-    python3 manage.py runserver
-    ```
+## About this Project:
 
+Lalabooks là một nền tảng trực tuyến dành cho những người yêu sách, cung cấp một bộ sưu tập phong phú các đầu sách đến từ nhiều thể loại khác nhau.
 
-## How to Push Code to a Branch
+Hệ thống được xây dựng bằng Django, với dữ liệu  chứa tập dữ liệu với hơn 5000 phim và 200000 thông tin về khách hàng và rating thu thập từ đa dạng nguồn dữ liệu.
 
-1. Initialize Git repository (if not already initialized):
-    ```sh
-    git init
-    ```
+Hệ thống cho phép người dùng đăng nhập, đăng ký, xem các sách từ nhiều thể loại, đăng bán một sách mới, thanh toán và xem lịch sử thanh toán. Với giao diện được cung cấp dựa trên html, CSS và sử dụng cơ sở dữ liệu PostgreSQL. Đồng thời hệ thống có bao gồm đề xuất dựa trên rating và các sách được xem của người dùng.
 
-2. Add all changes to the staging area:
-    ```sh
-    git add .
-    ```
+## How to run a code:
 
-3. Commit the changes:
-    ```sh
-    git commit -m "your update"
-    ```
+```
+$ git clone https://github.com/VinhPhamAI/ecommerce-website
 
-4. Push the changes to your branch:
-    ```sh
-    git push origin "your branch"
-    ```
+$ cd ecommerce_app
 
-5. To generate a personal access token for authentication:
-    - Go to `Settings` -> `Developer settings` -> `Personal access tokens` -> `Tokens (classic)`.
-  
-## Set up a database
-[Tutorial](https://www.youtube.com/watch?v=fV2uG92r5EQ&list=PLx-q4INfd95G-wrEjKDAcTB1K-8n1sIiz&index=3)
+```
 
+Tạo một file .env trong thư mục ecommerce_app để thiết lập tất cả các thư viện cần thiết như dưới đây:
 
+```
+POSTGRES_PASSWORD=your_psql_password
+POSTGRES_USER=your_psql_username
+POSTGRES_DB=ecommerce_database
+SECRET_KEY = 'django-insecure-@lhb-d4u!g$lh%tokwbs5m6qr2)bni&=&ku8(vf_*gq%+b^u5%'
+DJANGO_SUPERUSER_USERNAME=your_username
+DJANGO_SUPERUSER_PASSWORD=your_password
+DJANGO_SUPERUSER_EMAIL=your_email@gmail.com
+```
 
-## Troubleshooting
+Chạy lệnh dưới để xây dựng Docker Image và tạo các container Docker từ image đó 
 
-### Login Issues
+```
+$ docker compose up --build
+```
 
-If you encounter login issues, follow these steps:
+Mở http://localhost:8000 và dùng thử website của chúng tôi.
 
-1. Switch to the PostgreSQL user:
-    ```sh
-    sudo -i -u postgres
-    ```
+## Contributing
 
-2. Access PostgreSQL:
-    ```sh
-    psql
-    ```
+<tr>
+<td align="center" valign="top" width="14.28%"><sub><b>Phạm Quang Vinh</b></sub></td>
+<td align="center" valign="top" width="14.28%">Vũ Minh Tiến</b></sub></td>
+<td align="center" valign="top" width="14.28%"><sub><b>Phạm Thị Kim Huệ</b></sub></td>
+</tr>
 
-3. Update the PostgreSQL user password:
-    ```sql
-    ALTER USER postgres WITH PASSWORD 'your_new_password';
-    ```
+## License
 
-4. Exit PostgreSQL:
-    ```sh
-    \q
-    ```
-
-### Missing Database
-
-If the specified database does not exist:
-
-1. Access PostgreSQL:
-    ```sh
-    psql
-    ```
-
-2. Create the database:
-    ```sql
-    CREATE DATABASE ecommerce_database;
-    ```
-
-3. Exit PostgreSQL:
-    ```sh
-    \q
-    ```
-
-4. Apply migrations:
-    ```sh
-    python3 manage.py migrate
-    ```
-
-5. Run the development server:
-    ```sh
-    python3 manage.py runserver
-    ```
-
-## Running the Development Server
-
-1. Apply database migrations:
-    ```sh
-    python3 manage.py migrate
-    ```
-
-2. Create a superuser (if needed):
-    ```sh
-    python3 manage.py createsuperuser
-    ```
-
-3. Run the development server:
-    ```sh
-    python3 manage.py runserver
-    ```
-
-## Configuration
-
-Ensure your `settings.py` is configured correctly for the database:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ecommerce_database',
-        'USER': 'postgres',
-        'PASSWORD': '261223',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+<a href="https://github.com/fl4viooliveira/django_ecommerce/blob/master/LICENSE">
+    <img alt="NPM" src="https://img.shields.io/npm/l/license?style=for-the-badge">
+</a>&nbsp;&nbsp;
