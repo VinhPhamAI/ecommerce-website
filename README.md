@@ -32,7 +32,6 @@ Tạo một file .env trong thư mục ecommerce_app để thiết lập tất c
 POSTGRES_PASSWORD=your_psql_password
 POSTGRES_USER=your_psql_username
 POSTGRES_DB=ecommerce_database
-SECRET_KEY = 'django-insecure-@lhb-d4u!g$lh%tokwbs5m6qr2)bni&=&ku8(vf_*gq%+b^u5%'
 DJANGO_SUPERUSER_USERNAME=your_username
 DJANGO_SUPERUSER_PASSWORD=your_password
 DJANGO_SUPERUSER_EMAIL=your_email@gmail.com
