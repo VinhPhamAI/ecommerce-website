@@ -17,7 +17,7 @@ Hệ thống được xây dựng bằng Django, với dữ liệu  chứa tập
 
 Hệ thống cho phép người dùng đăng nhập, đăng ký, xem các sách từ nhiều thể loại, đăng bán một sách mới, thanh toán và xem lịch sử thanh toán. Với giao diện được cung cấp dựa trên html, CSS và sử dụng cơ sở dữ liệu PostgreSQL. Đồng thời hệ thống có bao gồm đề xuất dựa trên rating và các sách được xem của người dùng.
 
-## How to run a code:
+## How to run the code:
 
 ```
 $ git clone https://github.com/VinhPhamAI/ecommerce-website
